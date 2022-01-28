@@ -38,38 +38,46 @@
     
       </a>
     
-      <ul class="nav">
-        <li class="nav-item current-page">
-          <button class="nav-button current-page">Home</button>
+      <ul class="nav" id="js-nav">
+        <li class="nav-item">
+          <button class="nav-button current-page" data-name="home">Home</button>
         </li>
         <li class="nav-item">
-          <button class="nav-button ">My Library</button>
+          <button class="nav-button " data-name="myLibrary">My Library</button>
         </li>
       </ul>
     
-      <div class="form-wrapper">
-        <form class="search-form" name="search-form" , autocomplete="on">
+     <div class="js-content-box">
+        <div class="form-wrapper">
+          <form class="search-form" name="search-form" , autocomplete="on">
+        
+            <input class="search-input" type="text" placeholder="Movie Search..." />
+        
+            <button class="submit-search" type="submit">
+        
+              <svg class="search-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z"
+                  stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.5 10.5002L8.32501 8.3252" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+        
+            </button>
+        
+          </form>
+        </div>
+
+        <ul class="library-buttons is-hidden">
+          <li><button class="button watch-button">Watch</button></li>
+          <li><button class="button accent-button queue-button">Queue</button></li>
+        </ul>
+
+     </div>
     
-          <input class="search-input" type="text" placeholder="Movie Search..." />
-    
-          <button class="submit-search" type="submit">
-    
-            <svg class="search-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z"
-                stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M10.5 10.5002L8.32501 8.3252" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-    
-          </button>
-    
-        </form>
-      </div>
-    
-      <p class="search-massage">
+      <!-- <p class="search-massage">
         Search result not successful. Enter the correct movie name
-      </p>
+      </p> -->
     
     </header>
     <div class="body__section">
