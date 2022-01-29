@@ -1,22 +1,19 @@
 
 const refs = {
     header: document.querySelector('header'),
-    libraryButtons: document.querySelector('.library-buttons'),
+    navButtons: document.querySelectorAll('.js-nav-btn'),
     homeButton: document.querySelector('[data-name="home"]'),
     libraryButton: document.querySelector('[data-name="myLibrary"]'),
-    navButtons: document.querySelectorAll('.nav-button'),
-    searchForm: document.querySelector('.search-form'),
-    formWrapper: document.querySelector('.form-wrapper'),
+    
+    searchForm: document.querySelector('form[name="search-form"]'),
+    formWrapper: document.querySelector('.search-form__wrapper'),
     navList: document.querySelector('#js-nav'),
     contentBox: document.querySelector('.js-content-box'),
+    libraryButtons: document.querySelector('.js-library-btns'),
     
-
 };
 
-console.log(refs.header);
-
 const headerContent = refs.contentBox.childNodes;
-
 
 refs.homeButton.addEventListener('click', onHomeButtonClick);
 refs.libraryButton.addEventListener('click', onLibraryButtonClick);
@@ -29,6 +26,9 @@ function onHomeButtonClick(event) {
     addClassListForAll(headerContent, 'is-hidden');
     removeClassList(refs.formWrapper, 'is-hidden');
 
+    removeClassList(refs.header, 'header-library');
+    addClassList(refs.header, 'header-home');
+
 };
 
 function onLibraryButtonClick(event) {
@@ -38,6 +38,9 @@ function onLibraryButtonClick(event) {
 
     addClassListForAll(headerContent, 'is-hidden');
     removeClassList(refs.libraryButtons, 'is-hidden');
+
+    removeClassList(refs.header, 'header-home');
+    addClassList(refs.header, 'header-library');
 
 };
 

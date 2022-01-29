@@ -1,4 +1,4 @@
-<header class="header container">
+<header class="header  header-home">
 
     <!-- LOGO  -->
     <a href="./index.html" class="link header-logo">
@@ -13,12 +13,12 @@
 
 
     <!-- NAV buttons -->
-    <ul class="nav" id="js-nav">
-        <li class="nav-item">
-            <button class="nav-button current-page" data-name="home">Home</button>
+    <ul class="header-nav" id="js-nav">
+        <li class="header-nav__item">
+            <button class="header-nav__button current-page js-nav-btn" data-name="home">Home</button>
         </li>
-        <li class="nav-item">
-            <button class="nav-button " data-name="myLibrary">My Library</button>
+        <li class="header-nav__item">
+            <button class="header-nav__button js-nav-btn" data-name="myLibrary">My Library</button>
         </li>
     </ul>
 
@@ -26,12 +26,12 @@
     <div class="js-content-box">
 
         <!-- Search form -->
-        <div class="form-wrapper">
+        <div class="search-form__wrapper">
             <form class="search-form" name="search-form" , autocomplete="on">
 
-                <input class="search-input" type="text" placeholder="Movie Search..." />
+                <input class="search-form__input" type="text" placeholder="Movie Search..." />
 
-                <button class="submit-search" type="submit">
+                <button class="search-form__submit" type="submit">
 
                     <svg class="search-icon" width="12" height="12">
                         <use href="./images/sprite.svg#icon-search"></use>
@@ -43,9 +43,13 @@
         </div>
 
         <!-- Libriry buttons -->
-        <ul class="library-buttons is-hidden">
-            <li><button class="button watch-button">Watch</button></li>
-            <li><button class="button accent-button queue-button">Queue</button></li>
+        <ul class="library-btns__list is-hidden js-library-btns">
+            <li class="library-btns__item" >
+                <button class="library-btns__btn library-btns--watch">Watch</button>
+            </li>
+            <li class="ibrary-btns__item" >
+                <button class="library-btns__btn library-btns--queue accent-btn">Queue</button>
+            </li>
         </ul>
 
     </div>
