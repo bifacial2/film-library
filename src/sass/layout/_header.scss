@@ -1,0 +1,305 @@
+/* Colors
+
+#FF001B - red massage under search-input
+#FFFFFF - text-color for header
+#FF6B08 - orange underline for nav-manu
+#818181 - logo color
+
+*/
+
+.header {
+  background-color: var(--color-primery);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.56));
+  background-position: 10% 40%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: var(--color-white);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17em;
+}
+
+.container {
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 230px;
+}
+
+.header-logo {
+  position: absolute;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+
+  margin-top: 46px;
+  margin-left: 21px;
+
+  fill: #818181;
+}
+
+.logo-icon {
+  margin-right: 10px;
+}
+
+.logo-word {
+  display: none;
+
+  margin: 0;
+
+  font-size: 30px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.nav {
+  display: flex;
+  justify-content: right;
+
+  margin: 0;
+  padding-top: 58px;
+  padding-right: 20px;
+
+  list-style: none;
+}
+
+.nav-item:not(:first-child) {
+  margin-left: 39px;
+}
+
+.nav-button {
+  background: none;
+  color: #ffffff;
+  border-style: none;
+  cursor: pointer;
+
+  padding: 0;
+
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17em;
+}
+
+.current-page {
+  position: relative;
+
+  &:after {
+    content: '';
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    background-color: #ff6b08;
+  }
+}
+
+// JS-content-box - will be changed dynamicly
+
+.js-content-box {
+  position: relative;
+}
+
+.form-wrapper {
+  position: absolute;
+
+  display: flex;
+  padding-right: 20px;
+  padding-left: 20px;
+
+  width: 100%;
+}
+
+.search-form {
+  position: relative;
+
+  width: 100%;
+  display: flex;
+}
+
+.search-input {
+  padding: 0px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+
+  width: 100%;
+
+  background: none;
+  border-style: none;
+  border-bottom: 0.5px solid #ffffff;
+
+  margin-top: 41px;
+
+  color: var(--color-white);
+
+  &::placeholder {
+    color: #ffffff;
+  }
+}
+
+.submit-search {
+  position: absolute;
+
+  padding: 0;
+  margin: 0;
+
+  background: none;
+  border-style: none;
+
+  height: 40px;
+  width: 40px;
+
+  right: 0;
+  bottom: 0;
+}
+
+.search-icon {
+  position: absolute;
+
+  bottom: 5px;
+  right: 0;
+}
+
+.search-massage {
+  color: #ff001b;
+  margin: 0;
+  margin-top: 22px;
+  padding: 0 20px 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    height: 230px;
+  }
+
+  .logo-word {
+    display: block;
+  }
+
+  .header-logo {
+    margin-top: 36px;
+    margin-left: 51px;
+  }
+
+  .nav {
+    padding-right: 56px;
+  }
+
+  .search-form {
+    width: 336px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .search-massage {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 1024px;
+    height: 230px;
+  }
+}
+
+/* Library - is hidden on home page, but will appear after clicking 'My Library" */
+
+.header-library {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
+  background-position: 30% 100%;
+}
+
+.library-buttons {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  padding: 0;
+  padding-top: 49px;
+}
+
+.button {
+  padding: auto;
+  min-width: 130px;
+  min-height: 44px;
+
+  text-align: center;
+
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17em;
+
+  color: #ffffff;
+  background: none;
+  border-color: #ffffff;
+  border-radius: 5px;
+
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
+
+.accent-button {
+  background-color: #ff6b08;
+  border-color: #ff6b08;
+}
+
+.watch-button {
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    height: 230px;
+  }
+
+  .logo-word {
+    display: block;
+  }
+
+  .header-logo {
+    margin-top: 36px;
+    margin-left: 51px;
+  }
+
+  .nav {
+    padding-right: 56px;
+  }
+
+  .search-form {
+    width: 336px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .search-massage {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 1024px;
+    height: 230px;
+  }
+}
+
+.is-hidden {
+  display: none;
+}
