@@ -52,10 +52,10 @@
         <!-- Libriry buttons -->
         <ul class="library-btns__list is-hidden js-library-btns">
             <li class="library-btns__item" >
-                <button class="library-btns__btn library-btns--watch">Watch</button>
+                <button class="form-btn library-btns__btn library-btns--watch">Watch</button>
             </li>
             <li class="ibrary-btns__item" >
-                <button class="library-btns__btn library-btns--queue accent-btn">Queue</button>
+                <button class="form-btn library-btns__btn library-btns--queue accent-btn">Queue</button>
             </li>
         </ul>
 
@@ -63,19 +63,37 @@
 
     <!-- Modal SINGN IN window -->
 
-    <div class="backdrop is-hidden">
-        <form>
-            <label>
-                Email
-                <input type="email">
+    <div class="backdrop is-hidden" data-modal="auth">
+        <form class="signin-form" >
+            <div class="signin-heading__wrapper form-btn accent-btn">
+                <h2 class="signin-form__heading">Sign in</h2>
+            </div>
+            <label class="signin-form__label" >
+                 <span class="is-hidden" >Email</span>
+                <div class="signin-input__wrapper">
+                    <svg class="email-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-email"></use>
+                    </svg>
+                    <input class="signin-input__email" type="email" placeholder="Email">
+                </div>
             </label>
         
-            <label>
-                Password
-                <input type="password">
+            <label class="signin-form__label ">
+                <span class="is-hidden">Password</span>
+                <div class="signin-input__wrapper">
+                    <svg class="key-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-key"></use>
+                    </svg>
+                    <input class="signin-input__psw" type="password" placeholder="Password">
+                </div>
             </label>
         
-            <button type="submit">Log In</button>
+            <button class="form-btn" type="submit">Log In</button>
+            <button class="modal-close signin-form__close" type="button">
+                <svg class="close-icon" width="12" height="12">
+                    <use href="./images/sprite.svg#icon-close"></use>
+                </svg>
+            </button>
         </form>
     </div>
 

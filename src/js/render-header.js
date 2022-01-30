@@ -1,19 +1,31 @@
 
 const refs = {
     header: document.querySelector('header'),
+// Autorithazation
+    signInBtn: document.querySelector('[data-name="signIn"]'),
+    signUpBtn: document.querySelector('[data-name="signUp"]'),
+// Sign In form
+    modal: document.querySelector('[data-modal="auth"]'),
+    modalClose: document.querySelector('.modal-close'),
+// Navigation
+    navList: document.querySelector('#js-nav'),
     navButtons: document.querySelectorAll('.js-nav-btn'),
     homeButton: document.querySelector('[data-name="home"]'),
     libraryButton: document.querySelector('[data-name="myLibrary"]'),
-    
+// Area for dynamicly changing content 
+    contentBox: document.querySelector('.js-content-box'),
+// Search form
     searchForm: document.querySelector('form[name="search-form"]'),
     formWrapper: document.querySelector('.search-form__wrapper'),
-    navList: document.querySelector('#js-nav'),
-    contentBox: document.querySelector('.js-content-box'),
+// Library buttons - Watched and Queue
     libraryButtons: document.querySelector('.js-library-btns'),
-    
+
 };
 
 const headerContent = refs.contentBox.childNodes;
+
+refs.signInBtn.addEventListener('click', onSignInBtnClick);
+refs.modalClose.addEventListener('click', onModalCloseClick);
 
 refs.homeButton.addEventListener('click', onHomeButtonClick);
 refs.libraryButton.addEventListener('click', onLibraryButtonClick);
@@ -67,6 +79,14 @@ function removeClassList(element, classList) {
 
 function addClassList(element, classList) {
     element.classList.add(classList);
+}
+
+function onSignInBtnClick(event) {
+    removeClassList(refs.modal, 'is-hidden');
+};
+
+function onModalCloseClick(event) {
+    addClassList(refs.modal, 'is-hidden');
 }
 
 
