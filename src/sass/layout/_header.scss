@@ -8,9 +8,14 @@
 */
 
 .header {
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 230px;
+  max-width: 1024px;
+
   background-color: var(--color-primery);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.56));
-  background-position: 10% 40%;
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,14 +24,62 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.17em;
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 1024px;
+  }
 }
 
-.container {
-  box-sizing: border-box;
-  margin-right: auto;
-  margin-left: auto;
+.header-library {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+    url(../images/hdr-library-tablet-min.jpeg);
 
-  height: 230px;
+  background-position: 50% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+      url(../images/hdr-library-tablet-min.jpeg);
+
+    background-position: 50% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (min-width: 1024px) {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+      url(../images/hdr-library-desktop-min.jpeg);
+
+    background-position: 50% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.header-home {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+    url(../images/hdr-home-mobile-min.jpeg);
+
+  @media screen and (min-width: 768px) {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+      url(../images/hdr-home-tablet-min.png);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (min-width: 1024px) {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.56)),
+      url(../images/hdr-home-desktop-min.jpeg);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
 .header-logo {
@@ -42,6 +95,11 @@
   margin-left: 21px;
 
   fill: #818181;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 36px;
+    margin-left: 51px;
+  }
 }
 
 .logo-icon {
@@ -56,9 +114,13 @@
   font-size: 30px;
   font-weight: 500;
   color: #ffffff;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
 
-.nav {
+.header-nav {
   display: flex;
   justify-content: right;
 
@@ -67,13 +129,17 @@
   padding-right: 20px;
 
   list-style: none;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 71px;
+  }
 }
 
-.nav-item:not(:first-child) {
+.header-nav__item:not(:first-child) {
   margin-left: 39px;
 }
 
-.nav-button {
+.header-nav__button {
   background: none;
   color: #ffffff;
   border-style: none;
@@ -110,7 +176,7 @@
   position: relative;
 }
 
-.form-wrapper {
+.search-form__wrapper {
   position: absolute;
 
   display: flex;
@@ -127,7 +193,7 @@
   display: flex;
 }
 
-.search-input {
+.search-form__input {
   padding: 0px;
   padding-bottom: 4px;
   padding-left: 2px;
@@ -147,7 +213,7 @@
   }
 }
 
-.submit-search {
+.search-form__submit {
   position: absolute;
 
   padding: 0;
@@ -170,58 +236,9 @@
   right: 0;
 }
 
-.search-massage {
-  color: #ff001b;
-  margin: 0;
-  margin-top: 22px;
-  padding: 0 20px 0 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    height: 230px;
-  }
-
-  .logo-word {
-    display: block;
-  }
-
-  .header-logo {
-    margin-top: 36px;
-    margin-left: 51px;
-  }
-
-  .nav {
-    padding-right: 56px;
-  }
-
-  .search-form {
-    width: 336px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .search-massage {
-    text-align: center;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 1024px;
-    height: 230px;
-  }
-}
-
 /* Library - is hidden on home page, but will appear after clicking 'My Library" */
 
-.header-library {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
-  background-position: 30% 100%;
-}
-
-.library-buttons {
+.library-btns__list {
   position: absolute;
 
   display: flex;
@@ -233,7 +250,7 @@
   padding-top: 49px;
 }
 
-.button {
+.library-btns__btn {
   padding: auto;
   min-width: 130px;
   min-height: 44px;
@@ -254,50 +271,23 @@
   filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
 }
 
-.accent-button {
+.library-btns__item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.accent-btn {
   background-color: #ff6b08;
   border-color: #ff6b08;
 }
 
-.watch-button {
-  margin-right: 20px;
+.search-form {
+  width: 336px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    height: 230px;
-  }
-
-  .logo-word {
-    display: block;
-  }
-
-  .header-logo {
-    margin-top: 36px;
-    margin-left: 51px;
-  }
-
-  .nav {
-    padding-right: 56px;
-  }
-
-  .search-form {
-    width: 336px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .search-massage {
-    text-align: center;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    width: 1024px;
-    height: 230px;
-  }
+.search-massage {
+  text-align: center;
 }
 
 .is-hidden {
