@@ -9,16 +9,23 @@
         <p class="logo-word">Filmoteka</p>
     </a>
 
-    <!-- AUTHORIZATION -->
-
+    <!-- AUTHORIZATION buttons -->
+   <ul class="auth-btns__list" >
+       <li class="auth-btns__item">
+           <button class="header__btn auth-btns__btn auth-btns__btn--signin" type="button" data-name="signIn">Sign In</button>
+       </li>
+       <li class="auth-btns__item">
+        <button class="header__btn auth-btns__btn" type="button" data-name="signUp">Sign Up</button>
+       </li>
+   </ul>
 
     <!-- NAV buttons -->
     <ul class="header-nav" id="js-nav">
         <li class="header-nav__item">
-            <button class="header-nav__button current-page js-nav-btn" data-name="home">Home</button>
+            <button class="header-nav__btn header__btn current-page js-nav-btn" data-name="home">Home</button>
         </li>
         <li class="header-nav__item">
-            <button class="header-nav__button js-nav-btn" data-name="myLibrary">My Library</button>
+            <button class="header-nav__btn header__btn js-nav-btn" data-name="myLibrary">My Library</button>
         </li>
     </ul>
 
@@ -55,6 +62,23 @@
     </div>
 
     <!-- Modal SINGN IN window -->
+
+    <div class="backdrop is-hidden">
+        <form>
+            <label>
+                Email
+                <input type="email">
+            </label>
+        
+            <label>
+                Password
+                <input type="password">
+            </label>
+        
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
     <!-- Modal REGISTER window -->
 
 </header>
