@@ -31,4 +31,9 @@
 .our-team {
   text-decoration: underline;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: #ff6b08;
+  }
 }
