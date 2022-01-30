@@ -179,7 +179,7 @@
 .search-form__wrapper {
   position: absolute;
 
-  display: flex;
+  // display: flex;
   padding-right: 20px;
   padding-left: 20px;
 
@@ -206,7 +206,7 @@
 
   margin-top: 41px;
 
-  color: var(--color-white);
+  color: #ffffff;
 
   &::placeholder {
     color: #ffffff;
@@ -292,4 +292,15 @@
 
 .is-hidden {
   display: none;
+}
+
+.search-result-message {
+  color: #ff001b;
+
+  // position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 22px;
 }
