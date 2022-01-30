@@ -2,7 +2,7 @@ import * as basicLightbox from 'basiclightbox';
 
 const team = [
   {
-    nameDev: 'Serhii',
+    nameDev: 'Stanislav',
     surnameDev: 'Serhii',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Team-lead',
@@ -10,7 +10,7 @@ const team = [
   },
 
   {
-    nameDev: 'Serhii',
+    nameDev: 'Andriy',
     surnameDev: 'Serhii',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Scrum-master',
@@ -18,7 +18,7 @@ const team = [
   },
 
   {
-    nameDev: 'Serhii',
+    nameDev: 'Anastasia',
     surnameDev: 'Serhii',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
@@ -26,7 +26,7 @@ const team = [
   },
 
   {
-    nameDev: 'Serhii',
+    nameDev: 'Alexandr',
     surnameDev: 'Serhii',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
@@ -34,15 +34,15 @@ const team = [
   },
 
   {
-    nameDev: 'Serhii',
-    surnameDev: 'Serhii',
+    nameDev: 'Andriy',
+    surnameDev: 'Serhi',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
   },
 
   {
-    nameDev: 'Serhii',
+    nameDev: 'Irina',
     surnameDev: 'Serhii',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
