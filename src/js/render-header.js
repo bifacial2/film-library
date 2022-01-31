@@ -86,6 +86,8 @@ function addClassList(element, classList) {
 }
 
 function onSignInBtnClick(event) {
+    event.preventDefault();
+
     addClassList(refs.modalReg, 'is-hidden');
     removeClassList(refs.modalIn, 'is-hidden');
 };
@@ -93,14 +95,14 @@ function onSignInBtnClick(event) {
 function onModalInCloseClick(event) {
     addClassList(refs.modalIn, 'is-hidden');
 
-    
 }
 
 function onModalRegCloseClick() {
     addClassList(refs.modalReg, 'is-hidden');
 }
 
-function onSignUpBtnClick() {
+function onSignUpBtnClick(event) {
+    event.preventDefault();
 
     addClassList(refs.modalIn, 'is-hidden');
     removeClassList(refs.modalReg, 'is-hidden');
