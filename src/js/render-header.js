@@ -9,6 +9,7 @@ const refs = {
     modalReg: document.querySelector('[data-modal="auth-reg"]'),
     modalInClose: document.querySelector('.modal-close'),
     modalRegClose: document.querySelector('[data-regFormClose]'),
+    
 // Navigation
     navList: document.querySelector('#js-nav'),
     navButtons: document.querySelectorAll('.js-nav-btn'),
@@ -30,6 +31,8 @@ addEventListenerForArray(refs.signInBtns,'click', onSignInBtnClick);
 addEventListenerForArray(refs.signUpBtns,'click', onSignUpBtnClick);
 refs.modalInClose.addEventListener('click', onModalInCloseClick);
 refs.modalRegClose.addEventListener('click', onModalRegCloseClick);
+
+
 
 refs.homeButton.addEventListener('click', onHomeButtonClick);
 refs.libraryButton.addEventListener('click', onLibraryButtonClick);
@@ -90,6 +93,8 @@ function onSignInBtnClick(event) {
 
     addClassList(refs.modalReg, 'is-hidden');
     removeClassList(refs.modalIn, 'is-hidden');
+
+    closeModal(refs.modalIn, refs.modalIn);
 };
 
 function onModalInCloseClick(event) {
@@ -106,6 +111,8 @@ function onSignUpBtnClick(event) {
 
     addClassList(refs.modalIn, 'is-hidden');
     removeClassList(refs.modalReg, 'is-hidden');
+
+    closeModal(refs.modalReg, refs.modalReg);
 }
 
 function addEventListenerForArray(array, event, func) {
@@ -115,6 +122,32 @@ function addEventListenerForArray(array, event, func) {
     };
 }
 
+function closeModal(element) {
+    
+    document.addEventListener('click', onClickEvent);
+
+    function onClickEvent(event) {
+        console.log(event, 'document click')
+        if (event.path[0] === element) {
+            addClassList(element, 'is-hidden');
+            document.removeEventListener('click', onClickEvent);
+        }
+    }
+
+    document.addEventListener('keydown', onEscPress);
+
+    function onEscPress(e) {
+        console.log('key press');
+
+        if (e.keyCode == 27) {
+            addClassList(element, 'is-hidden');
+            document.removeEventListener('click', onClickEvent);
+            document.removeEventListener('keydown', onEscPress);
+        }
+
+    }
+    
+}
 
 
 
