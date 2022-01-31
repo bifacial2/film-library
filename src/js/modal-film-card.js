@@ -42,12 +42,6 @@ function openModal(e) {
       function closeModal(e) {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
-      }
-
-      initStorageBtns();
+      } 
     })
-    .then(data => {})
-    .catch(error => {
-      console.log('oops!');
-    });
-}
+ }
