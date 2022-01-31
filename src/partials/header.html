@@ -9,16 +9,23 @@
         <p class="logo-word">Filmoteka</p>
     </a>
 
-    <!-- AUTHORIZATION -->
-
+    <!-- AUTHORIZATION buttons -->
+   <ul class="auth-btns__list" >
+       <li class="auth-btns__item">
+           <button class="header__btn auth-btns__btn auth-btns__btn--signin" type="button" data-name="signIn">Sign In</button>
+       </li>
+       <li class="auth-btns__item">
+        <button class="header__btn auth-btns__btn" type="button" data-name="signUp">Sign Up</button>
+       </li>
+   </ul>
 
     <!-- NAV buttons -->
     <ul class="header-nav" id="js-nav">
         <li class="header-nav__item">
-            <button class="header-nav__button current-page js-nav-btn" data-name="home">Home</button>
+            <button class="header-nav__btn header__btn current-page js-nav-btn" data-name="home">Home</button>
         </li>
         <li class="header-nav__item">
-            <button class="header-nav__button js-nav-btn" data-name="myLibrary">My Library</button>
+            <button class="header-nav__btn header__btn js-nav-btn" data-name="myLibrary">My Library</button>
         </li>
     </ul>
 
@@ -46,16 +53,119 @@
         <!-- Libriry buttons -->
         <ul class="library-btns__list is-hidden js-library-btns">
             <li class="library-btns__item" >
-                <button class="library-btns__btn library-btns--watch">Watch</button>
+                <button class="form-btn library-btns__btn library-btns--watch">Watch</button>
             </li>
             <li class="ibrary-btns__item" >
-                <button class="library-btns__btn library-btns--queue accent-btn">Queue</button>
+                <button class="form-btn library-btns__btn library-btns--queue accent-btn">Queue</button>
             </li>
         </ul>
 
     </div>
 
     <!-- Modal SINGN IN window -->
+
+    <div class="backdrop is-hidden" data-modal="auth-in">
+        <form class="signin-form" >
+            <div class="signin-heading__wrapper form-btn accent-btn">
+                <h2 class="signin-form__heading">Sign in</h2>
+            </div>
+            <label class="signin-form__label" >
+                 <span class="is-hidden" >Email</span>
+                <div class="signin-input__wrapper">
+                    <svg class="email-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-email"></use>
+                    </svg>
+                    <input class="signin-input__email" type="email" placeholder="Email">
+                </div>
+            </label>
+        
+            <label class="signin-form__label ">
+                <span class="is-hidden">Password</span>
+                <div class="signin-input__wrapper">
+                    <svg class="key-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-key"></use>
+                    </svg>
+                    <input class="signin-input__psw" type="password" placeholder="Password">
+                </div>
+            </label>
+
+            <div class="signin-form__massage">
+                <p>Don't have an account? <button class="header__btn form-massage__btn accent" data-name="signUp" >Sign Up</button>.</p>
+            </div>
+        
+            <button class="form-btn" type="submit">Log In</button>
+            <button class="modal-close signin-form__close" type="button">
+                <svg class="close-icon" width="12" height="12">
+                    <use href="./images/sprite.svg#icon-close"></use>
+                </svg>
+            </button>
+        </form>
+    </div>
+
     <!-- Modal REGISTER window -->
+
+    <div class="backdrop is-hidden" data-modal="auth-reg">
+        <form class="reg-form">
+            <div class="reg-heading__wrapper form-btn accent-btn">
+                <h2 class="reg-form__heading">Sign up</h2>
+            </div>
+
+           <div class="reg-form__massage--top">
+                <p>Already have an account? <button class="header__btn accent form-massage__btn" data-name="signIn">Sign in</button>.</p>
+           </div>
+
+            <label class="reg-form__name">
+                <span class="is-hidden">Name</span>
+                <div class="reg-input__wrapper">
+                    <svg class="email-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-user"></use>
+                    </svg>
+                    <input class="reg-input__email" type="email" placeholder="Enter name">
+                </div>
+            </label>
+
+            <label class="reg-form__label">
+                <span class="is-hidden">Email</span>
+                <div class="reg-input__wrapper">
+                    <svg class="email-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-email"></use>
+                    </svg>
+                    <input class="reg-input__email" type="email" placeholder="Enter Email">
+                </div>
+            </label>
+        
+            <label class="reg-form__label ">
+                <span class="is-hidden">Password</span>
+                <div class="reg-input__wrapper">
+                    <svg class="key-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-key"></use>
+                    </svg>
+                    <input class="reg-input__psw" type="password" placeholder="Create password">
+                </div>
+            </label>
+
+            <label class="reg-form__label ">
+                <span class="is-hidden">Password</span>
+                <div class="reg-input__wrapper">
+                    <svg class="key-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#icon-key"></use>
+                    </svg>
+                    <input class="reg-input__psw" type="password" placeholder="Repeat password">
+                </div>
+            </label>
+
+            <div class="reg-form__massage--bottom">
+                <p>By creating an account you agree to our <a class="accent" href="#">Terms & Privacy</a>.</p>
+            </div>
+
+        
+            <button class="form-btn" type="submit">Register</button>
+            <button class="modal-close reg-form__close" type="button" data-regFormClose>
+                <svg class="close-icon" width="12" height="12">
+                    <use href="./images/sprite.svg#icon-close"></use>
+                </svg>
+            </button>
+        </form>
+    </div>
 
 </header>
