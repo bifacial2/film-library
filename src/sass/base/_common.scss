@@ -37,10 +37,20 @@ img {
 *::after {
   box-sizing: border-box;
 }
+
+html,
 body {
   font-family: var(--font-main);
   font-style: normal;
   font-weight: 500;
   color: var(--text-color);
   transition: background-color 2000ms linear;
+  height: 100%;
+}
+
+.body-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100%;
 }
