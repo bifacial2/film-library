@@ -91,4 +91,4 @@ const e={header:document.querySelector("header"),navButtons:document.querySelect
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/render-films"),require("./js/modal-film-card"),require("./js/render-header");
 },{"./sass/main.scss":"clu1","./js/render-films":"mj1t","./js/modal-film-card":"MzUv","./js/render-header":"ZCrl"}]},{},["Focm"], null)
-//# sourceMappingURL=/final-project-js/src.1c75c29f.js.map
+//# sourceMappingURL=/final-project-js/src.cb1d2f22.js.map
