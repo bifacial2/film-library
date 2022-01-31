@@ -2,6 +2,8 @@ import axios from 'axios';
 import { makeGenres } from './makeGenres';
 import Notiflix from 'notiflix';
 import { lazyLoad } from './lazyLoad';
+import './localization';
+import currentLanguage from './localization';
 
 let page = 1;
 let totalPages = 0;
@@ -14,9 +16,11 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 createData({ page, totalPages });
 async function getFilms(page) {
   try {
-    const { data } = await axios.get(`trending/movie/week?api_key=${KEY_API}&language=uk-UA`);
+    const { data } = await axios.get(
+      `trending/movie/week?api_key=${KEY_API}&language=${currentLanguage}`,
+    );
     totalPages = data.total_pages;
-    console.log(data);
+
     if (page === totalPages) {
       Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`, {
         timeout: 1000,
