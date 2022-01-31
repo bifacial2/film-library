@@ -1,17 +1,19 @@
 import * as basicLightbox from 'basiclightbox';
 
+import stanislavUrl from '../images/zTwfMV1hm1DIrMo8BGyZKskhSPr.jpg';
+
 const team = [
   {
     nameDev: 'Stanislav',
-    surnameDev: 'Serhii',
-    /* photo: `${serhiiUrl}`, */
+    surnameDev: 'Anonymus',
+    photo: `${stanislavUrl}`,
     roleDev: 'Team-lead',
     gitDev: 'https://github.com/',
   },
 
   {
     nameDev: 'Andriy',
-    surnameDev: 'Serhii',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Scrum-master',
     gitDev: 'https://github.com/',
@@ -19,7 +21,7 @@ const team = [
 
   {
     nameDev: 'Anastasia',
-    surnameDev: 'Serhii',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -27,7 +29,7 @@ const team = [
 
   {
     nameDev: 'Alexandr',
-    surnameDev: 'Serhii',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -35,7 +37,7 @@ const team = [
 
   {
     nameDev: 'Andriy',
-    surnameDev: 'Serhi',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -43,7 +45,15 @@ const team = [
 
   {
     nameDev: 'Irina',
-    surnameDev: 'Serhii',
+    surnameDev: 'Anonymus',
+    /* photo: `${serhiiUrl}`, */
+    roleDev: 'Front-end Developer',
+    gitDev: 'https://github.com/',
+  },
+
+  {
+    nameDev: 'Eduard',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -51,15 +61,7 @@ const team = [
 
   {
     nameDev: 'Serhii',
-    surnameDev: 'Serhii',
-    /* photo: `${serhiiUrl}`, */
-    roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
-  },
-
-  {
-    nameDev: 'Serhii',
-    surnameDev: 'Serhii',
+    surnameDev: 'Anonymus',
     /* photo: `${serhiiUrl}`, */
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
