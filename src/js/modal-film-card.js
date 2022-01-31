@@ -44,10 +44,24 @@ function openModal(e) {
         window.removeEventListener('keydown', closeModalHandler);
       }
 
-      initStorageBtns();
+      initStorageBtns(data);
     })
     .then(data => {})
     .catch(error => {
       console.log('oops!');
     });
 }
+
+function initStorageBtns(data) {
+  const watchedButton = document.getElementById('js-WatchedButton');
+
+console.log(watchedButton);
+
+watchedButton.addEventListener('click', onWatchedBtnClick)
+
+function onWatchedBtnClick(event) {
+    event.preventDefault;
+  console.log(data.title);
+  localStorage.setItem('id', data.id);
+}
+};
