@@ -92,6 +92,8 @@ function onSignInBtnClick(event) {
 
 function onModalInCloseClick(event) {
     addClassList(refs.modalIn, 'is-hidden');
+
+    
 }
 
 function onModalRegCloseClick() {
