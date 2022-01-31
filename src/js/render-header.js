@@ -23,6 +23,8 @@ const refs = {
 // Library buttons - Watched and Queue
     libraryButtons: document.querySelector('.js-library-btns'),
 
+    body: document.body,
+
 };
 
 const headerContent = refs.contentBox.childNodes;
@@ -80,41 +82,6 @@ function addClassListForAll(array, className) {
     }
 };
 
-function removeClassList(element, classList) {
-    element.classList.remove(classList);
-}
-
-function addClassList(element, classList) {
-    element.classList.add(classList);
-}
-
-function onSignInBtnClick(event) {
-    event.preventDefault();
-
-    addClassList(refs.modalReg, 'is-hidden');
-    removeClassList(refs.modalIn, 'is-hidden');
-
-    closeModal(refs.modalIn, refs.modalIn);
-};
-
-function onModalInCloseClick(event) {
-    addClassList(refs.modalIn, 'is-hidden');
-
-}
-
-function onModalRegCloseClick() {
-    addClassList(refs.modalReg, 'is-hidden');
-}
-
-function onSignUpBtnClick(event) {
-    event.preventDefault();
-
-    addClassList(refs.modalIn, 'is-hidden');
-    removeClassList(refs.modalReg, 'is-hidden');
-
-    closeModal(refs.modalReg, refs.modalReg);
-}
-
 function addEventListenerForArray(array, event, func) {
     // array.map(element => element.addEventListener(event, func));
     for (let i = 0; i < array.length; i += 1) {
@@ -122,15 +89,69 @@ function addEventListenerForArray(array, event, func) {
     };
 }
 
-function closeModal(element) {
+function removeClassList(element, classList) {
+    element.classList.remove(classList);
+};
+
+function addClassList(element, classList) {
+    element.classList.add(classList);
+};
+
+function onSignInBtnClick(event) {
+    event.preventDefault();
+
+    refs.body.classList.add('no-scroll');
+
+    addClassList(refs.modalReg, 'is-hidden');
+    removeClassList(refs.modalIn, 'is-hidden');
+
+    closeModal(refs.modalIn);
+};
+
+function onSignUpBtnClick(event) {
+    event.preventDefault();
+
+    refs.body.classList.add('no-scroll');
+
+    addClassList(refs.modalIn, 'is-hidden');
+    removeClassList(refs.modalReg, 'is-hidden');
+
+    closeModal(refs.modalReg);
+};
+
+function onModalInCloseClick(event) {
+    // addClassList(refs.modalIn, 'is-hidden');
+
+}
+
+function onModalRegCloseClick() {
+    // addClassList(refs.modalReg, 'is-hidden');
+
+};
+
+function closeModal(elementName) {
+
+    const element = elementName;
     
     document.addEventListener('click', onClickEvent);
 
     function onClickEvent(event) {
         console.log(event, 'document click')
-        if (event.path[0] === element) {
+
+        if (console.log('work')) { };
+
+        // ! Огромный костыль, пока не знаю как решить
+        if (event.path[0] === element
+            || event.path[0] === refs.modalInClose
+            || event.path[1] === refs.modalInClose
+            || event.path[2] === refs.modalInClose
+                || event.path[0] === refs.modalRegClose
+                || event.path[1] === refs.modalRegClose
+                || event.path[2] === refs.modalRegClose) {
             addClassList(element, 'is-hidden');
             document.removeEventListener('click', onClickEvent);
+            document.removeEventListener('keydown', onEscPress);
+            refs.body.classList.remove('no-scroll');
         }
     }
 
@@ -143,11 +164,12 @@ function closeModal(element) {
             addClassList(element, 'is-hidden');
             document.removeEventListener('click', onClickEvent);
             document.removeEventListener('keydown', onEscPress);
+            refs.body.classList.remove('no-scroll');
         }
 
     }
     
-}
+};
 
 
 
