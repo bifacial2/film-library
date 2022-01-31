@@ -1,6 +1,6 @@
 import * as basicLightbox from 'basiclightbox';
 
-import stanislavUrl from '../images/zTwfMV1hm1DIrMo8BGyZKskhSPr.jpg';
+import stanislavUrl from '../images/d5NXSklXo0qyIYkgV94XAgMIckC.jpg';
 
 const team = [
   {
