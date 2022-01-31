@@ -158,6 +158,16 @@
   cursor: pointer;
 }
 
+.accent {
+  color: #ff6b08;
+  text-decoration: none;
+}
+
+.form-massage__btn {
+  text-transform: none;
+  font-size: 14px;
+}
+
 // authorization
 
 .auth-btns__list {
@@ -219,6 +229,7 @@
   }
 }
 
+// Log in form
 .signin-form {
   position: absolute;
   top: 50%;
@@ -227,13 +238,12 @@
   transform: translate(-50%, -50%);
 
   width: 300px;
-  height: 250px;
+  height: 270px;
 
   padding: 30px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
   background-color: #ffffff;
 }
@@ -268,6 +278,124 @@
   border-radius: 5px;
 
   width: 100%;
+  height: 30px;
+
+  padding-left: 30px;
+}
+
+.signin-input__email {
+  margin-top: 20px;
+}
+
+.signin-input__psw {
+  margin-top: 20px;
+}
+
+.key-icon,
+.email-icon {
+  position: absolute;
+
+  width: 15px;
+  height: 15px;
+
+  bottom: 0;
+  left: 10px;
+
+  transform: translate(0, -50%);
+}
+
+.signin-form__massage {
+  margin-top: 15px;
+}
+
+.signin-form button[type='submit'] {
+  width: 50px;
+
+  margin-top: 30px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  color: #ff6b08;
+
+  border: 2px solid #ff6b08;
+}
+
+.signin-form__close {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 10px;
+  right: 10px;
+
+  width: 25px;
+  height: 25px;
+
+  padding: 2px;
+
+  border-radius: 50%;
+  border-color: #000000;
+
+  cursor: pointer;
+}
+
+// Reg form
+.reg-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 300px;
+  height: 450px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: #ffffff;
+}
+
+.reg-form__heading {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.reg-heading__wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: -30px;
+  right: 50%;
+
+  transform: translate(50%, 0%);
+
+  height: 50px;
+  width: auto;
+
+  padding: 15px;
+}
+
+.reg-form__massage--top {
+  margin-top: 15px;
+}
+
+.reg-input__wrapper {
+  position: relative;
+}
+
+.reg-form input {
+  border-radius: 5px;
+
+  width: 100%;
 
   height: 30px;
 
@@ -287,18 +415,22 @@
   transform: translate(0, -50%);
 }
 
-.signin-input__psw {
+.reg-input__psw {
   margin-top: 25px;
 }
 
-.signin-input__email {
+.reg-input__email {
   margin-top: 30px;
 }
 
-.signin-form button[type='submit'] {
+.reg-form__massage--bottom {
+  margin-top: 30px;
+}
+
+.reg-form button[type='submit'] {
   width: 50px;
 
-  margin-top: 40px;
+  margin-top: 25px;
 
   margin-right: auto;
   margin-left: auto;
@@ -308,7 +440,7 @@
   border: 2px solid #ff6b08;
 }
 
-.signin-form__close {
+.reg-form__close {
   position: absolute;
 
   display: flex;

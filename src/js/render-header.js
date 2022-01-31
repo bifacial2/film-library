@@ -2,11 +2,13 @@
 const refs = {
     header: document.querySelector('header'),
 // Autorithazation
-    signInBtn: document.querySelector('[data-name="signIn"]'),
-    signUpBtn: document.querySelector('[data-name="signUp"]'),
+    signInBtns: document.querySelectorAll('[data-name="signIn"]'),
+    signUpBtns: document.querySelectorAll('[data-name="signUp"]'),
 // Sign In form
-    modal: document.querySelector('[data-modal="auth"]'),
-    modalClose: document.querySelector('.modal-close'),
+    modalIn: document.querySelector('[data-modal="auth-in"]'),
+    modalReg: document.querySelector('[data-modal="auth-reg"]'),
+    modalInClose: document.querySelector('.modal-close'),
+    modalRegClose: document.querySelector('[data-regFormClose]'),
 // Navigation
     navList: document.querySelector('#js-nav'),
     navButtons: document.querySelectorAll('.js-nav-btn'),
@@ -24,8 +26,10 @@ const refs = {
 
 const headerContent = refs.contentBox.childNodes;
 
-refs.signInBtn.addEventListener('click', onSignInBtnClick);
-refs.modalClose.addEventListener('click', onModalCloseClick);
+addEventListenerForArray(refs.signInBtns,'click', onSignInBtnClick);
+addEventListenerForArray(refs.signUpBtns,'click', onSignUpBtnClick);
+refs.modalInClose.addEventListener('click', onModalInCloseClick);
+refs.modalRegClose.addEventListener('click', onModalRegCloseClick);
 
 refs.homeButton.addEventListener('click', onHomeButtonClick);
 refs.libraryButton.addEventListener('click', onLibraryButtonClick);
@@ -82,11 +86,29 @@ function addClassList(element, classList) {
 }
 
 function onSignInBtnClick(event) {
-    removeClassList(refs.modal, 'is-hidden');
+    addClassList(refs.modalReg, 'is-hidden');
+    removeClassList(refs.modalIn, 'is-hidden');
 };
 
-function onModalCloseClick(event) {
-    addClassList(refs.modal, 'is-hidden');
+function onModalInCloseClick(event) {
+    addClassList(refs.modalIn, 'is-hidden');
+}
+
+function onModalRegCloseClick() {
+    addClassList(refs.modalReg, 'is-hidden');
+}
+
+function onSignUpBtnClick() {
+
+    addClassList(refs.modalIn, 'is-hidden');
+    removeClassList(refs.modalReg, 'is-hidden');
+}
+
+function addEventListenerForArray(array, event, func) {
+    // array.map(element => element.addEventListener(event, func));
+    for (let i = 0; i < array.length; i += 1) {
+        array[i].addEventListener(event, func);
+    };
 }
 
 
