@@ -120,12 +120,12 @@ function onSignUpBtnClick(event) {
 };
 
 function onModalInCloseClick(event) {
-    // addClassList(refs.modalIn, 'is-hidden');
+    addClassList(refs.modalIn, 'is-hidden');
 
 }
 
 function onModalRegCloseClick() {
-    // addClassList(refs.modalReg, 'is-hidden');
+    addClassList(refs.modalReg, 'is-hidden');
 
 };
 
@@ -133,21 +133,12 @@ function closeModal(elementName) {
 
     const element = elementName;
     
-    document.addEventListener('click', onClickEvent);
+    elementName.addEventListener('click', onClickEvent);
 
     function onClickEvent(event) {
         console.log(event, 'document click')
 
-        if (console.log('work')) { };
-
-        // ! Огромный костыль, пока не знаю как решить
-        if (event.path[0] === element
-            || event.path[0] === refs.modalInClose
-            || event.path[1] === refs.modalInClose
-            || event.path[2] === refs.modalInClose
-                || event.path[0] === refs.modalRegClose
-                || event.path[1] === refs.modalRegClose
-                || event.path[2] === refs.modalRegClose) {
+        if (event.path[0] === element) {
             addClassList(element, 'is-hidden');
             document.removeEventListener('click', onClickEvent);
             document.removeEventListener('keydown', onEscPress);
@@ -155,7 +146,7 @@ function closeModal(elementName) {
         }
     }
 
-    document.addEventListener('keydown', onEscPress);
+    elementName.addEventListener('keydown', onEscPress);
 
     function onEscPress(e) {
         console.log('key press');
