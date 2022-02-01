@@ -22,7 +22,7 @@
 
 .header__btn {
   background: none;
-  color: #ffffff;
+  color: var(--color-hdr-main);
   border-style: none;
   cursor: pointer;
 
@@ -48,9 +48,9 @@
   font-size: 12px;
   line-height: 1.17em;
 
-  color: #ffffff;
+  color: var(--color-hdr-main);
   background: none;
-  border-color: #ffffff;
+  border-color: var(--color-hdr-main);
   border-radius: 5px;
 
   filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
@@ -59,7 +59,7 @@
 }
 
 .accent {
-  color: #ff6b08;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -84,7 +84,7 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  color: var(--color-white);
+  color: var(--color-hdr-main);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.17em;
@@ -160,7 +160,7 @@
   top: 46px;
   left: 21px;
 
-  fill: #818181;
+  fill: var(--color-logoIcon);
 
   @media screen and (min-width: 768px) {
     top: 36px;
@@ -183,7 +183,7 @@
 
   font-size: 30px;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-hdr-main);
 
   @media screen and (min-width: 768px) {
     display: block;
@@ -219,14 +219,14 @@
   &:after {
     position: absolute;
     content: '';
-    color: #fff;
+    color: var(--color-hdr-main);
     display: inline-block;
     width: 2px;
     height: 100%;
 
     bottom: 0;
     right: -10px;
-    background-color: #ff6b08;
+    background-color: var(--color-accent);
   }
 }
 
@@ -272,7 +272,7 @@
   display: flex;
   flex-direction: column;
 
-  background-color: #ffffff;
+  background-color: var(--color-hdr-main);
 }
 
 .signin-form__heading {
@@ -343,9 +343,9 @@
   margin-right: auto;
   margin-left: auto;
 
-  color: #ff6b08;
+  color: var(--color-accent);
 
-  border: 2px solid #ff6b08;
+  border: 2px solid var(--color-accent);
 }
 
 .signin-form__close {
@@ -364,7 +364,7 @@
   padding: 2px;
 
   border-radius: 50%;
-  border-color: #000000;
+  border-color: var(--color-main);
 
   cursor: pointer;
 }
@@ -386,7 +386,7 @@
   flex-direction: column;
   justify-content: center;
 
-  background-color: #ffffff;
+  background-color: var(--color-hdr-main);
 }
 
 .reg-form__heading {
@@ -462,9 +462,9 @@
   margin-right: auto;
   margin-left: auto;
 
-  color: #ff6b08;
+  color: var(--color-accent);
 
-  border: 2px solid #ff6b08;
+  border: 2px solid var(--color-accent);
 }
 
 .reg-form__close {
@@ -483,7 +483,7 @@
   padding: 2px;
 
   border-radius: 50%;
-  border-color: #000000;
+  border-color: var(--color-main);
 
   cursor: pointer;
 }
@@ -508,14 +508,14 @@
 
   &:after {
     content: '';
-    color: #fff;
+    color: var(--color-hdr-main);
     display: inline-block;
     width: 100%;
     height: 2px;
     position: absolute;
     bottom: -4px;
     left: 0;
-    background-color: #ff6b08;
+    background-color: var(--color-accent);
   }
 }
 
@@ -553,12 +553,12 @@
 
   background: none;
   border-style: none;
-  border-bottom: 0.5px solid #ffffff;
+  border-bottom: 0.5px solid var(--color-hdr-main);
 
-  color: #ffffff;
+  color: var(--color-hdr-main);
 
   &::placeholder {
-    color: #ffffff;
+    color: var(--color-hdr-main);
   }
 }
 
@@ -596,7 +596,7 @@
 }
 
 .search-result-message {
-  color: #ff001b;
+  color: var(--color-hdr-warning);
 
   // position: absolute;
 
@@ -625,6 +625,6 @@
 }
 
 .accent-btn {
-  background-color: #ff6b08;
-  border-color: #ff6b08;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
 }
