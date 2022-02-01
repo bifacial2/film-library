@@ -136,9 +136,9 @@ function closeModal(elementName) {
     elementName.addEventListener('click', onClickEvent);
 
     function onClickEvent(event) {
-        console.log(event, 'document click')
+        console.log('document click')
 
-        if (event.path[0] === element) {
+        if (event.target === element) {
             addClassList(element, 'is-hidden');
             document.removeEventListener('click', onClickEvent);
             document.removeEventListener('keydown', onEscPress);
@@ -146,12 +146,12 @@ function closeModal(elementName) {
         }
     }
 
-    elementName.addEventListener('keydown', onEscPress);
+    document.addEventListener('keydown', onEscPress);
 
     function onEscPress(e) {
         console.log('key press');
 
-        if (e.keyCode == 27) {
+        if (e.keyCode === 'ESC') {
             addClassList(element, 'is-hidden');
             document.removeEventListener('click', onClickEvent);
             document.removeEventListener('keydown', onEscPress);
