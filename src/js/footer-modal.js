@@ -1,26 +1,28 @@
 import * as basicLightbox from 'basiclightbox';
 
-import stanislavUrl from '../images/photo_stasReSize.jpg';
+/* import stanislavUrl from '../images/photo_stasReSize.jpg'; */
 import anastasiaUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-/* import serhiiUrl from '../images/photo_serhiiresize.jpg'; */
-/* import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
+/* import andriiUrl from '../images/photo_andriiResize.jpg';
+import irynaUrl from '../images/photo_irinaResize.jpg'; */
+/* import alexandrUrl from '../images/photo_2022-01-31_23-47-53.jpg';
+import eduardUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
  */
+import spriteUrl from '../images/github-icon.svg';
+
 const team = [
   {
     nameDev: 'Stanislav',
-    surnameDev: 'Anonymus',
-    photo: `${stanislavUrl}`,
+    surnameDev: 'Fedets',
+    photo: `${anastasiaUrl}`,
     roleDev: 'Team-lead',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/bifacial2',
   },
 
   {
-    nameDev: 'Andriy',
-    surnameDev: 'Anonymus',
+    nameDev: 'Andrii',
+    surnameDev: 'Mohylnytskyi',
     photo: `${anastasiaUrl}`,
     roleDev: 'Scrum-master',
     gitDev: 'https://github.com/',
@@ -28,7 +30,7 @@ const team = [
 
   {
     nameDev: 'Anastasia',
-    surnameDev: 'Anonymus',
+    surnameDev: 'Les',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -51,8 +53,8 @@ const team = [
   },
 
   {
-    nameDev: 'Irina',
-    surnameDev: 'Anonymus',
+    nameDev: 'Iryna',
+    surnameDev: 'Skopetska',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -68,7 +70,7 @@ const team = [
 
   {
     nameDev: 'Serhii',
-    surnameDev: 'Anonymus',
+    surnameDev: 'Khomazuk',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -83,7 +85,7 @@ const markupTeamCard = team
     <p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
     <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="24" height="24">
-    
+    <use href="${spriteUrl}#icon-github"></use>
     </svg></a>
 </li>`;
   })
