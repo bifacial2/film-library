@@ -91,9 +91,10 @@ const markupTeamCard = team
   })
   .join('');
 
-const markupModal = `<p class="team-title">OUR TEAM <span class="our-logo"></span>
+const markupModal = `<p class="team-title">OUR TEAM
  </p>
- <button type='button' class='modal-window__close-btn' data-modal-close>
+  <span class="our-logo"></span>
+  <button type='button' class='modal-window__close-btn' data-modal-close>
     <span class='modal-close-button'>close</span>
   </button>
 <ul class="our-team-list">
