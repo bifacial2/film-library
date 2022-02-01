@@ -3,7 +3,7 @@ import { makeGenres } from './makeGenres';
 import Notiflix from 'notiflix';
 import { lazyLoad } from './lazyLoad';
 import './localization';
-import currentLanguage from './localization';
+import { locale } from './localization';
 
 let page = 1;
 let totalPages = 0;
@@ -14,10 +14,11 @@ const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 createData({ page, totalPages });
-async function getFilms(page) {
+
+export async function getFilms(page) {
   try {
     const { data } = await axios.get(
-      `trending/movie/week?api_key=${KEY_API}&language=${currentLanguage}`,
+      `trending/movie/week?api_key=${KEY_API}&language=${locale.lang}`,
     );
     totalPages = data.total_pages;
 
@@ -34,7 +35,7 @@ async function getFilms(page) {
     error => console.log(error);
   }
 }
-function createData(page, totalPages) {
+export function createData(page, totalPages) {
   reset();
 
   setTimeout(() => {

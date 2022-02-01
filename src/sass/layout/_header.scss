@@ -295,11 +295,13 @@
 }
 
 .header-localization {
-  position: absolute;
   display: flex;
+  position: absolute;
+  right: 200px;
+  justify-content: right;
   list-style: none;
-  right: 40px;
   padding-top: 20px;
+  padding-right: 20px;
 }
 
 .header-localization__item {
@@ -322,4 +324,23 @@
 }
 .header-localization__ukrainian {
   background-image: url(../images/ua-opt.svg);
+}
+
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 1024px;
+  }
 }
