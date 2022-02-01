@@ -149,18 +149,14 @@ function closeModal(elementName) {
     }
 };
 
+function onEscPress(e) {
+console.log('key press');
 
-
-    function onEscPress(e) {
-        console.log('key press');
-
-        if (e.code === "Escape") {
-            modalClose();
-            document.removeEventListener('keydown', onEscPress);
-            refs.body.classList.remove('no-scroll');
-        }
-
-    }
+if (e.code === "Escape") {
+    modalClose();
+    document.removeEventListener('keydown', onEscPress);
+    refs.body.classList.remove('no-scroll');
+ } }
 
 
 function modalClose() {
