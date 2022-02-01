@@ -6,10 +6,10 @@ import anastasiaUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import irynaUrl from '../images/photo_irinaResize.jpg'; */
 /* import alexandrUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import eduardUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
+import serhiiUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
  */
-import spriteUrl from '../images/github-icon.svg';
+import imageUrl from '../images/github-icon.svg';
 
 const team = [
   {
@@ -38,7 +38,7 @@ const team = [
 
   {
     nameDev: 'Alexandr',
-    surnameDev: 'Anonymus',
+    surnameDev: 'Dmitriev',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -73,7 +73,7 @@ const team = [
     surnameDev: 'Khomazuk',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/sergiihsv',
   },
 ];
 
@@ -85,13 +85,14 @@ const markupTeamCard = team
     <p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
     <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="24" height="24">
-    <use href="${spriteUrl}#icon-github"></use>
+    <use href="${imageUrl}#icon-github"></use>
     </svg></a>
 </li>`;
   })
   .join('');
 
-const markupModal = `<p class="team-title">IT squad</p>
+const markupModal = `<p class="team-title">OUR TEAM <span class="our-logo"></span>
+ </p>
  <button type='button' class='modal-window__close-btn' data-modal-close>
     <span class='modal-close-button'>close</span>
   </button>
