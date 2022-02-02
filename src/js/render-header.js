@@ -1,6 +1,6 @@
 
 const refs = {
-    header: document.querySelector('header'),
+    header: document.querySelector('.header-container'),
     modal: document.querySelectorAll('.js-modal'),
 // Autorithazation
     signInBtns: document.querySelectorAll('[data-name="signIn"]'),
