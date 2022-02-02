@@ -657,6 +657,8 @@
   transform: translate(-50%);
 
   width: 100%;
+
+  top: 30px;
 }
 
 .search-form {
@@ -718,19 +720,19 @@
   margin-right: auto;
 }
 
-.search-massage {
-  text-align: center;
-}
-
 .search-result-message {
   color: var(--color-hdr-warning);
+  text-align: center;
+  margin-top: 22px;
+
+  //   ! ниже все ненужное, это текст - его можно по другому центрировать
 
   // position: absolute;
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 22px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: flex-end;
+  //   margin-top: 22px;
 }
 
 /* Library - is hidden on home page, but will appear after clicking 'My Library" */
@@ -744,7 +746,7 @@
 
   width: 100%;
   padding: 0;
-  margin-top: 49px;
+  margin-top: 29px;
 }
 
 .library-btns__item:not(:last-child) {
@@ -754,6 +756,7 @@
 .accent-btn {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
+}
 
 .search-form {
   width: 336px;
@@ -761,14 +764,28 @@
   margin-right: auto;
 }
 
-.search-massage {
-  text-align: center;
-}
+// !удалить - такого класса уже нет
 
-.is-hidden {
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+// .search-massage {
+//   text-align: center;
+// }
 
+// ! дублируеться
+
+// .is-hidden {
+//   position: absolute;
+//   opacity: 0;
+//   visibility: hidden;
+//   pointer-events: none;
+// }
+
+// ! дублируеться
+
+// .search-result-message {
+//   color: #ff001b;
+
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 22px;
+// }
