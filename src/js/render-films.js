@@ -14,7 +14,6 @@ const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 createData({ page, totalPages });
-
 export async function getFilms(page) {
   try {
     const { data } = await axios.get(
