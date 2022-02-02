@@ -157,9 +157,9 @@ function closeModal(elementName) {
         if (e.code === "Escape") {
             modalClose();
             document.removeEventListener('keydown', onEscPress);
+
             refs.body.classList.remove('no-scroll');
         }
-
     }
 
 
