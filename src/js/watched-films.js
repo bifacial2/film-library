@@ -10,6 +10,7 @@ const filmsGallery = document.querySelector('#gallery');
 import { clearContainer } from './find-film';
 
 let filmArray = [];
+let queueFilmArray = [];
 
 // =====================Buttons on Film Info Card================
 
@@ -36,6 +37,16 @@ export function initStorageBtns(data) {
 
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
 
+    function onAddToQueueBtnClick(event) {
+        event.preveventDefault;
+        addToQueueButton.innerHTML = 'Added to queue';
+
+        if (!queueFilmArray.includes(data.id)) {
+            queueFilmArray.push(data.id);
+        }
+        localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
+    }
+
 };
 
 // ===========Header Buttons==============
@@ -49,7 +60,7 @@ function onWatchedBtnClick(event) {
     watchBtn.classList.toggle('accent-btn');
    
     const watchedFilms = JSON.parse(localStorage.getItem('filmArray'));
-    console.log(watchedFilms);
+    // console.log(watchedFilms);
   
     watchedFilms.map(filmId => {
         fetchWatchedMovies(filmId);
@@ -64,7 +75,7 @@ function fetchWatchedMovies(filmId) {
          .then(response => response.json())
          .then((film) => {
             //  if (!watchedFilmsArr.includes(data)) {}
-               console.log(film);
+            //    console.log(film);
             //     watchedFilmsArr.push(film); 
               
              watchedFilmsMarkup(film);

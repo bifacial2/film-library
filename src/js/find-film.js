@@ -70,7 +70,7 @@ function onSearch(event) {
             
             searchResultMessage.innerHTML = '';
             createFilmoteka(data.results);
-            console.log(data.results);
+            // console.log(data.results);
         })
         .catch(error => {
             // console.log(error);
