@@ -561,8 +561,8 @@
 .search-form__wrapper {
   position: absolute;
 
-  display: flex;
-  margin-top: 41px;
+  // display: flex;
+
 
   left: 50%;
   transform: translate(-50%);
@@ -631,11 +631,9 @@
 .search-result-message {
   color: var(--color-hdr-warning);
 
-  // position: absolute;
-
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 22px;
 }
 
