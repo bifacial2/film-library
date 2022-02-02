@@ -15,7 +15,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 
 createData({ page, totalPages });
-export async function getFilms(page) {
+async function getFilms(page) {
   try {
     const { data } = await axios.get(`trending/movie/week?api_key=${KEY_API}`);
     totalPages = data.total_pages;
@@ -32,7 +32,7 @@ export async function getFilms(page) {
     error => console.log(error);
   }
 }
- export function createData(page, totalPages) {
+ function createData(page, totalPages) {
   reset();
 
 
