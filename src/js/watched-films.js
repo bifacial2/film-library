@@ -1,11 +1,7 @@
-import { lazyLoad } from './lazyLoad';
-
 
 const watchBtn = document.querySelector('.library-btns--watch');
 const queueBtn = document.querySelector('.library-btns--queue');
 const filmsGallery = document.querySelector('#gallery');
-
-
 
 import { clearContainer } from './find-film';
 
@@ -51,32 +47,32 @@ export function initStorageBtns(data) {
 
 // ===========Header Buttons==============
 
-watchBtn.addEventListener('click', onWatchedBtnClick)
-const watchedFilmsArr = [];
+const myLibraryBtn = document.querySelector('[data-name="myLibrary"]')
 
+myLibraryBtn.addEventListener('click', onWatchedBtnClick)
+
+watchBtn.addEventListener('click', onWatchedBtnClick)
+
+// =================WATCH=====================
 function onWatchedBtnClick(event) {
     event.preventDefault;
 
-    watchBtn.classList.toggle('accent-btn');
+    watchBtn.classList.add('accent-btn');
+    queueBtn.classList.remove('accent-btn');
+    watchBtn.disabled = true;
+    queueBtn.disabled = false;
    
     const watchedFilms = JSON.parse(localStorage.getItem('filmArray'));
-    // console.log(watchedFilms);
   
     watchedFilms.map(filmId => {
         fetchWatchedMovies(filmId);
     })  
-        
-        // watchedFilmsMarkup(watchedFilmsArr);
-    
 }
 
 function fetchWatchedMovies(filmId) {
      fetch(`https://api.themoviedb.org/3/movie/${filmId}?api_key=92e9d2ddc265e58dd6d39fa8f044cca9`)
          .then(response => response.json())
          .then((film) => {
-            //  if (!watchedFilmsArr.includes(data)) {}
-            //    console.log(film);
-            //     watchedFilmsArr.push(film); 
               
              watchedFilmsMarkup(film);
          })
@@ -84,7 +80,25 @@ function fetchWatchedMovies(filmId) {
     clearContainer();
 }
 
-//================== Markup function for saved movies as watched====================
+// ====================QUEUE=======================
+queueBtn.addEventListener('click', onQueueBtnClick)
+
+function onQueueBtnClick(event) {
+    event.preventDefault;
+
+    watchBtn.classList.remove('accent-btn');
+    queueBtn.classList.add('accent-btn');
+    watchBtn.disabled = false;
+    queueBtn.disabled = true;
+   
+    const queuedFilms = JSON.parse(localStorage.getItem('queueFilmArray'));
+  
+    queuedFilms.map(filmId => {
+        fetchWatchedMovies(filmId);
+    })   
+}
+
+//================== Markup function for saved movies ====================
 
 function watchedFilmsMarkup(film) {
     const createMarkup = 

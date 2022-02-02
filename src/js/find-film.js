@@ -10,7 +10,7 @@ const searchResultMessage = document.querySelector('.search-result-message');
 // const filmSearchFormInput = document.querySelector('.search-form__input');
 const homeButton = document.querySelector('[data-name="home"]');
 
-// console.log(homeButton);
+
 
 class FilmApiService {
     constructor() {
@@ -18,12 +18,11 @@ class FilmApiService {
         this.page = 1;
     }
     fetchFilm() {
-
+        // console.log(this.searchName.length);
         const URL = `https://api.themoviedb.org/3/search/movie?api_key=92e9d2ddc265e58dd6d39fa8f044cca9&language=en-US&query=${this.searchName}`
-      
+   
         return fetch(URL)
-            .then(response => response.json())
-            
+            .then(response => response.json())  
     }
 
     get query() {
@@ -39,25 +38,14 @@ const filmApiService = new FilmApiService();
 
 findFilmForm.addEventListener('submit', onSearch)
 
-SearchFormSubmitBtn.disabled = true;
-findFilmForm.addEventListener('input', onFindFormInput)
-
-function onFindFormInput(event) {
-    event.preventDefault;
-    // console.log(event.currentTarget.searchQuery.value.length);
-    if (event.currentTarget.searchQuery.value.length === 0) {
-        SearchFormSubmitBtn.disabled = true
-    };
-    SearchFormSubmitBtn.disabled = false
-    
-}
-
 function onSearch(event) {
     event.preventDefault();
 
     filmApiService.query = event.currentTarget.elements.searchQuery.value;
-    // console.log(filmApiService.query);
-    filmApiService.fetchFilm()
+    // console.log(filmApiService.query.length);
+
+    if (filmApiService.query.length !== 0) {
+        filmApiService.fetchFilm()
         .then(data => {
            
             if (data.results.length === 0) {
@@ -76,6 +64,8 @@ function onSearch(event) {
             // console.log(error);
         createData();
     }) 
+    }
+     createData();
     
     clearContainer();
 }
