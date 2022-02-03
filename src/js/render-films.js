@@ -51,7 +51,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
     return getFilms(page, totalPages)
       .then(({ data }) => {
         createFilmoteka(data.results);
-        console.log(data.results)
+        // console.log(data.results)
       })
       // .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('visually-hidden'))
