@@ -7,6 +7,7 @@ import { locale } from './localization';
 
 let page = 1;
 let totalPages = 0;
+locale.lang = localStorage.getItem('LOCALE');
 
 const films = document.querySelector(`#gallery`);
 

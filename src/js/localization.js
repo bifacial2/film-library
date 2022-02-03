@@ -3,6 +3,7 @@
 
 import { createData } from './render-films';
 import './render-films';
+import { textContent } from './dictionary';
 export const locale = {
   lang: 'en-EN',
 };
@@ -29,27 +30,27 @@ const chooseLocaleHandler = event => {
     currentLanguage = 'en-US';
   } else if (event.target === refs.localeRu) {
     currentLanguage = 'ru-RU';
-  } else {
+  } else if (event.target === refs.localeUa) {
     currentLanguage = 'uk-UA';
-  }
+  } else return;
   locale.lang = currentLanguage;
+  //Записываю параметр локали в локальное хранилище для того, чтобы у пользователя не сбивались настройки языка
+  localStorage.setItem('LOCALE', currentLanguage);
   createData({ page, totalPages });
 };
 refs.localizationForm.addEventListener('click', chooseLocaleHandler);
 
-//Наши ключевые слова для локализации
-const textValue = {
-  en: {
-    home: 'Home',
-    myLibrary: 'My Library',
-    saerchingPlaceHolder: 'Movie Search...',
-    watch: 'Watch',
-    queue: 'Queue',
-    rights: '© 2022 | All Rights Reserved | Developed with',
-    by: 'by',
-    ourTeam: 'GoIT Students',
-    lastPageMessage: "We're sorry, but you've reached the end of search results.",
-  },
-  ru: {},
-  ua: {},
-};
+/* document.addEventListener('DOMContentLoaded', () => {
+  document
+    // Find all elements that have the key attribute
+    .querySelectorAll('[data-locale]')
+    .forEach(translateElement);
+});
+// Replace the inner text of the given HTML element
+// with the translation in the active locale,
+// corresponding to the element's data-i18n-key
+function translateElement(element) {
+  const key = element.getAttribute('data-locale');
+  const translation = textContent[currentLanguage][key];
+  element.innerText = translation;
+} */
