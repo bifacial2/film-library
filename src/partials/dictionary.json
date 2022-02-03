@@ -10,7 +10,8 @@
     "rights": "© 2022 | All Rights Reserved | Developed with",
     "by": "by",
     "ourTeam": "GoIT Students",
-    "lastPageMessage": "We're sorry, but you've reached the end of search results."
+    "lastPageMessage": "We're sorry, but you've reached the end of search results.",
+    "searchResultMessage":"Search result not successful. Enter the correct movie name."
   },
   "ru-RU": {
     "home": "На главную",
@@ -23,7 +24,8 @@
     "rights": "© 2022 | Все права защищены... наверное | Разработано",
     "by": " ",
     "ourTeam": "GoIT студенты",
-    "lastPageMessage": "Извините, но вы достигли конца списка результатов поиска."
+    "lastPageMessage": "Извините, но вы достигли конца списка результатов поиска.",
+    "searchResultMessage":"Мы не смогли ничего найти. Введите другое название фильма"
   },
   "uk-UA": {
     "home": "На головну",
@@ -36,6 +38,7 @@
     "rights": "© 2022 | Усі права захищені Марсіанським цивільним кодексом | Розроблено",
     "by": " " ,
     "ourTeam": "GoIT студенти",
-    "lastPageMessage": "Перепрошую, але ви дійшли до кінця списку знайдених фільмів."
+    "lastPageMessage": "Перепрошую, але ви дійшли до кінця списку знайдених фільмів.",
+    "searchResultMessage":"На жаль, ми нічого не знайшли. Введіть іншу назву фільма"
   }
 }
