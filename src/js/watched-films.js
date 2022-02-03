@@ -26,8 +26,11 @@ export function initStorageBtns(data) {
         event.preventDefault;
             
         addToWatchedButton.innerHTML = 'Added to watched';
-            // addToWatchedButton.classList.toggle()
-        if (!filmArray.includes(data.id)) {
+        addToWatchedButton.classList.toggle('active');
+        if(addToWatchedButton.classList.contains('active')){
+            addToWatchedButton.innerHTML = 'Remove from watched';
+        }
+              if (!filmArray.includes(data.id)) {
             filmArray.push(data.id);
         }
         localStorage.setItem('filmArray', JSON.stringify(filmArray));
@@ -40,7 +43,10 @@ export function initStorageBtns(data) {
     function onAddToQueueBtnClick(event) {
         event.preveventDefault;
         addToQueueButton.innerHTML = 'Added to queue';
-
+        addToQueueButton.classList.toggle('active');
+        if(addToQueueButton.classList.contains('active')){
+            addToQueueButton.innerHTML = 'Remove from queue';
+        }
         if (!queueFilmArray.includes(data.id)) {
             queueFilmArray.push(data.id);
         }
