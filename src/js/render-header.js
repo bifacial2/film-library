@@ -1,6 +1,6 @@
 
 const refs = {
-    header: document.querySelector('header'),
+    header: document.querySelector('.header-container'),
     modal: document.querySelectorAll('.js-modal'),
 // Autorithazation
     signInBtns: document.querySelectorAll('[data-name="signIn"]'),
@@ -10,6 +10,7 @@ const refs = {
     modalReg: document.querySelector('[data-modal="auth-reg"]'),
     modalInClose: document.querySelector('.modal-close'),
     modalRegClose: document.querySelector('[data-regFormClose]'),
+    // backdrop: document.querySelector('.backdrop-overlay'),
 // Navigation
     navList: document.querySelector('#js-nav'),
     navButtons: document.querySelectorAll('.js-nav-btn'),
@@ -26,6 +27,7 @@ const refs = {
     body: document.body,
 
 };
+console.log(refs.backdrop)
 
 const headerContent = refs.contentBox.childNodes;
 
@@ -104,8 +106,10 @@ function onSignInBtnClick(event) {
 
     addClassList(refs.modalReg, 'is-hidden');
     removeClassList(refs.modalIn, 'is-hidden');
+    // removeClassList(refs.backdrop, 'is-hidden');
 
-    closeModal(refs.modalIn);
+
+    closeModalByClickOut(refs.modalIn);
     document.addEventListener('keydown', onEscPress);
 };
 
@@ -117,7 +121,7 @@ function onSignUpBtnClick(event) {
     addClassList(refs.modalIn, 'is-hidden');
     removeClassList(refs.modalReg, 'is-hidden');
 
-    closeModal(refs.modalReg);
+    closeModalByClickOut(refs.modalReg);
     document.addEventListener('keydown', onEscPress);
 };
 
@@ -133,7 +137,7 @@ function onModalRegCloseClick() {
 
 };
 
-function closeModal(elementName) {
+function closeModalByClickOut(elementName) {
     const element = elementName;
     
     elementName.addEventListener('click', onClickEvent);
@@ -143,31 +147,30 @@ function closeModal(elementName) {
 
         if (event.target === element) {
             console.log('close worked')
-            addClassList(element, 'is-hidden');
-            refs.body.classList.remove('no-scroll');
+            modalClose();
         }
     }
 };
 
+function onEscPress(e) {
+console.log('key press');
 
-
-    function onEscPress(e) {
-        console.log('key press');
-
-        if (e.code === "Escape") {
-            modalClose();
-            document.removeEventListener('keydown', onEscPress);
-            refs.body.classList.remove('no-scroll');
-        }
-
-    }
+if (e.code === "Escape") {
+    modalClose();
+    // document.removeEventListener('keydown', onEscPress);
+    refs.body.classList.remove('no-scroll');
+ } }
 
 
 function modalClose() {
     const allModals = refs.modal;
 
     allModals.forEach(modal => {
-        modal.classList.add('is-hidden');
-        console.log('отработал')
+        
+        addClassList(modal, 'is-hidden');
+        // addClassList(refs.backdrop, 'is-hidden');
+        refs.body.classList.remove('no-scroll'); 
+        document.removeEventListener('keydown', onEscPress);
+        console.log(`modal ${modal} is colosed`);
     });
 };
