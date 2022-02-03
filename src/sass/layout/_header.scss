@@ -517,7 +517,7 @@
 .search-form__wrapper {
   position: absolute;
 
-  display: flex;
+  // display: flex;
 
   left: 50%;
   transform: translate(-50%);
@@ -621,10 +621,8 @@
 .search-result-message {
   color: #ff001b;
 
-  // position: absolute;
-
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 22px;
 }

@@ -1,6 +1,7 @@
 import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import {initStorageBtns} from './watched-films';
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
@@ -26,7 +27,7 @@ function openModal(e) {
       const modal = basicLightbox.create(markup);
 
       modal.show();
-
+      initStorageBtns(data);
       const closeBtn = document.querySelector('.modal-close-btn');
       closeBtn.addEventListener('click', closeModal);
 
@@ -42,6 +43,9 @@ function openModal(e) {
       function closeModal(e) {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
-      } 
+      }
     })
- }
+  
+}
+ 
+

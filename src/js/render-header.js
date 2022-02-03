@@ -1,6 +1,7 @@
 
 const refs = {
     header: document.querySelector('header'),
+    modal: document.querySelectorAll('.js-modal'),
 // Autorithazation
     signInBtns: document.querySelectorAll('[data-name="signIn"]'),
     signUpBtns: document.querySelectorAll('[data-name="signUp"]'),
@@ -9,7 +10,6 @@ const refs = {
     modalReg: document.querySelector('[data-modal="auth-reg"]'),
     modalInClose: document.querySelector('.modal-close'),
     modalRegClose: document.querySelector('[data-regFormClose]'),
-    
 // Navigation
     navList: document.querySelector('#js-nav'),
     navButtons: document.querySelectorAll('.js-nav-btn'),
@@ -106,6 +106,7 @@ function onSignInBtnClick(event) {
     removeClassList(refs.modalIn, 'is-hidden');
 
     closeModal(refs.modalIn);
+    document.addEventListener('keydown', onEscPress);
 };
 
 function onSignUpBtnClick(event) {
@@ -117,60 +118,56 @@ function onSignUpBtnClick(event) {
     removeClassList(refs.modalReg, 'is-hidden');
 
     closeModal(refs.modalReg);
+    document.addEventListener('keydown', onEscPress);
 };
 
 function onModalInCloseClick(event) {
     // addClassList(refs.modalIn, 'is-hidden');
+    modalClose();
 
 }
 
 function onModalRegCloseClick() {
     // addClassList(refs.modalReg, 'is-hidden');
+    modalClose();
 
 };
 
 function closeModal(elementName) {
-
     const element = elementName;
     
-    document.addEventListener('click', onClickEvent);
+    elementName.addEventListener('click', onClickEvent);
 
     function onClickEvent(event) {
-        console.log(event, 'document click')
+        console.log('document click')
 
-        if (console.log('work')) { };
-
-        // ! Огромный костыль, пока не знаю как решить
-        if (event.path[0] === element
-            || event.path[0] === refs.modalInClose
-            || event.path[1] === refs.modalInClose
-            || event.path[2] === refs.modalInClose
-                || event.path[0] === refs.modalRegClose
-                || event.path[1] === refs.modalRegClose
-                || event.path[2] === refs.modalRegClose) {
+        if (event.target === element) {
+            console.log('close worked')
             addClassList(element, 'is-hidden');
-            document.removeEventListener('click', onClickEvent);
-            document.removeEventListener('keydown', onEscPress);
             refs.body.classList.remove('no-scroll');
         }
     }
-
-    document.addEventListener('keydown', onEscPress);
-
-    function onEscPress(e) {
-        console.log('key press');
-
-        if (e.keyCode == 27) {
-            addClassList(element, 'is-hidden');
-            document.removeEventListener('click', onClickEvent);
-            document.removeEventListener('keydown', onEscPress);
-            refs.body.classList.remove('no-scroll');
-        }
-
-    }
-    
 };
 
 
 
+    function onEscPress(e) {
+        console.log('key press');
 
+        if (e.code === "Escape") {
+            modalClose();
+            document.removeEventListener('keydown', onEscPress);
+            refs.body.classList.remove('no-scroll');
+        }
+
+    }
+
+
+function modalClose() {
+    const allModals = refs.modal;
+
+    allModals.forEach(modal => {
+        modal.classList.add('is-hidden');
+        console.log('отработал')
+    });
+};
