@@ -92,7 +92,10 @@ const markupTeamCard = team
   })
   .join('');
 
-const markupModal = `<p class="team-title">OUR TEAM
+const markupModal = `
+<div class="basicLightbox__placeholder-modal">
+
+<p class="team-title">OUR TEAM
  </p>
   <span class="our-logo"></span>
   <button type='button' class='modal-window__close-btn' data-modal-close>
@@ -108,6 +111,7 @@ const markupModal = `<p class="team-title">OUR TEAM
 <ul class="our-team-list">
 ${markupTeamCard}
 </ul>
+</div>
 </div>`;
 
 const container = document.querySelector('.our-team');
