@@ -10,6 +10,7 @@ import serhiiUrl from '../images/photo_2022-01-31_23-47-53.jpg';
 import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
  */
 import imageUrl from '../images/github-icon.svg';
+import closeUrl from '../images/sprite.svg';
 
 const team = [
   {
@@ -95,7 +96,14 @@ const markupModal = `<p class="team-title">OUR TEAM
  </p>
   <span class="our-logo"></span>
   <button type='button' class='modal-window__close-btn' data-modal-close>
-    <span class='modal-close-button'>close</span>
+    <span class='modal-close-button'>
+
+     <svg class="icon-close" width="13" height="13">
+    <use href="${closeUrl}#icon-close"></use>
+    </svg>
+
+    
+    </use></span>
   </button>
 <ul class="our-team-list">
 ${markupTeamCard}
