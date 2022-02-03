@@ -22,10 +22,10 @@ export function initStorageBtns(data) {
         event.preventDefault;
             
         addToWatchedButton.innerHTML = 'Added to watched';
-            // addToWatchedButton.classList.toggle()
         if (!filmArray.includes(data.id)) {
             filmArray.push(data.id);
         }
+        
         localStorage.setItem('filmArray', JSON.stringify(filmArray));
     }
     
@@ -61,10 +61,8 @@ function onWatchedBtnClick(event) {
     queueBtn.classList.remove('accent-btn');
     watchBtn.disabled = true;
     queueBtn.disabled = false;
-   
-    const watchedFilms = JSON.parse(localStorage.getItem('filmArray'));
   
-    watchedFilms.map(filmId => {
+    JSON.parse(localStorage.getItem('filmArray')).map(filmId => {
         fetchWatchedMovies(filmId);
     })  
 }

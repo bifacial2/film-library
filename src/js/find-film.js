@@ -4,11 +4,11 @@ import { createData } from "./render-films";
 
 
 const findFilmForm = document.querySelector('.search-form');
-const SearchFormSubmitBtn = document.querySelector('.search-form__submit');
+// const SearchFormSubmitBtn = document.querySelector('.search-form__submit');
 const gallery = document.querySelector('#gallery');
 const searchResultMessage = document.querySelector('.search-result-message');
-// const filmSearchFormInput = document.querySelector('.search-form__input');
 const homeButton = document.querySelector('[data-name="home"]');
+
 
 
 
@@ -49,8 +49,7 @@ function onSearch(event) {
         .then(data => {
            
             if (data.results.length === 0) {
-                
-                filmApiService.query = '';
+                findFilmForm.reset();
                 searchResultMessage.innerHTML = 'Search result not successful. Enter the correct movie name.'
                 createData();
                 return;
