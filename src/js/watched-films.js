@@ -5,8 +5,8 @@ const filmsGallery = document.querySelector('#gallery');
 
 import { clearContainer } from './find-film';
 
-let filmArray = [];
-let queueFilmArray = [];
+let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
+let queueFilmArray = JSON.parse(localStorage.getItem('queueFilmArray')) || [];
 
 // =====================Buttons on Film Info Card================
 
