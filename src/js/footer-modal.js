@@ -46,7 +46,7 @@ const team = [
 
   {
     nameDev: 'Andriy',
-    surnameDev: 'Anonymus',
+    surnameDev: 'Zhylchuk',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -62,7 +62,7 @@ const team = [
 
   {
     nameDev: 'Eduard',
-    surnameDev: 'Anonymus',
+    surnameDev: 'Bolma',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/',
@@ -70,7 +70,7 @@ const team = [
 
   {
     nameDev: 'Serhii',
-    surnameDev: 'Khomazuk',
+    surnameDev: 'Khomaziuk',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/sergiihsv',
