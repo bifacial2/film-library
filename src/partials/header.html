@@ -12,10 +12,10 @@
     <!-- AUTHORIZATION buttons -->
    <ul class="auth-btns__list" >
        <li class="auth-btns__item">
-           <button class="header__btn auth-btns__btn auth-btns__btn--signin" type="button" data-name="signIn">Sign In</button>
+           <button class="header__btn auth-btns__btn auth-btns__btn--signin" type="button" data-locale="signIn" data-name="signIn">Sign In</button>
        </li>
        <li class="auth-btns__item">
-        <button class="header__btn auth-btns__btn" type="button" data-name="signUp">Sign Up</button>
+        <button class="header__btn auth-btns__btn" type="button" data-locale="signUp" data-name="signUp">Sign Up</button>
        </li>
    </ul>
 
@@ -25,7 +25,7 @@
             <button class="header-nav__btn header__btn current-page js-nav-btn" data-locale="home" data-name="home">Home</button>
         </li>
         <li class="header-nav__item">
-            <button class="header-nav__btn header__btn js-nav-btn" data-name="myLibrary">My Library</button>
+            <button class="header-nav__btn header__btn js-nav-btn" data-locale="myLibrary" data-name="myLibrary">My Library</button>
         </li>
     </ul>
 
@@ -36,7 +36,7 @@
         <div class="search-form__wrapper">
             <form class="search-form" name="search-form" , autocomplete="on">
 
-                <input class="search-form__input" type="text" name="searchQuery" placeholder="Movie Search..." />
+                <input  class="search-form__input" type="text" name="searchQuery" placeholder="Movie Search..." data-locale="searchingPlaceHolder" />
 
                 <button class="search-form__submit" type="submit">
 
@@ -66,10 +66,10 @@
         <!-- Libriry buttons -->
         <ul class="library-btns__list is-hidden js-library-btns">
             <li class="library-btns__item" >
-                <button class="form-btn library-btns__btn library-btns--watch">Watch</button>
+                <button  class="form-btn library-btns__btn library-btns--watch " data-locale="watch">Watch</button>
             </li>
             <li class="ibrary-btns__item" >
-                <button class="form-btn library-btns__btn library-btns--queue accent-btn">Queue</button>
+                <button class="form-btn library-btns__btn library-btns--queue accent-btn" data-locale="queue">Queue</button>
             </li>
         </ul>
 

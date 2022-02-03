@@ -1,0 +1,41 @@
+{
+  "en-US": {
+    "home": "Home",
+    "myLibrary": "My Library",
+    "searchingPlaceHolder": "Movie Search...",
+    "watch": "Watch",
+    "queue": "Queue",
+    "signIn" :"Sign In",
+    "signUp":"Sign Up",
+    "rights": "© 2022 | All Rights Reserved | Developed with",
+    "by": "by",
+    "ourTeam": "GoIT Students",
+    "lastPageMessage": "We're sorry, but you've reached the end of search results."
+  },
+  "ru-RU": {
+    "home": "На главную",
+    "myLibrary": "Моя фильмотека",
+    "searchingPlaceHolder": "Поиск фильма...",
+    "watch": "Просмотренное",
+    "queue": "Очередь",
+    "signIn" :"Войти",
+    "signUp":"Регистрация",
+    "rights": "© 2022 | Все права защищены... наверное | Разработано",
+    "by": " ",
+    "ourTeam": "GoIT студенты",
+    "lastPageMessage": "Извините, но вы достигли конца списка результатов поиска."
+  },
+  "uk-UA": {
+    "home": "На головну",
+    "myLibrary": "Моя фільмотека",
+    "searchingPlaceHolder": "Пошук фільмів...",
+    "watch": "Дивились",
+    "queue": "Черга",
+    "signIn" :"Увійти",
+    "signUp":"Регістрація",
+    "rights": "© 2022 | Усі права захищені Марсіанським цивільним кодексом | Розроблено",
+    "by": " " ,
+    "ourTeam": "GoIT студенти",
+    "lastPageMessage": "Перепрошую, але ви дійшли до кінця списку знайдених фільмів."
+  }
+}

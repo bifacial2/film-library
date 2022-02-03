@@ -4,6 +4,7 @@
 import { createData } from './render-films';
 import './render-films';
 import { textContent } from './dictionary';
+import text from '../partials/dictionary.json';
 export const locale = {
   lang: 'en-EN',
 };
@@ -40,7 +41,8 @@ const chooseLocaleHandler = event => {
 };
 refs.localizationForm.addEventListener('click', chooseLocaleHandler);
 
-/* document.addEventListener('DOMContentLoaded', () => {
+//Локализация из словаря
+document.addEventListener('DOMContentLoaded', () => {
   document
     // Find all elements that have the key attribute
     .querySelectorAll('[data-locale]')
@@ -51,6 +53,6 @@ refs.localizationForm.addEventListener('click', chooseLocaleHandler);
 // corresponding to the element's data-i18n-key
 function translateElement(element) {
   const key = element.getAttribute('data-locale');
-  const translation = textContent[currentLanguage][key];
+  const translation = text[locale.lang][key];
   element.innerText = translation;
-} */
+}
