@@ -33,6 +33,11 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17em;
+
+  &:hover {
+    color: var(--color-accent);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .form-btn {
@@ -53,9 +58,14 @@
   border-color: var(--color-hdr-main);
   border-radius: 5px;
 
-  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .accent {
@@ -162,7 +172,7 @@
   top: 46px;
   left: 10%;
 
-  fill: var(--color-logoIcon);
+  //   fill: var(--color-logoIcon);
 
   @media screen and (min-width: 768px) {
     top: 36px;
@@ -172,7 +182,6 @@
 
 .logo-icon {
   margin-right: 0px;
-
   @media screen and (min-width: 768px) {
     margin-right: 10px;
   }
@@ -186,6 +195,11 @@
   font-size: 30px;
   font-weight: 500;
   color: var(--color-hdr-main);
+
+  &:hover {
+    color: var(--color-accent);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
   @media screen and (min-width: 768px) {
     display: block;
@@ -234,6 +248,33 @@
 
 // Auth MODAL window
 
+// Это создавалось для эффекта, чтобы бекдром выезжал снизу а модалка сверху,
+// но мен потом не понравилься результат
+
+// .backdrop-overlay {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 110;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.5);
+
+//   //   transform: translateY(0%);
+//   //   transform-origin: bottom;
+
+//   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+//     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+//   &.is-hidden {
+//     opacity: 0;
+//     visibility: hidden;
+//     pointer-events: none;
+//     transform: translateY(100%);
+//   }
+// }
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -241,17 +282,26 @@
   bottom: 0;
   left: 0;
   z-index: 111;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.5);
 
   height: 100%;
-  overflow: scroll;
-}
+  overflow-y: scroll;
 
-.backdrop {
+  //   Если оставить эти стили будет модалка опускаться вниз
+
+  //   transform: translateY(0%);
+  //   transform-origin: top;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
+    //   Если оставить эти стили будет модалка опускаться вниз
+    // transform: translateY(-100%);
   }
 }
 
@@ -289,6 +339,27 @@
   font-weight: 400;
 }
 
+.auth-modal__heading {
+  padding: auto;
+  min-width: 130px;
+  min-height: 44px;
+
+  text-align: center;
+
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17em;
+
+  color: var(--color-hdr-main);
+  background: var(--color-accent);
+  border-color: var(--color-hdr-main);
+  border-radius: 5px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
 .signin-heading__wrapper {
   position: absolute;
   display: flex;
@@ -318,6 +389,11 @@
   height: 30px;
 
   padding-left: 30px;
+
+  &:hover {
+    color: var(--color-accent);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .signin-input__email {
@@ -382,6 +458,13 @@
   border-color: var(--color-main);
 
   cursor: pointer;
+
+  &:hover {
+    fill: var(--color-accent);
+    border-color: var(--color-accent);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 // Reg form
@@ -519,6 +602,13 @@
   border-color: var(--color-main);
 
   cursor: pointer;
+
+  &:hover {
+    fill: var(--color-accent);
+    border-color: var(--color-accent);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 // Navigation
@@ -561,13 +651,14 @@
 .search-form__wrapper {
   position: absolute;
 
-  display: flex;
-  margin-top: 41px;
+  // display: flex;
 
   left: 50%;
   transform: translate(-50%);
 
   width: 100%;
+
+  top: 30px;
 }
 
 .search-form {
@@ -575,6 +666,11 @@
 
   width: 100%;
   display: flex;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .search-form__input {
@@ -624,19 +720,19 @@
   margin-right: auto;
 }
 
-.search-massage {
-  text-align: center;
-}
-
 .search-result-message {
   color: var(--color-hdr-warning);
+  text-align: center;
+  margin-top: 22px;
+
+  //   ! ниже все ненужное, это текст - его можно по другому центрировать
 
   // position: absolute;
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 22px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: flex-end;
+  //   margin-top: 22px;
 }
 
 /* Library - is hidden on home page, but will appear after clicking 'My Library" */
@@ -650,7 +746,7 @@
 
   width: 100%;
   padding: 0;
-  margin-top: 49px;
+  margin-top: 29px;
 }
 
 .library-btns__item:not(:last-child) {
@@ -661,3 +757,35 @@
   background-color: var(--color-accent);
   border-color: var(--color-accent);
 }
+
+.search-form {
+  width: 336px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// !удалить - такого класса уже нет
+
+// .search-massage {
+//   text-align: center;
+// }
+
+// ! дублируеться
+
+// .is-hidden {
+//   position: absolute;
+//   opacity: 0;
+//   visibility: hidden;
+//   pointer-events: none;
+// }
+
+// ! дублируеться
+
+// .search-result-message {
+//   color: #ff001b;
+
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 22px;
+// }
