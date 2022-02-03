@@ -85,7 +85,7 @@ const markupTeamCard = team
     <img src="${photo}" alt="${nameDev}" class="member-image">
     <p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
-    <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="24" height="24">
+    <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="26" height="26">
     <use href="${imageUrl}#icon-github"></use>
     </svg></a>
 </li>`;
