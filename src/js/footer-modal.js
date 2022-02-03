@@ -26,7 +26,7 @@ const team = [
     surnameDev: 'Mohylnytskyi',
     photo: `${anastasiaUrl}`,
     roleDev: 'Scrum-master',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/FossaX7',
   },
 
   {
@@ -34,7 +34,7 @@ const team = [
     surnameDev: 'Les',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/AnastasiaLes',
   },
 
   {
@@ -42,7 +42,7 @@ const team = [
     surnameDev: 'Dmitriev',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/AlexanderDmitriev',
   },
 
   {
@@ -50,7 +50,7 @@ const team = [
     surnameDev: 'Zhylchuk',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/AndriyITua',
   },
 
   {
@@ -58,7 +58,7 @@ const team = [
     surnameDev: 'Skopetska',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/Irishka27',
   },
 
   {
@@ -66,7 +66,7 @@ const team = [
     surnameDev: 'Bolma',
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
-    gitDev: 'https://github.com/',
+    gitDev: 'https://github.com/edbx',
   },
 
   {
