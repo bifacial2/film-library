@@ -1,14 +1,14 @@
 import * as basicLightbox from 'basiclightbox';
 
-/* import stanislavUrl from '../images/photo_stasReSize.jpg'; */
-import anastasiaUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-/* import andriiUrl from '../images/photo_andriiResize.jpg';
-import irynaUrl from '../images/photo_irinaResize.jpg'; */
-/* import alexandrUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import eduardUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import serhiiUrl from '../images/photo_2022-01-31_23-47-53.jpg';
-import stanislavUrl from '../images/photo_2022-01-31_23-47-53.jpg';
- */
+import stanislavUrl from '../images/photo_stas2.jpg';
+import anastasiaUrl from '../images/photo_anastasia1.jpg';
+import andriiUrl from '../images/photo_andrii2.jpg';
+import irynaUrl from '../images/photo_iryna2.jpg';
+import alexandrUrl from '../images/photo_alex2.jpg';
+import eduardUrl from '../images/photo_eduard1.jpg';
+import serhiiUrl from '../images/photo_serhii1.jpg';
+import andrii2Url from '../images/photo_andrii1.jpg';
+
 import imageUrl from '../images/github-icon.svg';
 import closeUrl from '../images/sprite.svg';
 
@@ -16,7 +16,7 @@ const team = [
   {
     nameDev: 'Stanislav',
     surnameDev: 'Fedets',
-    photo: `${anastasiaUrl}`,
+    photo: `${stanislavUrl}`,
     roleDev: 'Team-lead',
     gitDev: 'https://github.com/bifacial2',
   },
@@ -24,7 +24,7 @@ const team = [
   {
     nameDev: 'Andrii',
     surnameDev: 'Mohylnytskyi',
-    photo: `${anastasiaUrl}`,
+    photo: `${andriiUrl}`,
     roleDev: 'Scrum-master',
     gitDev: 'https://github.com/FossaX7',
   },
@@ -40,7 +40,7 @@ const team = [
   {
     nameDev: 'Alexandr',
     surnameDev: 'Dmitriev',
-    photo: `${anastasiaUrl}`,
+    photo: `${alexandrUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/AlexanderDmitriev',
   },
@@ -48,7 +48,7 @@ const team = [
   {
     nameDev: 'Andriy',
     surnameDev: 'Zhylchuk',
-    photo: `${anastasiaUrl}`,
+    photo: `${andrii2Url}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/AndriyITua',
   },
@@ -56,7 +56,7 @@ const team = [
   {
     nameDev: 'Iryna',
     surnameDev: 'Skopetska',
-    photo: `${anastasiaUrl}`,
+    photo: `${irynaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/Irishka27',
   },
@@ -64,7 +64,7 @@ const team = [
   {
     nameDev: 'Eduard',
     surnameDev: 'Bolma',
-    photo: `${anastasiaUrl}`,
+    photo: `${eduardUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/edbx',
   },
@@ -72,7 +72,7 @@ const team = [
   {
     nameDev: 'Serhii',
     surnameDev: 'Khomaziuk',
-    photo: `${anastasiaUrl}`,
+    photo: `${serhiiUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/sergiihsv',
   },
