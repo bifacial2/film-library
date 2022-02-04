@@ -19,6 +19,15 @@ export function initStorageBtns(data) {
     // ===============Watch Button==========================
     
     addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
+    for(const films of filmArray){
+        if(films === data.id){
+            addToWatchedButton.classList.add('active');
+            if(addToWatchedButton.classList.contains('active')) {
+                addToWatchedButton.innerHTML = 'Remove from watched';
+            }
+
+        }
+    }
 
     function onAddToWatchedBtnClick(event) {
         event.preventDefault;
@@ -27,11 +36,14 @@ export function initStorageBtns(data) {
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
             addToWatchedButton.innerHTML = 'Remove from watched';
-        }
+        } else{
+        addToWatchedButton.innerHTML = 'Added to watched';}
               if (!filmArray.includes(data.id)) {
             filmArray.push(data.id);
         }
-        
+        console.log(filmArray);
+        console.log(data.id);
+     
         // =======delete from queue========
         const dataIndex = queueFilmArray.indexOf(data.id);
         
@@ -45,11 +57,23 @@ export function initStorageBtns(data) {
     // })
 
         localStorage.setItem('filmArray', JSON.stringify(filmArray));
+       
+        
     }
     
     // ==================Queue Button=========================
 
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
+    for(const queuefilms of queueFilmArray){
+        if(queuefilms === data.id){
+            addToQueueButton.classList.add('active');
+            if(addToQueueButton.classList.contains('active')) {
+                addToQueueButton.innerHTML = 'Remove from queue';
+            }
+
+        }
+    }
+
 
     function onAddToQueueBtnClick(event) {
         event.preveventDefault;
@@ -57,7 +81,8 @@ export function initStorageBtns(data) {
         addToQueueButton.classList.toggle('active');
         if(addToQueueButton.classList.contains('active')){
             addToQueueButton.innerHTML = 'Remove from queue';
-        }
+        }else{
+            addToQueueButton.innerHTML = 'Added to queue';}
         if (!queueFilmArray.includes(data.id)) {
             queueFilmArray.push(data.id);
         }
@@ -104,7 +129,7 @@ function onWatchedBtnClick(event) {
     paginationBtn.classList.add('invisible');
 }
 
-function fetchWatchedMovies(filmId) {
+export function fetchWatchedMovies(filmId) {
      fetch(`https://api.themoviedb.org/3/movie/${filmId}?api_key=92e9d2ddc265e58dd6d39fa8f044cca9`)
          .then(response => response.json())
          .then((film) => {
