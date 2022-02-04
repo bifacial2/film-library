@@ -4,3 +4,4 @@ import './js/modal-film-card';
 import './js/render-header';
 import './js/find-film';
 import './js/watched-films';
+import './js/footer-modal';

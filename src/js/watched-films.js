@@ -22,13 +22,11 @@ export function initStorageBtns(data) {
         event.preventDefault;
             
         addToWatchedButton.innerHTML = 'Added to watched';
-
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')){
             addToWatchedButton.innerHTML = 'Remove from watched';
         }
               if (!filmArray.includes(data.id)) {
-
             filmArray.push(data.id);
         }
         

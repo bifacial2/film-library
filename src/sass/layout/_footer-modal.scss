@@ -1,0 +1,139 @@
+.basicLightbox {
+  overflow-y: scroll;
+  /* position: absolute; */
+}
+
+.basicLightbox__placeholder-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  width: 280px;
+  background-color: white;
+  border-radius: 10px;
+
+  @media screen and (max-width: 420px) {
+    transform: translateY(25%);
+  }
+
+  @media screen and (min-width: 420px) and (max-width: 767px) {
+    margin: 40px 0px;
+    width: 360px;
+    transform: translateY(20%);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 550px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 720px;
+  }
+}
+
+.team-title {
+  margin: 5px auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-accent);
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.our-logo {
+  background-image: url(/images/photo_logo-resize.jpg);
+  background-size: 100%;
+  width: 140px;
+  height: 140px;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.modal-window__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+}
+
+.modal-close-button {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+}
+
+.our-team-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.team-member {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: calc(50% - 40px);
+
+  @media screen and (min-width: 768px) {
+    width: calc(25% - 25px);
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 20px;
+    width: calc(25% - 53.33333px);
+  }
+}
+
+.member-image {
+  margin-bottom: 10px;
+  width: 100%;
+  height: 160px;
+}
+
+.member-name {
+  font-size: 18px;
+  color: var(--color-accent);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.member-position {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.member-git {
+  fill: var(--color-main);
+  position: absolute;
+  cursor: pointer;
+  left: -10%;
+
+  &:hover {
+    fill: var(--color-accent);
+    transform: scale(1.5) rotate(360deg);
+    transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.icon-close:hover {
+  fill: var(--color-accent);
+  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -18,6 +18,11 @@ ol {
   list-style: none;
 }
 
+ul,
+li {
+  list-style-type: none;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -48,6 +53,7 @@ body {
   color: var(--text-color);
   transition: background-color 2000ms linear;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .body-wrapper {
