@@ -23,7 +23,7 @@ export function initStorageBtns(data) {
     function onAddToWatchedBtnClick(event) {
         event.preventDefault;
             
-        addToWatchedButton.innerHTML = 'Added to watched';
+        // addToWatchedButton.innerHTML = 'Added to watched';
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
             addToWatchedButton.innerHTML = 'Remove from watched';
@@ -53,7 +53,7 @@ export function initStorageBtns(data) {
 
     function onAddToQueueBtnClick(event) {
         event.preveventDefault;
-        addToQueueButton.innerHTML = 'Added to queue';
+        // addToQueueButton.innerHTML = 'Added to queue';
         addToQueueButton.classList.toggle('active');
         if(addToQueueButton.classList.contains('active')){
             addToQueueButton.innerHTML = 'Remove from queue';
@@ -86,7 +86,7 @@ watchBtn.addEventListener('click', onWatchedBtnClick)
 function onWatchedBtnClick(event) {
     event.preventDefault;
 
-    paginationBtn.classList.add('invisible');
+    
     watchBtn.classList.add('accent-btn');
     queueBtn.classList.remove('accent-btn');
     watchBtn.disabled = true;
@@ -101,7 +101,7 @@ function onWatchedBtnClick(event) {
         console.log('Nope');
         filmsGallery.innerHTML = '';
     }
-    
+    paginationBtn.classList.add('invisible');
 }
 
 function fetchWatchedMovies(filmId) {
@@ -121,7 +121,7 @@ queueBtn.addEventListener('click', onQueueBtnClick)
 function onQueueBtnClick(event) {
     event.preventDefault;
 
-    paginationBtn.classList.add('invisible');
+    
     watchBtn.classList.remove('accent-btn');
     queueBtn.classList.add('accent-btn');
     watchBtn.disabled = false;
@@ -137,6 +137,7 @@ function onQueueBtnClick(event) {
         console.log('Nope');
         filmsGallery.innerHTML = '';
     } 
+    paginationBtn.classList.add('invisible');
 }
 
 //================== Markup function for saved movies ====================
