@@ -2,6 +2,8 @@ import { createFilmoteka } from './render-films';
 import { createData } from './render-films';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
+import { createFilmoteka } from './render-films';
+import { createData } from './render-films';
 
 locale.lang = localStorage.getItem('LOCALE');
 
@@ -11,6 +13,7 @@ const gallery = document.querySelector('#gallery');
 const searchResultMessage = document.querySelector('.search-result-message');
 // const filmSearchFormInput = document.querySelector('.search-form__input');
 const homeButton = document.querySelector('[data-name="home"]');
+const paginationBtn = document.querySelector('#pagination');
 
 // console.log(homeButton);
 
@@ -54,30 +57,34 @@ function onSearch(event) {
   event.preventDefault();
 
   filmApiService.query = event.currentTarget.elements.searchQuery.value;
-  // console.log(filmApiService.query);
-  filmApiService
-    .fetchFilm()
-    .then(data => {
-      if (data.results.length === 0) {
-        filmApiService.query = '';
-        /* searchResultMessage.innerHTML =
+  // console.log(filmApiService.query.length);
+
+  if (filmApiService.query.length !== 0) {
+    filmApiService
+      .fetchFilm()
+      .then(data => {
+        if (data.results.length === 0) {
+          findFilmForm.reset();
+          searchResultMessage.innerHTML = text[locale.lang].searchResultMessage;
+          /* searchResultMessage.innerHTML =
               'Search result not successful. Enter the correct movie name.'; */
-        /* Вместо жёстко заданного сообщения система выдаст текст из нашего словарика 
+          /* Вместо жёстко заданного сообщения система выдаст текст из нашего словарика 
         в зависимости от выбранного языка */
-        searchResultMessage.innerHTML = text[locale.lang].searchResultMessage;
+          createData();
+          return;
+        }
 
-        createData();
-        return;
-      }
-
-      searchResultMessage.innerHTML = '';
-      createFilmoteka(data.results);
-      // console.log(data.results);
-    })
-    .catch(error => {
-      // console.log(error);
-      createData();
-    });
+        searchResultMessage.innerHTML = '';
+        createFilmoteka(data.results);
+        paginationBtn.classList.add('invisible');
+        // console.log(data.results);
+      })
+      .catch(error => {
+        console.log(error);
+        // createData();
+      });
+  }
+  //  createData();
 
   clearContainer();
 }

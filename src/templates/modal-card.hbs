@@ -4,25 +4,25 @@
 />
     </div>
 
-    <div class=" cardItem__wrapper">
+    <div class="cardItem__wrapper">
         <h2 class="cardItem__name">{{title}}</h2>
-        <p class="cadrItem__vote cardItem_text">
-            Vote / Votes<span class="cardItem__vote_average">{{vote_average}}</span>/<span
-                class="cardItem__vote_count">{{vote_count}}</span>
-        </p>
-        <p class="cardItem__popularity cardItem_text">
-            Popularity<span class="cardItem___data">{{popularity}}</span>
-        </p>
-        <p class="cardItem-Title cardItem_text">
-            Original Title<span class="cardItem__title_data">{{original_title}}</span>
-        </p>
-        <div class="genres">
-            <p class="cardItem__genre cardItem_text">
+        <div class="cadrItem">
+             <span class="cardItem_text">Vote / Votes</span><span class="cardItem__details"><span class="orange">{{vote_average}}</span><span
+                class="cardItem__vote_count"> / {{vote_count}}</span></span>
+        </div>
+        <div class="cadrItem">
+           <span class="cardItem_text">Popularity</span><span class="cardItem__details">{{popularity}}</span>
+        </div>
+        <div class="cadrItem">
+            <span class="cardItem_text">Original Title</span><span class="cardItem__details">{{original_title}}</span>
+        </div>
+        <div class="cadrItem">
+            <span class="cardItem_text">
                 Genre
-            </p>
-            <p class="cardItem__genreList">{{#each genres}}
+            </span>
+            <span class="cardItem__details">{{#each genres}}
                 <span class="cardItem__genre_data">{{this.name}}</span>
-                {{/each}}</p>
+                {{/each}}</span>
 
         </div>
 
@@ -32,7 +32,12 @@
         <p class="cardItem__description">
             {{overview}}
         </p>
-        <div class="cardItem__listButton">
+                <div class="storage">
+               <button class="storage__btn" id="js-WatchedButton">Add to watched</button>
+               <button class="storage__btn" id="js-QueueButton">Add to queue</button>
+                    </div>
+          </div>
+    <div class="modal-close-btn">
            
             <div class="storage">
                <button class="storage__btn" id="js-WatchedButton">Add to watched</button>
@@ -41,5 +46,4 @@
             </div>
         </div>
     </div>
-    <div class="modal-close-btn">Close</div>
 </div>
