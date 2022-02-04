@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import { lazyLoad } from './lazyLoad';
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.min.css';
+import * as withLoader from './spinner';
 
 let page = 1;
 let totalPages = 0;
@@ -44,7 +45,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
   page = paginationTrend.getCurrentPage();
   reset(page);
   mediaPagination();
-  // withLoader.addLoader();
+  withLoader.addLoader();
   paginationBtn.classList.add('visually-hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(() => {
@@ -53,7 +54,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
         createFilmoteka(data.results);
         // console.log(data.results)
       })
-      // .then(withLoader.removeLoader())
+      .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('visually-hidden'))
       .catch(error => console.log(error));
   }, 2000);
@@ -88,7 +89,7 @@ async function getFilms(page) {
 export function createData(page, totalPages) {
   reset();
   mediaPagination();
-
+  withLoader.addLoader();
   paginationBtn.classList.add('visually-hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(() => {
@@ -97,7 +98,7 @@ export function createData(page, totalPages) {
         createFilmoteka(data.results);
         // console.log(data.results)
       })
-
+      .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('visually-hidden'))
       .catch(error => console.log(error));
   }, 2000);
