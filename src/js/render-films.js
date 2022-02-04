@@ -3,7 +3,7 @@ import { makeGenres } from './makeGenres';
 import Notiflix from 'notiflix';
 import { lazyLoad } from './lazyLoad';
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.min.css';
+// import 'tui-pagination/dist/tui-pagination.min.css';
 
 let page = 1;
 let totalPages = 0;
