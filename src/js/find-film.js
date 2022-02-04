@@ -60,11 +60,11 @@ function onSearch(event) {
             // console.log(data.results);
         })
         .catch(error => {
-            // console.log(error);
-        createData();
+            console.log(error);
+        // createData();
     }) 
     }
-     createData();
+    //  createData();
     
     clearContainer();
 }
