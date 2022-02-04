@@ -9,7 +9,7 @@ const gallery = document.querySelector('#gallery');
 const searchResultMessage = document.querySelector('.search-result-message');
 const homeButton = document.querySelector('[data-name="home"]');
 
-
+const paginationBtn = document.querySelector('#pagination');
 
 
 class FilmApiService {
@@ -57,6 +57,7 @@ function onSearch(event) {
             
             searchResultMessage.innerHTML = '';
             createFilmoteka(data.results);
+            paginationBtn.classList.add('invisible')
             // console.log(data.results);
         })
         .catch(error => {
