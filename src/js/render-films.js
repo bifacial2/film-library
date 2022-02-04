@@ -12,9 +12,6 @@ let page = 1;
 let totalPages = 0;
 locale.lang = localStorage.getItem('LOCALE');
 
-let page = 1;
-let totalPages = 0;
-
 const container = document.getElementById('pagination');
 const films = document.querySelector(`#gallery`);
 const paginationBtn = document.querySelector('#pagination');

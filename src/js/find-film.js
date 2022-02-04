@@ -2,8 +2,6 @@ import { createFilmoteka } from './render-films';
 import { createData } from './render-films';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
-import { createFilmoteka } from './render-films';
-import { createData } from './render-films';
 
 locale.lang = localStorage.getItem('LOCALE');
 

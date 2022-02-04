@@ -47,19 +47,20 @@
                 </button>
     
             </form>
+            <ul class="header-localization ">
+                <li class="header-localization__item">
+                    <button class="header-localization__button header-localization__english"></button>
+                </li>
+                <li class="header-localization__item">
+                    <button class="header-localization__button header-localization__russian"></button>
+                </li>
+                <li class="header-localization__item">
+                    <button class="header-localization__button header-localization__ukrainian"></button>
+                </li>
+            </ul>
             <div class="search-result-message"></div>
     
-                    <ul class="header-localization ">
-                        <li class="header-localization__item">
-                            <button class="header-localization__button header-localization__english"></button>
-                        </li>
-                        <li class="header-localization__item">
-                            <button class="header-localization__button header-localization__russian"></button>
-                        </li>
-                        <li class="header-localization__item">
-                            <button class="header-localization__button header-localization__ukrainian"></button>
-                        </li>
-                    </ul>
+                    
                 
         </div>
     
@@ -80,7 +81,7 @@
     <div class="backdrop is-hidden js-modal" data-modal="auth-in">
         <form class="signin-form js-form">
             <div class="signin-heading__wrapper auth-modal__heading">
-                <h2 class="signin-form__heading">Sign in</h2>
+                <h2 class="signin-form__heading" data-locale="signIn">Sign in</h2>
             </div>
     
             <label class="signin-form__label" for="signin-email">
@@ -106,11 +107,11 @@
             
     
             <div class="signin-form__massage">
-                <p>Don't have an account? <button class="header__btn form-massage__btn accent" data-name="signUp">Sign
-                        Up</button>.</p>
+                <p> <span data-locale="haveYouAccount">Don't have an account?</span>  <button class="header__btn form-massage__btn accent" data-locale="signUp" data-name="signUp">Sign
+                    Up</button> .</p>
             </div>
     
-            <button class="form-btn" type="submit">Log In</button>
+            <button class="form-btn" type="submit" data-locale="logIn">Log In</button>
             <button class="modal-close signin-form__close" type="button">
                 <svg class="close-icon" width="12" height="12">
                     <use href="./images/sprite.svg#icon-close"></use>

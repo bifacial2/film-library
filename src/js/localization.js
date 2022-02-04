@@ -23,6 +23,8 @@ const refs = {
   localeEn: document.querySelector('.header-localization__english'),
   localeRu: document.querySelector('.header-localization__russian'),
   localeUa: document.querySelector('.header-localization__ukrainian'),
+  placeholderLabel: document.querySelector('.search-form__input'),
+  placeholderSignInPassword: document.querySelector('.signin-input__psw'),
 };
 
 const chooseLocaleHandler = event => {
@@ -55,4 +57,6 @@ function translateElement(element) {
   const key = element.getAttribute('data-locale');
   const translation = text[locale.lang][key];
   element.innerText = translation;
+  refs.placeholderLabel.setAttribute('placeholder', text[locale.lang].searchingPlaceHolder);
+  refs.placeholderSignInPassword.setAttribute('placeholder', text[locale.lang].password);
 }
