@@ -42,7 +42,7 @@ const paginationTrend = new Pagination(container, options);
 
 paginationTrend.on('afterMove', ({ page, totalPages }) => {
   page = paginationTrend.getCurrentPage();
-  reset();
+  reset(page);
   mediaPagination();
   // withLoader.addLoader();
   paginationBtn.classList.add('visually-hidden');
@@ -51,7 +51,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
     return getFilms(page, totalPages)
       .then(({ data }) => {
         createFilmoteka(data.results);
-        console.log(data.results)
+        // console.log(data.results)
       })
       // .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('visually-hidden'))
@@ -85,7 +85,7 @@ async function getFilms(page) {
     error => console.log(error);
   }
 }
- function createData(page, totalPages) {
+export function createData(page, totalPages) {
   reset();
   mediaPagination();
 
