@@ -2,14 +2,14 @@ import * as basicLightbox from 'basiclightbox';
 
 import stanislavUrl from '../images/our_team/photo_stas2.jpg';
 import anastasiaUrl from '../images/our_team/photo_anastasia1.jpg';
-import andriiUrl from '../images/our_team/photo_andrii2.jpg';
-import irynaUrl from '../images/our_team/photo_iryna2.jpg';
+import andriiUrl from '../images/our_team/photo_andrii.jpg';
+import irynaUrl from '../images/our_team/photo_irina2.jpg';
 import alexandrUrl from '../images/our_team/photo_alex2.jpg';
 import eduardUrl from '../images/our_team/photo_eduard1.jpg';
 import serhiiUrl from '../images/our_team/photo_serhii1.jpg';
 import andrii2Url from '../images/our_team/photo_andrii1.jpg';
 
-import imageUrl from '../images/github-icon.svg';
+import imageUrl from '../images/sprite.svg';
 import closeUrl from '../images/sprite.svg';
 
 const team = [
