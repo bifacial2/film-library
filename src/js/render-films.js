@@ -46,7 +46,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
   reset(page);
   mediaPagination();
   withLoader.addLoader();
-  paginationBtn.classList.add('visually-hidden');
+  paginationBtn.classList.add('invisible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(() => {
     return getFilms(page, totalPages)
@@ -55,7 +55,7 @@ paginationTrend.on('afterMove', ({ page, totalPages }) => {
         // console.log(data.results)
       })
       .then(withLoader.removeLoader())
-      .then(paginationBtn.classList.remove('visually-hidden'))
+      .then(paginationBtn.classList.remove('invisible'))
       .catch(error => console.log(error));
   }, 2000);
 });
@@ -90,7 +90,7 @@ export function createData(page, totalPages) {
   reset();
   mediaPagination();
   withLoader.addLoader();
-  paginationBtn.classList.add('visually-hidden');
+  paginationBtn.classList.add('invisible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(() => {
     return getFilms(page, totalPages)
@@ -99,7 +99,7 @@ export function createData(page, totalPages) {
         // console.log(data.results)
       })
       .then(withLoader.removeLoader())
-      .then(paginationBtn.classList.remove('visually-hidden'))
+      .then(paginationBtn.classList.remove('invisible'))
       .catch(error => console.log(error));
   }, 2000);
 }
