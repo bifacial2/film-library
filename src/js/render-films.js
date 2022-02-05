@@ -2,12 +2,15 @@ import axios from 'axios';
 import { makeGenres } from './makeGenres';
 import Notiflix from 'notiflix';
 import { lazyLoad } from './lazyLoad';
+import './localization';
+import { locale } from './localization';
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.min.css';
 import * as withLoader from './spinner';
 
 let page = 1;
 let totalPages = 0;
+locale.lang = localStorage.getItem('LOCALE');
 
 const container = document.getElementById('pagination');
 const films = document.querySelector(`#gallery`);
@@ -69,10 +72,13 @@ function mediaPagination() {
 }
 // ........................................................
 createData({ page, totalPages });
-async function getFilms(page) {
+export async function getFilms(page) {
   try {
-    const { data } = await axios.get(`discover/movie?api_key=${KEY_API}&page=${page}`);
+    const { data } = await axios.get(
+      `discover/movie?api_key=${KEY_API}&language=${locale.lang}&page=${page}`,
+    );
     totalPages = data.total_pages;
+
     if (page === totalPages) {
       Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`, {
         timeout: 1000,
@@ -106,10 +112,9 @@ export function createData(page, totalPages) {
 
 export function createFilmoteka(data) {
   const createFilmoteka = data
-      .map(
-        ({ poster_path, title, release_date, genre_ids, id, vote_average }) =>
-        
-          `<li id="galleryModal" class="hero__gallery_el list">
+    .map(
+      ({ poster_path, title, release_date, genre_ids, id, vote_average }) =>
+        `<li id="galleryModal" class="hero__gallery_el list">
     <a href="#" class='card-links link'>
        ${
          poster_path
@@ -119,10 +124,13 @@ export function createFilmoteka(data) {
         <div class="hero__title-genre_wrapper">
         <h2 class="film_title">${title}</h2><span class="hero__vote_span">${vote_average}</span>
         </div>
-        <p class="film_genre">${makeGenres(genre_ids)} | <span>${release_date.substr(0, 4)}</span></p>
+        <p class="film_genre">${makeGenres(genre_ids)} | <span>${release_date.substr(
+          0,
+          4,
+        )}</span></p>
         </a>
       </li>`,
-      )
+    )
     .join('');
   films.insertAdjacentHTML('beforeend', createFilmoteka);
 
