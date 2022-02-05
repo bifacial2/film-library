@@ -44,7 +44,8 @@ const chooseLocaleHandler = event => {
   locale.lang = currentLanguage;
   //Записываю параметр локали в локальное хранилище для того, чтобы у пользователя не сбивались настройки языка
   localStorage.setItem('LOCALE', currentLanguage);
-  createData({ page, totalPages });
+  //createData({ page, totalPages });
+  location.reload();
 };
 refs.localizationForm.addEventListener('click', chooseLocaleHandler);
 
