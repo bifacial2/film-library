@@ -81,6 +81,13 @@ function addEventListenerForArray(array, event, func) {
   }
 }
 
+function addEventListenerForArray(array, event, func) {
+  // array.map(element => element.addEventListener(event, func));
+  for (let i = 0; i < array.length; i += 1) {
+    array[i].addEventListener(event, func);
+  }
+}
+
 function removeClassList(element, classList) {
   element.classList.remove(classList);
 }
@@ -148,6 +155,8 @@ function onEscPress(e) {
     refs.body.classList.remove('no-scroll');
   }
 }
+
+elementName.addEventListener('click', onClickEvent);
 
 function modalClose() {
   const allModals = refs.modal;
