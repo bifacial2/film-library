@@ -11,6 +11,18 @@
         <p class="logo-word">Filmoteka</p>
     </a>
 
+    <ul class="header-localization ">
+        <li class="header-localization__item">
+            <button class="header-localization__button header-localization__english"></button>
+        </li>
+        <li class="header-localization__item">
+            <button class="header-localization__button header-localization__russian"></button>
+        </li>
+        <li class="header-localization__item">
+            <button class="header-localization__button header-localization__ukrainian"></button>
+        </li>
+    </ul>
+
     <!-- AUTHORIZATION buttons -->
    <ul class="auth-btns__list" >
        <li class="auth-btns__item">
@@ -47,17 +59,7 @@
                 </button>
     
             </form>
-            <ul class="header-localization ">
-                <li class="header-localization__item">
-                    <button class="header-localization__button header-localization__english"></button>
-                </li>
-                <li class="header-localization__item">
-                    <button class="header-localization__button header-localization__russian"></button>
-                </li>
-                <li class="header-localization__item">
-                    <button class="header-localization__button header-localization__ukrainian"></button>
-                </li>
-            </ul>
+            
             <div class="search-result-message"></div>
     
                     
@@ -125,11 +127,11 @@
     <div class="backdrop is-hidden js-modal" data-modal="auth-reg">
         <form class="reg-form js-form backdrop-content">
             <div class="reg-heading__wrapper auth-modal__heading">
-                <h2 class="reg-form__heading">Sign up</h2>
+                <h2 class="reg-form__heading" data-locale="signUp">Sign up</h2>
             </div>
     
             <div class="reg-form__massage--top">
-                <p>Already have an account? <button class="header__btn accent form-massage__btn" data-name="signIn">Sign
+                <p><span data-locale="havingAccount">Already have an account?</span><button class="header__btn accent form-massage__btn" data-name="signIn" data-locale="signIn">Sign
                         in</button>.</p>
             </div>
     
@@ -178,11 +180,11 @@
             
     
             <div class="reg-form__massage--bottom">
-                <p>By creating an account you agree to our <a class="accent" href="#">Terms & Privacy</a>.</p>
+                <p> <span data-locale="doYouAgree">By creating an account you agree to our</span>  <a class="accent" data-locale="privacy" href="#">Terms & Privacy</a>.</p>
             </div>
     
     
-            <button class="form-btn" type="submit">Register</button>
+            <button class="form-btn" type="submit" data-locale="register">Register</button>
             <button class="modal-close reg-form__close" type="button" data-regFormClose>
                 <svg class="close-icon" width="12" height="12">
                     <use href="./images/sprite.svg#icon-close"></use>

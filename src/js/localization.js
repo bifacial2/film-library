@@ -25,6 +25,10 @@ const refs = {
   localeUa: document.querySelector('.header-localization__ukrainian'),
   placeholderLabel: document.querySelector('.search-form__input'),
   placeholderSignInPassword: document.querySelector('.signin-input__psw'),
+  placeholderRegistrationName: document.querySelector('.reg-input__email'),
+  placeholderRegistrationEmail: document.querySelectorAll('.reg-input__email')[1],
+  placeholderRegistrationCreatePassord: document.querySelector('.reg-input__psw'),
+  placeholderRegistrationRepeatPassord: document.querySelectorAll('.reg-input__psw')[1],
 };
 
 const chooseLocaleHandler = event => {
@@ -59,4 +63,14 @@ function translateElement(element) {
   element.innerText = translation;
   refs.placeholderLabel.setAttribute('placeholder', text[locale.lang].searchingPlaceHolder);
   refs.placeholderSignInPassword.setAttribute('placeholder', text[locale.lang].password);
+  refs.placeholderRegistrationName.setAttribute('placeholder', text[locale.lang].enterName);
+  refs.placeholderRegistrationEmail.setAttribute('placeholder', text[locale.lang].enterEmail);
+  refs.placeholderRegistrationCreatePassord.setAttribute(
+    'placeholder',
+    text[locale.lang].createPassword,
+  );
+  refs.placeholderRegistrationRepeatPassord.setAttribute(
+    'placeholder',
+    text[locale.lang].repeatPassword,
+  );
 }
