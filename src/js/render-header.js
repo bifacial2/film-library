@@ -156,8 +156,6 @@ function onEscPress(e) {
   }
 }
 
-elementName.addEventListener('click', onClickEvent);
-
 function modalClose() {
   const allModals = refs.modal;
 

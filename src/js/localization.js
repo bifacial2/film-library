@@ -40,6 +40,7 @@ const chooseLocaleHandler = event => {
   } else if (event.target === refs.localeUa) {
     currentLanguage = 'uk-UA';
   } else return;
+  console.log(locale.lang);
   locale.lang = currentLanguage;
   //Записываю параметр локали в локальное хранилище для того, чтобы у пользователя не сбивались настройки языка
   localStorage.setItem('LOCALE', currentLanguage);
