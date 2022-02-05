@@ -27,7 +27,7 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
         genres: genres,
         vote_average: vote_average,
     });
-    console.log(db);
+    // console.log(db);
 }
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
@@ -46,10 +46,6 @@ export function deleteFilmFromWatched(id) {
     const getChosenFilm = ref(db, `users/watched/${id}`);
     remove(getChosenFilm, (film) => {
     const data = film.val();
-    // remove(data);
-    console.log('Removed from watched');
-    
-    // console.log(data.title);
 });
 }
 
@@ -57,45 +53,36 @@ export function deleteFilmFromQueue(id) {
   const getChosenFilm = ref(db, `users/queue/${id}`);
     remove(getChosenFilm, (film) => {
     const data = film.val();
-    // remove(data);
-    // console.log('Removed from queue');
-    
-    // console.log(data.title);
 });  
 }
 
-let dataArray = [];
-export function getFilmForWatchedRender() {
+// ============Get Films For Render=================
+
+function getFilmForWatchedRender() {
     const getWatchedFilms = ref(db, `users/watched`);
 onValue(getWatchedFilms, (films) => {
     const data = films.val();
-    console.log(data);
+    // console.log(data);
     for (const key in data) {
-        console.log(key); 
-        // dataArray.push(key);
-        // console.log(dataArray);
-    }
-    
-    // const dataIds = data.map(film => film.id)
-    
-    
+        // console.log(key); 
+    }   
 })
 } 
 
 
-// ============Get Films For Render=================
 
-const dbRef = ref(db);
-function getFilmsForWatchedRender(userId) {
-  get(child(dbRef, `users/queue/${userId}`)).then((snapshot) => {
-  if (snapshot.exists()) {
-    console.log(snapshot.val());
-  } else {
-    console.log("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
-});  
-}
+
+// const dbRef = ref(db);
+// function getFilmsForWatchedRender(userId) {
+//   get(child(dbRef, `users/queue/${userId}`)).then((snapshot) => {
+//   if (snapshot.exists()) {
+//     console.log(snapshot.val());
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });  
+// }
 
 // getFilmsForWatchedRender(524434);

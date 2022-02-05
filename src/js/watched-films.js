@@ -141,9 +141,9 @@ function onWatchedBtnClick(event) {
     const getWatchedFilms = ref(db, `users/watched`);
     onValue(getWatchedFilms, (films) => {
     const data = films.val();
-    console.log(data);
+    // console.log(data);
     for (const key in data) {
-        console.log(key); 
+        // console.log(key); 
         fetchWatchedMovies(key);
     }
     })
@@ -191,9 +191,9 @@ function onQueueBtnClick(event) {
     const getQueueFilms = ref(db, `users/queue`);
     onValue(getQueueFilms, (films) => {
     const data = films.val();
-    console.log(data);
+    // console.log(data);
     for (const key in data) {
-        console.log(key); 
+        // console.log(key); 
         fetchWatchedMovies(key);
     }
     })
