@@ -12,6 +12,8 @@ const firebaseConfig = {
 
 };
 
+
+
 // ===============Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -68,6 +70,8 @@ onValue(getWatchedFilms, (films) => {
     }   
 })
 } 
+
+
 
 
 
