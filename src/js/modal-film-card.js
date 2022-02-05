@@ -1,8 +1,11 @@
 import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import { initStorageBtns } from './watched-films';
+import {initStorageBtns} from './watched-films';
+import {fetchWatchedMovies} from './watched-films';
 
+
+let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
 const body = document.querySelector('body');
