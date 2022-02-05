@@ -1,5 +1,13 @@
 import { lazyLoad } from './lazyLoad';
 
+import { ref, onValue } from "firebase/database";
+
+import { addNewFilmToWatched } from './firebase.functions';
+import { addFilmToQueue } from './firebase.functions';
+import { deleteFilmFromWatched } from './firebase.functions';
+import { deleteFilmFromQueue } from './firebase.functions';
+import { db } from './firebase.functions';
+
 const watchBtn = document.querySelector('.library-btns--watch');
 const queueBtn = document.querySelector('.library-btns--queue');
 const filmsGallery = document.querySelector('#gallery');
@@ -9,15 +17,14 @@ import { clearContainer } from './find-film';
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 let queueFilmArray = JSON.parse(localStorage.getItem('queueFilmArray')) || [];
-// let fixedQueneFilmArr = queueFilmArray || [];
-// console.log(queueFilmArray);
+
 // =====================Buttons on Film Info Card================
 
 export function initStorageBtns(data) {
     const addToWatchedButton = document.getElementById('js-WatchedButton');
     const addToQueueButton = document.getElementById('js-QueueButton');
 
-    // ===============Watch Button==========================
+    // ==============='Add to Watched' Button==========================
     
     addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
     for(const films of filmArray){
@@ -42,27 +49,23 @@ export function initStorageBtns(data) {
               if (!filmArray.includes(data.id)) {
             filmArray.push(data.id);
         }
-        console.log(filmArray);
-        console.log(data.id);
-     
-        // =======delete from queue========
-        const dataIndex = queueFilmArray.indexOf(data.id);
-        
-        if (dataIndex !== -1) {
-            localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray.splice(dataIndex, 1)));
-        }
 
-        // fixedQueneFilmArr = queueFilmArray.filter(function (f) { return f !== data.id })
-    //   queueFilmArray.map(filmId => {
-    //     fetchWatchedMovies(filmId);
-    // })
-
-        localStorage.setItem('filmArray', JSON.stringify(filmArray));
+        // ========FIREBASE============
+        addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
+        deleteFilmFromQueue(data.id);
        
+        // =======delete from queue Local Storage===============================
+
+    //     const dataIndex = queueFilmArray.indexOf(data.id);
         
+    //     if (dataIndex !== -1) {
+    //         localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray.splice(dataIndex, 1)));
+    //     }
+
+    //     localStorage.setItem('filmArray', JSON.stringify(filmArray));
     }
     
-    // ==================Queue Button=========================
+    // =================='Add to Queue' Button=========================
 
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
     for(const queuefilms of queueFilmArray){
@@ -87,7 +90,14 @@ export function initStorageBtns(data) {
         if (!queueFilmArray.includes(data.id)) {
             queueFilmArray.push(data.id);
         }
-        // ========delete from watched========
+
+         // ========FIREBASE============
+        
+        addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
+        deleteFilmFromWatched(data.id);
+
+        // ========delete from watched Local Storage=========================
+
         // const queueIndex = filmArray.indexOf(data.id);
       
         // if (queueIndex !== -1) {
@@ -95,7 +105,7 @@ export function initStorageBtns(data) {
         //     localStorage.setItem('filmArray', JSON.stringify(filmArray.splice(queueIndex, 1)));
         // }
         
-        localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
+        // localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
     }
     // ========delete from watched========
     // const queueIndex = filmArray.indexOf(data.id);
@@ -106,7 +116,7 @@ export function initStorageBtns(data) {
     // }
 
     localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
-  }
+}
 
 
 // ===========Header Buttons==============
@@ -119,22 +129,39 @@ watchBtn.addEventListener('click', onWatchedBtnClick);
 
 // =================WATCH=====================
 function onWatchedBtnClick(event) {
-  event.preventDefault;
+    event.preventDefault;
+    
+    watchBtn.classList.add('accent-btn');
+    queueBtn.classList.remove('accent-btn');
+    watchBtn.disabled = true;
+    queueBtn.disabled = false;
 
-  watchBtn.classList.add('accent-btn');
-  queueBtn.classList.remove('accent-btn');
-  watchBtn.disabled = true;
-  queueBtn.disabled = false;
+    // ===========With Firebase Database====
 
-  try {
-    JSON.parse(localStorage.getItem('filmArray')).map(filmId => {
-      fetchWatchedMovies(filmId);
-    });
-  } catch (error) {
-    console.log('Nope');
-    filmsGallery.innerHTML = '';
-  }
-  paginationBtn.classList.add('invisible');
+    const getWatchedFilms = ref(db, `users/watched`);
+    onValue(getWatchedFilms, (films) => {
+    const data = films.val();
+    // console.log(data);
+    for (const key in data) {
+        // console.log(key); 
+        fetchWatchedMovies(key);
+    }
+    })
+        
+
+    // ===========With Local Storage============================
+
+    // try {
+    //    JSON.parse(localStorage.getItem('filmArray')).map(filmId => {
+    //        fetchWatchedMovies(filmId);
+             
+    // }) 
+    // } catch (error) {
+    //     console.log('Nope');
+    //     filmsGallery.innerHTML = '';
+    // }
+    
+    paginationBtn.classList.add('invisible');
 }
 
 export function fetchWatchedMovies(filmId) {
@@ -152,27 +179,51 @@ export function fetchWatchedMovies(filmId) {
 queueBtn.addEventListener('click', onQueueBtnClick);
 
 function onQueueBtnClick(event) {
-  event.preventDefault;
+    event.preventDefault;
 
-  watchBtn.classList.remove('accent-btn');
-  queueBtn.classList.add('accent-btn');
-  watchBtn.disabled = false;
-  queueBtn.disabled = true;
+    
+    watchBtn.classList.remove('accent-btn');
+    queueBtn.classList.add('accent-btn');
+    watchBtn.disabled = false;
+    queueBtn.disabled = true;
+   
+    // ============Firebase Database===========
+    const getQueueFilms = ref(db, `users/queue`);
+    onValue(getQueueFilms, (films) => {
+    const data = films.val();
+    // console.log(data);
+    for (const key in data) {
+        // console.log(key); 
+        fetchWatchedMovies(key);
+    }
+    })
+    
 
-  // const queuedFilms = JSON.parse(localStorage.getItem('queueFilmArray'));
+    // ===========With Local Storage==================================
 
-  try {
-    queueFilmArray.map(filmId => {
-      fetchWatchedMovies(filmId);
-    });
-  } catch (error) {
-    console.log('Nope');
-    filmsGallery.innerHTML = '';
-  }
-  paginationBtn.classList.add('invisible');
+    // try {
+    //     queueFilmArray.map(filmId => {
+    //     fetchWatchedMovies(filmId);
+    // })
+    // } catch (error) {
+    //     console.log('Nope');
+    //     filmsGallery.innerHTML = '';
+    // } 
+    // paginationBtn.classList.add('invisible');
 }
 
 //================== Markup function for saved movies ====================
+
+function ganresNames(ganres) {
+    const ganreQuantity = ganres.map(ganre => ganre.name);
+    if ( ganreQuantity.length >= 3) {
+        const prune =  ganreQuantity.slice(0, 2)
+        const newGenres = [...prune, `And other`]
+        return newGenres.join(", ")
+    } else {
+        return  ganreQuantity.join(", ")
+    }
+}
 
 function watchedFilmsMarkup(film) {
   const createMarkup = `<li id="galleryModal" class="hero__gallery_el list">
@@ -187,9 +238,11 @@ function watchedFilmsMarkup(film) {
     film.vote_average
   }</span>
       </div>
-      <p class="film_genre">${film.genres.name} | <span>${film.release_date.substr(0, 4)}</span></p>
+      <p class="film_genre">${ganresNames(film.genres)} | <span>${film.release_date.substr(0, 4)}</span></p>
       </a>
     </li>`;
 
   filmsGallery.insertAdjacentHTML('beforeend', createMarkup);
 }
+
+
