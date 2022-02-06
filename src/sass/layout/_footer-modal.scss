@@ -102,11 +102,22 @@
   }
 }
 
-.member-image {
-  margin-bottom: 10px;
-  width: 100%;
+.thumb {
+  width: 120px;
   height: 160px;
 }
+
+.thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* .member-image {
+  margin-bottom: 10px;
+  width: 100%;
+} */
 
 .member-name {
   font-size: 18px;

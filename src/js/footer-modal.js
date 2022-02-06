@@ -82,7 +82,11 @@ const markupTeamCard = team
   .map(({ surnameDev, nameDev, photo, roleDev, gitDev }) => {
     return `
 <li class="team-member">
-    <img src="${photo}" alt="${nameDev}" class="member-image">
+<div class="thumb">
+<img src="${photo}" alt="${nameDev}" class="member-image">
+</div>
+
+    
     <p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
     <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="26" height="26">
