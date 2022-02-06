@@ -11,66 +11,69 @@ import andrii2Url from '../images/our_team/photo_andrii1.jpg';
 import imageUrl from '../images/sprite.svg';
 import closeUrl from '../images/sprite.svg';
 
+import text from '../partials/dictionary.json';
+import { locale } from './localization';
+
 const team = [
   {
-    nameDev: 'Stanislav',
-    surnameDev: 'Fedets',
+    nameDev: text[locale.lang].stanislav,
+    surnameDev: text[locale.lang].fedets,
     photo: `${stanislavUrl}`,
     roleDev: 'Team-lead',
     gitDev: 'https://github.com/bifacial2',
   },
 
   {
-    nameDev: 'Andrii',
-    surnameDev: 'Mohylnytskyi',
+    nameDev: text[locale.lang].andrii,
+    surnameDev: text[locale.lang].mohylnytskyi,
     photo: `${andriiUrl}`,
     roleDev: 'Scrum-master',
     gitDev: 'https://github.com/FossaX7',
   },
 
   {
-    nameDev: 'Anastasia',
-    surnameDev: 'Les',
+    nameDev: text[locale.lang].anastasia,
+    surnameDev: text[locale.lang].les,
     photo: `${anastasiaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/AnastasiaLes',
   },
 
   {
-    nameDev: 'Alexandr',
-    surnameDev: 'Dmitriev',
+    nameDev: text[locale.lang].alexander,
+    surnameDev: text[locale.lang].dmitriev,
     photo: `${alexandrUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/AlexanderDmitriev',
   },
 
   {
-    nameDev: 'Andriy',
-    surnameDev: 'Zhylchuk',
+    nameDev: text[locale.lang].andrii,
+    surnameDev: text[locale.lang].zhylchuk,
     photo: `${andrii2Url}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/AndriyITua',
   },
 
   {
-    nameDev: 'Iryna',
-    surnameDev: 'Skopetska',
+    nameDev: text[locale.lang].iryna,
+    surnameDev: text[locale.lang].skopetska,
     photo: `${irynaUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/Irishka27',
   },
 
   {
-    nameDev: 'Eduard',
-    surnameDev: 'Bolma',
+    nameDev: text[locale.lang].eduard,
+    surnameDev: text[locale.lang].bolma,
     photo: `${eduardUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/edbx',
   },
 
   {
-    nameDev: 'Serhii',
-    surnameDev: 'Khomaziuk',
+    nameDev: text[locale.lang].serhii,
+    surnameDev: text[locale.lang].khomaziuk,
     photo: `${serhiiUrl}`,
     roleDev: 'Front-end Developer',
     gitDev: 'https://github.com/sergiihsv',
