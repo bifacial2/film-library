@@ -8,7 +8,6 @@ import alexandrUrl from '../images/our_team/photo_alex2.jpg';
 import eduardUrl from '../images/our_team/photo_eduard1.jpg';
 import serhiiUrl from '../images/our_team/photo_serhii1.jpg';
 import andrii2Url from '../images/our_team/photo_andrii1.jpg';
-
 import imageUrl from '../images/sprite.svg';
 import closeUrl from '../images/sprite.svg';
 
@@ -85,9 +84,7 @@ const markupTeamCard = team
 <div class="thumb">
 <img src="${photo}" alt="${nameDev}" class="member-image">
 </div>
-
-    
-    <p class="member-name"">${surnameDev}<br>${nameDev}</p>
+<p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
     <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="26" height="26">
     <use href="${imageUrl}#icon-github"></use>
