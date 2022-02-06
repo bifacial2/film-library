@@ -3,6 +3,9 @@ import axios from "axios";
 import { ref, onValue } from "firebase/database";
 import { db } from './firebase.functions';
 import { fetchWatchedMovies } from "./watched-films";
+import { clearContainer } from "./find-film";
+import { watchedFilmsMarkup } from "./watched-films";
+import { addNewFilmToSort } from "./firebase.functions";
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -15,7 +18,11 @@ const refs = {
     genreList: document.querySelector('.js-genre-list'),
     yearList: document.querySelector('.js-year-list'),
     ratingList: document.querySelector('.js-rating-list'),
+    gallery: document.querySelector('#gallery'),
 }
+
+const genreInput = document.querySelector('[data-sort="genere"]');
+let genreValue = parseInt(genreInput.getAttribute('data-value'));
 
 // ========= Sort markup function of the drop down menu
 
@@ -60,6 +67,9 @@ function onSelectEvent(event) {
         event.target.parentNode.previousElementSibling.setAttribute('data-value', dataValue );
         event.target.parentNode.offsetParent.setAttribute('data-state', '');
 
+        let genreValue = parseInt(genreInput.getAttribute('data-value'));
+        startSortByGenre(genreValue);
+
     } 
 }
 
@@ -70,6 +80,8 @@ function onResetEvent(event) {
     for (let i = 0; i < array.length; i += 1) {
         array[i].textContent = array[i].getAttribute('data-default');
     }
+
+
 
 }
 
@@ -143,42 +155,35 @@ function renderRaiting() {
 // =============== Get the movie list ==================
 
 
- const getWatchedFilms = ref(db, `users/watched`);
-    onValue(getWatchedFilms, (films) => {
+function startSortByGenre(genre) {
+    const getWatchedFilms = ref(db, `users/watched`);
+// console.log(getWatchedFilms);
+onValue(getWatchedFilms, (films) => {
     const data = films.val();
-        // console.log(data);
-
     
-        const filmIdArray = Object.keys(data);
-        // console.log(filmIdArray);
-    
-    })
+    const filmIdArray = Object.keys(data);
 
-const array = [
-    "460458",
-    "568124",
-    "634649",
-    "795514",
-    "801071"
-];
+        
+     sortMovieByGenre(filmIdArray, genre)
+    
+});
+};
+
 
 // ============ Sort Movies ============
 
-const genreInput = document.querySelector('[data-sort="genere"]');
-let genreValue = genreInput.getAttribute('data-value');
 
-
-function sortMovie(genre, year, rating) {
-
-    
+function sortMovieByGenre(array, genre) {
+    clearContainer();
 
     for (let i = 0; i < array.length; i += 1) {
-        console.log(array[i]);
+        // console.log(array[i]);
         const filmId = array[i];
 
          axios.get(`movie/${filmId}?api_key=${KEY_API}`).then(r => {
-            //  console.log(r.data.genres);
+            //  console.log(r.data);
              
+            //  ========= Genre sort ============
              let genreIdArray = [];
             //  console.log(Object.values(r.data.genres));
              for (let genre of Object.values(r.data.genres)) {
@@ -186,61 +191,32 @@ function sortMovie(genre, year, rating) {
                  genreIdArray.push(genre.id);
              }
 
-             console.log(genreIdArray);
+            //  Check if there is valude of genre, if no selected genre render all the films
+             if (!Number.isInteger(genre)) {
+                 console.log('sort in. Genre is not defined')
+                 return
+             }
 
              
+
+            //  If genre has selected value, either render film if contain the genre or
+            //  return if no matching
+             if (genreIdArray.includes(genre)) {
+                 console.log('sort in')
+                 
+                 watchedFilmsMarkup(r.data);
+                 addNewFilmToSort(r.data.id, r.data.poster_path, r.data.title, r.data.release_date, r.data.genres, r.data.vote_average);
+
+             } else {
+                 console.log('sort out');
+                //  console.log(genreIdArray)
+             }
             
         });
        
     }   
-
-    
-
-    // fetchWatchedMovies(460458);
-    // console.log('function workeda')
-}
-
-sortMovie();
+};
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const movieGanresIds = [];
-
-
-function getMovieFromServer(filmId) {
-    axios.get(`movie/${filmId}?api_key=${KEY_API}`).then(r => {
-        // console.log(r.data.results);
-
-        })
-}
-
-// axios.get(`discover/movie?api_key=${KEY_API}&with_genres=35`)
-
-// axios.get(`/genre/movie/list?api_key=${KEY_API}&language=en-US`).then(r => {
-//     console.log(r.data.genres);
-// })
-
-let filmArray = JSON.parse(localStorage.getItem('filmArray'));
-// let queueFilmArray = JSON.parse(localStorage.getItem('queueFilmArray'))  [];
-
-// console.log(filmArray);
 
 

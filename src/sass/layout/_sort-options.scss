@@ -1,6 +1,8 @@
 .sort-options {
 }
 .sort-container {
+  position: absolute;
+  top: 80px;
   width: 100%;
 
   padding: 10px;
@@ -8,7 +10,7 @@
   margin-right: auto;
   margin-left: auto;
 
-  background-color: rgb(39, 37, 37);
+  background-color: transparent;
 
   @media screen and (min-width: 768px) {
     width: 768px;
@@ -145,7 +147,7 @@
   flex-direction: column;
   width: calc(100% - 6px);
 
-  background-color: #ffffff;
+  background-color: black;
 
   border: 1px solid #c7ccd1;
   border-top: none;

@@ -168,7 +168,7 @@ export function fetchWatchedMovies(filmId) {
      fetch(`https://api.themoviedb.org/3/movie/${filmId}?api_key=92e9d2ddc265e58dd6d39fa8f044cca9`)
          .then(response => response.json())
          .then((film) => {
-              
+            
              watchedFilmsMarkup(film);
          })
         .catch(error => console.log(error));
@@ -225,7 +225,7 @@ function ganresNames(ganres) {
     }
 }
 
-function watchedFilmsMarkup(film) {
+export function watchedFilmsMarkup(film) {
   const createMarkup = `<li id="galleryModal" class="hero__gallery_el list">
   <a href="#" class='card-links link'>
     <img class="hero__gallery_img" id="${film.id}" src="https://image.tmdb.org/t/p/w500${
