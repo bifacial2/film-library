@@ -2,6 +2,7 @@
 import axios from "axios";
 import { ref, onValue } from "firebase/database";
 import { db } from './firebase.functions';
+import { fetchWatchedMovies } from "./watched-films";
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -75,6 +76,7 @@ function onResetEvent(event) {
 // ============== Render markup content for sort-menu =============
 
 // Genre list 
+
 axios.get(`genre/movie/list?api_key=${KEY_API}&language=en-US`).then(r => {
 
     const array = r.data.genres;
@@ -144,9 +146,65 @@ function renderRaiting() {
  const getWatchedFilms = ref(db, `users/watched`);
     onValue(getWatchedFilms, (films) => {
     const data = films.val();
-    console.log(data);
+        // console.log(data);
+
+    
+        const filmIdArray = Object.keys(data);
+        // console.log(filmIdArray);
     
     })
+
+const array = [
+    "460458",
+    "568124",
+    "634649",
+    "795514",
+    "801071"
+];
+
+// ============ Sort Movies ============
+
+const genreInput = document.querySelector('[data-sort="genere"]');
+let genreValue = genreInput.getAttribute('data-value');
+
+
+function sortMovie(genre, year, rating) {
+
+    
+
+    for (let i = 0; i < array.length; i += 1) {
+        console.log(array[i]);
+        const filmId = array[i];
+
+         axios.get(`movie/${filmId}?api_key=${KEY_API}`).then(r => {
+            //  console.log(r.data.genres);
+             
+             let genreIdArray = [];
+            //  console.log(Object.values(r.data.genres));
+             for (let genre of Object.values(r.data.genres)) {
+                //  console.log(genre.id)
+                 genreIdArray.push(genre.id);
+             }
+
+             console.log(genreIdArray);
+
+             
+            
+        });
+       
+    }   
+
+    
+
+    // fetchWatchedMovies(460458);
+    // console.log('function workeda')
+}
+
+sortMovie();
+
+
+
+
 
 
 
@@ -165,39 +223,14 @@ function renderRaiting() {
 
 
 const movieGanresIds = [];
-let genre = 14;
 
-axios.get(`discover/movie?api_key=${KEY_API}`).then(r => {
-    // console.log(r.data.results);
 
-    const movieArray = r.data.results;
+function getMovieFromServer(filmId) {
+    axios.get(`movie/${filmId}?api_key=${KEY_API}`).then(r => {
+        // console.log(r.data.results);
 
-    // console.log(r.data.results)
-    movieArray.map(movie => {
-        movie.genre_ids
-        movie.id
-        // console.log(movie)
-
-        movieGanresIds.push({
-            movieId: movie.id,
-            genresIds: movie.genre_ids,
-        });
-    });
-
-    movieGanresIds.map(movieObject => {
-        
-        const genresArray = movieObject.genresIds;
-        // console.log(genresArray);
-
-        if (genresArray.includes(genre)) {
-            // console.log(movieObject.movieId,'есть такой жанр');
-        }
-
-    })
-
-    // console.log(movieGanresIds[0].genresIds)
-  
-});
+        })
+}
 
 // axios.get(`discover/movie?api_key=${KEY_API}&with_genres=35`)
 
