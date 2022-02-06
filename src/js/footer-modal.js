@@ -10,7 +10,6 @@ import serhiiUrl from '../images/our_team/photo_serhii1.jpg';
 import andrii2Url from '../images/our_team/photo_andrii1.jpg';
 import imageUrl from '../images/sprite.svg';
 import closeUrl from '../images/sprite.svg';
-
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
