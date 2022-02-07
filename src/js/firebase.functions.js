@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue, child, get } from "firebase/database";
+import { getDatabase, ref, remove, set, onValue, child, get, query, orderByChild } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDgBm2k5y_4SyLWQOsTxh9eRMzn9ICjP-4",
@@ -70,19 +71,38 @@ onValue(getWatchedFilms, (films) => {
 } 
 
 
+// const auth = getAuth();
+
+// const myUserId = auth.users.queue.id;
+// console.log(myUserId);
+// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
+// console.log(topUserPostsRef);
 
 
 // const dbRef = ref(db);
-// function getFilmsForWatchedRender(userId) {
-//   get(child(dbRef, `users/queue/${userId}`)).then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log(snapshot.val());
+// function getFilmsForWatchedRender() {
+//   get(child(dbRef, `users/queue/`)).then((film) => {
+//   if (film.exists()) {
+//       console.log(film.val());
+//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
+//       console.log(topUserPostsRef);
 //   } else {
 //     console.log("No data available");
 //   }
 // }).catch((error) => {
 //   console.error(error);
-// });  
+// });
 // }
 
-// getFilmsForWatchedRender(524434);
+// getFilmsForWatchedRender();
+
+const dbRef = ref(db, 'user/watched/id');
+
+onValue(dbRef, (film) => {
+  film.forEach((filmId) => {
+    const childKey = filmId.key;
+      const childData = filmId.val();
+      console.log(childData);
+    
+  });
+});
