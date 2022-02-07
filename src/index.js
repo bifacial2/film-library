@@ -6,6 +6,7 @@ import './js/localization';
 import './js/dictionary';
 import './js/find-film';
 import './js/watched-films';
-import './js/auth-registr';
 import './js/footer-modal';
+import './js/auth-registr';
+import './js/layout-reg-auth';
 
