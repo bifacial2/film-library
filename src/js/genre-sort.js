@@ -50,13 +50,13 @@ function onClickEvent(event) {
     // console.dir(event.target);
     
     if (event.target.classList.contains('sort-form__select__title')) {
-        console.dir(event.target.parentNode)
+        // console.dir(event.target.parentNode)
         
         if ('active' === event.target.parentNode.getAttribute('data-state')) {
-            console.log('atribute remove');
+            // console.log('atribute remove');
              event.target.parentNode.setAttribute('data-state', '');
         } else {
-                console.log('atribute add');
+                // console.log('atribute add');
              event.target.parentNode.setAttribute('data-state', 'active');
         }
     }
@@ -70,7 +70,7 @@ function onSelectEvent(event) {
         event.target.parentNode.previousElementSibling.textContent = event.target.textContent;
         
         const dataValue = event.target.getAttribute('data-value');
-        console.log(dataValue);
+        // console.log(dataValue);
 
         event.target.parentNode.previousElementSibling.setAttribute('data-value', dataValue );
         event.target.parentNode.offsetParent.setAttribute('data-state', '');
@@ -81,7 +81,7 @@ function onSelectEvent(event) {
 
         console.log(genreValue, yearValue, ratingValue);
         
-        startSort(genreValue, yearValue);
+        startSort('watched');
 
     } 
 }
@@ -97,6 +97,8 @@ function onResetEvent() {
     genreValue = genreInput.setAttribute('data-value','');
     yearValue = yearInput.setAttribute('data-value','');
     ratingValue = ratingInput.setAttribute('data-value','');
+
+    renderMoviesWithoutSort('watched');
 
 }
 
@@ -170,18 +172,17 @@ function renderRaiting() {
 // =============== Get the movie list ==================
 
 
-function startSort(genre, year, rating) {
-    const getWatchedFilms = ref(db, `users/watched`);
-    // console.log(getWatchedFilms);
+function startSort(dataBaseFolder) {
+    // Fetch the movie from database 
+    const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
     onValue(getWatchedFilms, (films) => {
         const data = films.val();
     
+        // Create array with film ID
         const filmIdArray = Object.keys(data);
-        // console.log(filmIdArray);
-        
+    
+        // Sort movie by all the filters
         sortMovie(filmIdArray);
-        // console.log(sortedByuGenre);
-        //  const sortedByYear = sortMovieByYear(sortedByuGenre, year)
 
     });
       
@@ -191,6 +192,8 @@ function startSort(genre, year, rating) {
 
 
 function sortMovie(array) {
+    // Clear the content
+    clearContainer();
 
     for (let i = 0; i < array.length; i += 1) {
        
@@ -200,40 +203,10 @@ function sortMovie(array) {
             .then(r => { return sortMovieByGenre(r) })
             .then(r => { return sortMovieByYear(r) })
             .then(r => { return sortMovieByRating(r) })
-            .then(r => (console.log(r.data.id)));
-       
+            .then(r => { watchedFilmsMarkup(r.data) })
+            .catch(error => { console.log('фильм не соответсвует параметрам') });
     } 
 };
-
-function sortMovieByYear(r) {
-         
-    console.log(r.data.release_date);
-             
-    //  ========= Year sort ============
-
-    //  Check if there is value of genre, if no selected genre render all the films
-    if (!Number.isInteger(yearValue)) {
-        console.log('sort in. Year is not defined')
-        return r;
-    };
-    
-    return r;
-       
-};
-
-function sortMovieByRating(r) {
-             
-    console.log(r.data.vote_average);
-             
-    //  ========= Year sort ============
-    //  Check if there is value of genre, if no selected genre render all the films
-    if (!Number.isInteger(ratingValue)) {
-         console.log('sort in. Rating is not defined')
-            return r;
-    };
-    
-    return r;
-}
 
 function sortMovieByGenre(result) { 
     
@@ -246,21 +219,61 @@ function sortMovieByGenre(result) {
 
             //  Check if there is value of genre, if no selected genre render all the films
             if (!Number.isInteger(genreValue)) {
-                console.log('sort in. Genre is undefined')
+                // console.log('sort in. Genre is undefined')
                 return result;
             }
 
             //  If genre has selected value, either render film if contain the genre or
             //  return if no matching
             if (genreIdArray.includes(genreValue)) {
-                console.log('OK - genre is matched - sort in')
-                
+                // console.log('OK - genre is matched - sort in')
                 return result;
 
             } else {
-                 console.log('genre not matched - sort out');
+                //  console.log('genre not matched - sort out');
             }
 };
+
+function sortMovieByYear(r) {
+    const yearRelease = parseInt(r.data.release_date.split('-')[0]);
+    // console.log(yearRelease);
+             
+    //  ========= Year sort ============
+
+    //  Check if there is value of genre, if no selected genre render all the films
+    if (!Number.isInteger(yearValue)) { return r; };
+
+    // Check if the year of release the same
+    if (yearRelease === yearValue) { return r; }
+
+    // console.log('год не соотвествует');
+       
+};
+
+function sortMovieByRating(r) {
+    const filmRating = r.data.vote_average
+             
+    //  ========= Rating sort ============
+
+    //  Check if there is value of genre, if no selected genre render all the films
+    if (!Number.isInteger(ratingValue)) { return r };
+
+    // Check if rating of the film is higher than requested
+    if (filmRating >= ratingValue) { return r };
+    
+}
+
+function renderMoviesWithoutSort(dataBaseFolder) {
+      const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
+    onValue(getWatchedFilms, (films) => {
+    const data = films.val();
+    // console.log(data);
+    for (const key in data) {
+        // console.log(key); 
+        fetchWatchedMovies(key);
+    }
+    })
+}
 
 
 
