@@ -89,10 +89,10 @@ function addEventListenerForArray(array, event, func) {
 }
 
 function addEventListenerForArray(array, event, func) {
-    // array.map(element => element.addEventListener(event, func));
-    for (let i = 0; i < array.length; i += 1) {
-        array[i].addEventListener(event, func);
-    };
+  // array.map(element => element.addEventListener(event, func));
+  for (let i = 0; i < array.length; i += 1) {
+    array[i].addEventListener(event, func);
+  }
 }
 
 function removeClassList(element, classList) {
