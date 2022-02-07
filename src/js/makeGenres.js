@@ -1,7 +1,9 @@
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
-locale.lang = localStorage.getItem('LOCALE');
+if (localStorage.getItem('LOCALE') === undefined) {
+  locale.lang = 'en-EN';
+} else locale.lang = localStorage.getItem('LOCALE');
 
 export function makeGenres(numbers) {
   const genreName = genreId.filter(data => {
@@ -38,9 +40,9 @@ const genreId = [
   { id: 10749, name: `${text[locale.lang].genreRomance}` },
   { id: 878, name: `${text[locale.lang].genreScienceFiction}` },
   { id: 10770, name: `${text[locale.lang].genreTV}` },
-  { id: 53, name: 'Thriller' },
-  { id: 10752, name: 'War' },
-  { id: 37, name: 'Western' },
+  { id: 53, name: `${text[locale.lang].genreThriller}` },
+  { id: 10752, name: `${text[locale.lang].genreWar}` },
+  { id: 37, name: `${text[locale.lang].genreWestern}` },
 ];
 
 /* const genreId = [
