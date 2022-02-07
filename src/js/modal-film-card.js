@@ -5,6 +5,8 @@ import { initStorageBtns } from './watched-films';
 import './localization';
 import { locale } from './localization';
 
+
+let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
 const body = document.querySelector('body');
@@ -43,7 +45,7 @@ function openModal(e) {
     closeBtn.addEventListener('click', closeModal);
 
     function closeModalHandler(e) {
-      if (e.code === 'Escape') {
+        if (e.code === 'Escape') {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
         body.classList.remove('fixed');
@@ -53,6 +55,9 @@ function openModal(e) {
     function closeModal(e) {
       modal.close();
       window.removeEventListener('keydown', closeModalHandler);
+      body.classList.remove('fixed');
+    }
+    if(modal.close){
       body.classList.remove('fixed');
     }
   });

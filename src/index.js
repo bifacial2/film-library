@@ -7,3 +7,4 @@ import './js/dictionary';
 import './js/find-film';
 import './js/watched-films';
 import './js/footer-modal';
+
