@@ -8,10 +8,8 @@ import alexandrUrl from '../images/our_team/photo_alex2.jpg';
 import eduardUrl from '../images/our_team/photo_eduard1.jpg';
 import serhiiUrl from '../images/our_team/photo_serhii1.jpg';
 import andrii2Url from '../images/our_team/photo_andrii1.jpg';
-
 import imageUrl from '../images/sprite.svg';
 import closeUrl from '../images/sprite.svg';
-
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
@@ -85,8 +83,10 @@ const markupTeamCard = team
   .map(({ surnameDev, nameDev, photo, roleDev, gitDev }) => {
     return `
 <li class="team-member">
-    <img src="${photo}" alt="${nameDev}" class="member-image">
-    <p class="member-name"">${surnameDev}<br>${nameDev}</p>
+<div class="thumb">
+<img src="${photo}" alt="${nameDev}" class="member-image">
+</div>
+<p class="member-name"">${surnameDev}<br>${nameDev}</p>
     <p class="member-position">${roleDev}</p>
     <a href="${gitDev}" target="_blank" class="member-git"><svg class="git-icon" width="26" height="26">
     <use href="${imageUrl}#icon-github"></use>
@@ -97,17 +97,14 @@ const markupTeamCard = team
 
 const markupModal = `
 <div class="basicLightbox__placeholder-modal">
-
 <p class="team-title">OUR TEAM
  </p>
   <span class="our-logo"></span>
   <button type='button' class='modal-window__close-btn' data-modal-close>
     <span class='modal-close-button'>
-
      <svg class="icon-close" width="13" height="13">
     <use href="${closeUrl}#icon-close"></use>
     </svg>
-
     
     </use></span>
   </button>
