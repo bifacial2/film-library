@@ -2,13 +2,11 @@
   overflow: scroll;
   position: relativefi;
 }
-.modal-card {
-  width: 882px;
-  height: 460px;
-}
+
 
 .modal-card {
   width: 280px;
+  height: 978px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 48px;
@@ -41,14 +39,17 @@
 .genres {
   display: flex;
 }
-
+// .cardItem__image{
+//   border-radius: 5px;
+//   overflow: hidden;
+// }
 .image {
   display: block;
   margin-bottom: 30px;
   width: 240px;
   height: 356px;
   border-radius: 5px;
-  object-fit: cover;
+  // object-fit: cover;
   @media screen and (min-width: 767px) and (max-width: 1024px) {
     width: 264px;
     height: 374px;
