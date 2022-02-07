@@ -2,14 +2,20 @@ import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import { initStorageBtns } from './watched-films';
+import './localization';
+import { locale } from './localization';
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
 const body = document.querySelector('body');
 card.addEventListener('click', openModal);
 
+locale.lang = localStorage.getItem('LOCALE');
+
 function fetchOneMovieInfo(movie_id) {
-  return fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${KEY_API}`)
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${KEY_API}&language=${locale.lang}`,
+  )
     .then(response => response.json())
     .then(data => ({
       ...data,
@@ -24,6 +30,7 @@ function openModal(e) {
     if (e.target.nodeName !== 'IMG') return;
 
     const markup = modalFilmCard(data);
+
     const modal = basicLightbox.create(markup);
 
     modal.show();
