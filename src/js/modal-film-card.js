@@ -2,7 +2,8 @@ import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import {initStorageBtns} from './watched-films';
-import {fetchWatchedMovies} from './watched-films';
+import { fetchWatchedMovies } from './watched-films';
+import { getFilmFromFirebase } from './firebase.functions';
 
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
@@ -30,6 +31,9 @@ function openModal(e) {
     const modal = basicLightbox.create(markup);
 
     modal.show();
+    getFilmFromFirebase(data);
+    
+      
     initStorageBtns(data);
 
     const closeBtn = document.querySelector('.modal-close-btn');

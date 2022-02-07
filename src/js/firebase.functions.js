@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, remove, set, onValue, child, get, query, orderByChild } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDgBm2k5y_4SyLWQOsTxh9eRMzn9ICjP-4",
   authDomain: "filmoteka-522c4.firebaseapp.com",
@@ -65,11 +66,40 @@ onValue(getWatchedFilms, (films) => {
     const data = films.val();
     // console.log(data);
     for (const key in data) {
-        // console.log(key); 
+        console.log(key); 
     }   
 })
 } 
 
+
+// ==================Change Buttons Title========================
+
+
+export function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
+    let watchedKeys = [];
+    let queueKeys = [];    
+    const getWatchedFilms = ref(db, `users/watched`);
+        onValue(getWatchedFilms, (films) => {
+            watchedKeys = Object.keys(films.val());
+            if (watchedKeys.includes(String(data.id))) {
+                addToWatchedButton.classList.add('active');
+                addToWatchedButton.innerHTML = 'Remove from watched';
+                console.log("yes watched");
+            }
+        })
+        
+    const getQueueFilms = ref(db, '/users/queue');
+        onValue(getQueueFilms, (films) => {
+            queueKeys = Object.keys(films.val());
+            if (queueKeys.includes(String(data.id))) {
+                addToQueueButton.classList.add('active');
+                addToQueueButton.innerHTML = 'Remove from queue';
+                console.log("yes queue");
+            }
+        })
+} 
 
 // const auth = getAuth();
 
