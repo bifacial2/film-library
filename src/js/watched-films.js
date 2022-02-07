@@ -193,7 +193,7 @@ function onQueueBtnClick(event) {
     const data = films.val();
     // console.log(data);
     for (const key in data) {
-        console.log(key); 
+        // console.log(key); 
         fetchWatchedMovies(key);
     }
     })

@@ -32,16 +32,7 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
     // console.log(db);
 }
 
-export function addNewFilmToSort(id, poster_path, title, release_date, genres, vote_average) {
-    set(ref(db, 'users/sort/' + id), {
-        poster_path: poster_path,
-        title: title,
-        release_date: release_date,
-        genres: genres,
-        vote_average: vote_average,
-    });
-    // console.log(db);
-}
+
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
     set(ref(db, 'users/queue/' + id), {
@@ -64,13 +55,6 @@ export function deleteFilmFromWatched(id) {
 
 export function deleteFilmFromQueue(id) {
   const getChosenFilm = ref(db, `users/queue/${id}`);
-    remove(getChosenFilm, (film) => {
-    const data = film.val();
-});  
-}
-
-export function deleteFilmFromSort(id) {
-  const getChosenFilm = ref(db, `users/sort/${id}`);
     remove(getChosenFilm, (film) => {
     const data = film.val();
 });  

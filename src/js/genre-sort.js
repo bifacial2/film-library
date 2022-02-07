@@ -19,10 +19,18 @@ const refs = {
     yearList: document.querySelector('.js-year-list'),
     ratingList: document.querySelector('.js-rating-list'),
     gallery: document.querySelector('#gallery'),
+    // Buttons Watched and Queue to get the info about current page
+    watchedBtn: document.querySelector('[data-locale="watch"]'),
+    queueBtn: document.querySelector('[data-locale="queue"]'), 
 }
 
+// To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
 let genreValue = parseInt(genreInput.getAttribute('data-value'));
+const yearInput = document.querySelector('[data-sort="year"]');
+let yearValue = parseInt(yearInput.getAttribute('data-value'));
+const ratingInput = document.querySelector('[data-sort="rating"]');
+let ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
 // ========= Sort markup function of the drop down menu
 
@@ -67,13 +75,18 @@ function onSelectEvent(event) {
         event.target.parentNode.previousElementSibling.setAttribute('data-value', dataValue );
         event.target.parentNode.offsetParent.setAttribute('data-state', '');
 
-        let genreValue = parseInt(genreInput.getAttribute('data-value'));
-        startSortByGenre(genreValue);
+        genreValue = parseInt(genreInput.getAttribute('data-value'));
+        yearValue = parseInt(yearInput.getAttribute('data-value'));
+        ratingValue = parseInt(ratingInput.getAttribute('data-value'));
+
+        console.log(genreValue, yearValue, ratingValue);
+        
+        startSort(genreValue, yearValue);
 
     } 
 }
 
-function onResetEvent(event) {
+function onResetEvent() {
    
     const array = refs.formTitles;
     // console.log(array);
@@ -81,7 +94,9 @@ function onResetEvent(event) {
         array[i].textContent = array[i].getAttribute('data-default');
     }
 
-
+    genreValue = genreInput.setAttribute('data-value','');
+    yearValue = yearInput.setAttribute('data-value','');
+    ratingValue = ratingInput.setAttribute('data-value','');
 
 }
 
@@ -155,69 +170,99 @@ function renderRaiting() {
 // =============== Get the movie list ==================
 
 
-function startSortByGenre(genre) {
+function startSort(genre, year, rating) {
     const getWatchedFilms = ref(db, `users/watched`);
-// console.log(getWatchedFilms);
-onValue(getWatchedFilms, (films) => {
-    const data = films.val();
+    // console.log(getWatchedFilms);
+    onValue(getWatchedFilms, (films) => {
+        const data = films.val();
     
-    const filmIdArray = Object.keys(data);
-
+        const filmIdArray = Object.keys(data);
+        // console.log(filmIdArray);
         
-     sortMovieByGenre(filmIdArray, genre)
-    
-});
-};
+        sortMovie(filmIdArray);
+        // console.log(sortedByuGenre);
+        //  const sortedByYear = sortMovieByYear(sortedByuGenre, year)
 
+    });
+      
+};
 
 // ============ Sort Movies ============
 
 
-function sortMovieByGenre(array, genre) {
-    clearContainer();
+function sortMovie(array) {
 
     for (let i = 0; i < array.length; i += 1) {
-        // console.log(array[i]);
+       
         const filmId = array[i];
 
-         axios.get(`movie/${filmId}?api_key=${KEY_API}`).then(r => {
-            //  console.log(r.data);
-             
-            //  ========= Genre sort ============
-             let genreIdArray = [];
-            //  console.log(Object.values(r.data.genres));
-             for (let genre of Object.values(r.data.genres)) {
-                //  console.log(genre.id)
-                 genreIdArray.push(genre.id);
-             }
+        axios.get(`movie/${filmId}?api_key=${KEY_API}`)
+            .then(r => { return sortMovieByGenre(r) })
+            .then(r => { return sortMovieByYear(r) })
+            .then(r => { return sortMovieByRating(r) })
+            .then(r => (console.log(r.data.id)));
+       
+    } 
+};
 
-            //  Check if there is valude of genre, if no selected genre render all the films
-             if (!Number.isInteger(genre)) {
-                 console.log('sort in. Genre is not defined')
-                 return
-             }
-
+function sortMovieByYear(r) {
+         
+    console.log(r.data.release_date);
              
+    //  ========= Year sort ============
+
+    //  Check if there is value of genre, if no selected genre render all the films
+    if (!Number.isInteger(yearValue)) {
+        console.log('sort in. Year is not defined')
+        return r;
+    };
+    
+    return r;
+       
+};
+
+function sortMovieByRating(r) {
+             
+    console.log(r.data.vote_average);
+             
+    //  ========= Year sort ============
+    //  Check if there is value of genre, if no selected genre render all the films
+    if (!Number.isInteger(ratingValue)) {
+         console.log('sort in. Rating is not defined')
+            return r;
+    };
+    
+    return r;
+}
+
+function sortMovieByGenre(result) { 
+    
+     //  ========= Genre sort ============
+            let genreIdArray = [];
+            // create array with genre id of the fetched movie
+            for (let genre of Object.values(result.data.genres)) {
+                genreIdArray.push(genre.id);
+            }
+
+            //  Check if there is value of genre, if no selected genre render all the films
+            if (!Number.isInteger(genreValue)) {
+                console.log('sort in. Genre is undefined')
+                return result;
+            }
 
             //  If genre has selected value, either render film if contain the genre or
             //  return if no matching
-             if (genreIdArray.includes(genre)) {
-                 console.log('sort in')
-                 
-                 watchedFilmsMarkup(r.data);
-                 addNewFilmToSort(r.data.id, r.data.poster_path, r.data.title, r.data.release_date, r.data.genres, r.data.vote_average);
+            if (genreIdArray.includes(genreValue)) {
+                console.log('OK - genre is matched - sort in')
+                
+                return result;
 
-             } else {
-                 console.log('sort out');
-                //  console.log(genreIdArray)
-             }
-            
-        });
-       
-    }   
+            } else {
+                 console.log('genre not matched - sort out');
+            }
 };
 
-console.dir(refs.gallery.childNodes);
+
 
 // Логика:
 // При нажатии на reset проверка на current page (home, library (watched, quee))
