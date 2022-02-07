@@ -113,7 +113,7 @@ export function createData(page, totalPages) {
 export function createFilmoteka(data) {
   const createFilmoteka = data
     .map(
-      ({ poster_path, title, release_date, genre_ids, id, vote_average }) =>
+      ({ poster_path, title, release_date, genre_ids, id, vote_average, genres }) =>
         `<li id="galleryModal" class="hero__gallery_el list">
     <a href="#" class='card-links link'>
        ${
