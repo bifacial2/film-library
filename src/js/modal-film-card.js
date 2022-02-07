@@ -46,11 +46,10 @@ function openModal(e) {
       
     initStorageBtns(data);
 
-    modal.show();
-    initStorageBtns(data);
-
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
+
+    window.addEventListener('keydown', closeModalHandler);
 
     function closeModalHandler(e) {
         if (e.code === 'Escape') {
