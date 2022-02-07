@@ -97,17 +97,14 @@ const markupTeamCard = team
 
 const markupModal = `
 <div class="basicLightbox__placeholder-modal">
-
 <p class="team-title">OUR TEAM
  </p>
   <span class="our-logo"></span>
   <button type='button' class='modal-window__close-btn' data-modal-close>
     <span class='modal-close-button'>
-
      <svg class="icon-close" width="13" height="13">
     <use href="${closeUrl}#icon-close"></use>
     </svg>
-
     
     </use></span>
   </button>

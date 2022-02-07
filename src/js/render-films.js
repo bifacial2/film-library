@@ -77,6 +77,7 @@ export async function getFilms(page) {
     const { data } = await axios.get(
       `discover/movie?api_key=${KEY_API}&language=${locale.lang}&page=${page}`,
     );
+
     totalPages = data.total_pages;
 
     if (page === totalPages) {
@@ -102,7 +103,6 @@ export function createData(page, totalPages) {
     return getFilms(page, totalPages)
       .then(({ data }) => {
         createFilmoteka(data.results);
-        // console.log(data.results)
       })
       .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('invisible'))
@@ -113,7 +113,7 @@ export function createData(page, totalPages) {
 export function createFilmoteka(data) {
   const createFilmoteka = data
     .map(
-      ({ poster_path, title, release_date, genre_ids, id, vote_average }) =>
+      ({ poster_path, title, release_date, genre_ids, id, vote_average, genres }) =>
         `<li id="galleryModal" class="hero__gallery_el list">
     <a href="#" class='card-links link'>
        ${
