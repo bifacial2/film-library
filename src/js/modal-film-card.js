@@ -38,7 +38,7 @@ function openModal(e) {
     window.addEventListener('keydown', closeModalHandler);
 
     function closeModalHandler(e) {
-      if (e.code === 'Escape') {
+        if (e.code === 'Escape') {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
         body.classList.remove('fixed');
@@ -48,6 +48,9 @@ function openModal(e) {
     function closeModal(e) {
       modal.close();
       window.removeEventListener('keydown', closeModalHandler);
+      body.classList.remove('fixed');
+    }
+    if(modal.close){
       body.classList.remove('fixed');
     }
   });
