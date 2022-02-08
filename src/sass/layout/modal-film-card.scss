@@ -2,10 +2,6 @@
   overflow: scroll;
   position: relativefi;
 }
-.modal-card {
-  width: 882px;
-  height: 460px;
-}
 
 .modal-card {
   width: 280px;
@@ -146,7 +142,6 @@
     padding-left: 30px;
   }
 }
-
 @media (min-width: 1024px) {
   .cardItem__wrapper {
     width: 423px;
@@ -189,9 +184,6 @@
   @media (min-width: 768px) {
     width: 125px;
     height: 44px;
-  }
-  @media (min-width: 1024px) {
-    width: 136px;
   }
   @media (min-width: 1024px) {
     width: 136px;
