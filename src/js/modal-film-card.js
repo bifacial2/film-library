@@ -7,7 +7,6 @@ import './localization';
 import { locale } from './localization';
 import { translateElement } from './localization';
 import { fetchWatchedMovies } from './watched-films';
-import { getFilmFromFirebase } from './firebase.functions';
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
