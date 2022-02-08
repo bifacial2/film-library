@@ -79,23 +79,26 @@ export function getFilmFromFirebase(data) {
     let watchedKeys = [];
     let queueKeys = [];    
     const getWatchedFilms = ref(db, `users/watched`);
-        onValue(getWatchedFilms, (films) => {
-            watchedKeys = Object.keys(films.val());
+    onValue(getWatchedFilms, (films) => {
+        if (films.val()) {
+              watchedKeys = Object.keys(films.val());
             if (watchedKeys.includes(String(data.id))) {
                 addToWatchedButton.classList.add('active');
                 addToWatchedButton.innerHTML = 'Remove from watched';
-                // console.log("yes watched");
+            }  
             }
         })
         
     const getQueueFilms = ref(db, '/users/queue');
-        onValue(getQueueFilms, (films) => {
-            queueKeys = Object.keys(films.val());
-            if (queueKeys.includes(String(data.id))) {
-                addToQueueButton.classList.add('active');
-                addToQueueButton.innerHTML = 'Remove from queue';
-                // console.log("yes queue");
+    onValue(getQueueFilms, (films) => {
+        if (films.val()) {
+              queueKeys = Object.keys(films.val());
+                if (queueKeys.includes(String(data.id))) {
+                    addToQueueButton.classList.add('active');
+                    addToQueueButton.innerHTML = 'Remove from queue';
+                }  
             }
+            
         })
 } 
 

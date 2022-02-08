@@ -78,23 +78,14 @@ function onWatchedBtnClick(event) {
         const data = films.val();
         
         if (!data) {
-            console.log('Sorry!');
+            // console.log('Sorry!');
             clearContainer();
             filmsGallery.innerHTML = "You have not selected any movie";
         } else {
             const watchedFilmsArr = Object.keys(data);
-            console.log(watchedFilmsArr);
+            // console.log(watchedFilmsArr);
             watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm))
         }
-        
-    
-    //     for (const key in data) {
-    //     if (key === null) {
-    //         console.log('No movies');
-    //     }
-    //     console.log(key); 
-    //     fetchWatchedMovies(key);
-    // }
     })
     
     paginationBtn.classList.add('invisible');
@@ -127,21 +118,15 @@ function onQueueBtnClick(event) {
     const getQueueFilms = ref(db, `users/queue`);
     onValue(getQueueFilms, (films) => {
     const data = films.val();
-    console.log(data);
+    // console.log(data);
         if (!data) {
-            console.log('Sorry!');
+            // console.log('Sorry!');
             clearContainer();
             filmsGallery.innerHTML = "You have not selected any movie"      
         } else {
             const queueKeysArr = Object.keys(data);
             queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
         }
-        
-        
-        
-    //     for (const key in data) {
-    //     fetchWatchedMovies(key);
-    // }
     })
 }
 
