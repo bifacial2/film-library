@@ -1,21 +1,18 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue, child, get, query, orderByChild } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import { getDatabase, ref, remove, set, onValue, child, get } from "firebase/database";
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDgBm2k5y_4SyLWQOsTxh9eRMzn9ICjP-4",
-  authDomain: "filmoteka-522c4.firebaseapp.com",
-  databaseURL: "https://filmoteka-522c4-default-rtdb.firebaseio.com",
-  projectId: "filmoteka-522c4",
-  storageBucket: "filmoteka-522c4.appspot.com",
-  messagingSenderId: "252879014461",
-  appId: "1:252879014461:web:c1616f0e2250b40cdcb854"
-
-};
+export const firebaseConfig = {
+    apiKey: "AIzaSyBdEwkYD1_puUIBjlQvF88qB9Fc8QioMiw",
+    authDomain: "login-with-firebase-6434f.firebaseapp.com",
+    databaseURL: "https://login-with-firebase-6434f-default-rtdb.firebaseio.com",
+    projectId: "login-with-firebase-6434f",
+    storageBucket: "login-with-firebase-6434f.appspot.com",
+    messagingSenderId: "414426325677",
+    appId: "1:414426325677:web:e4a3a5184c8ec227ff1c24"
+  };
 
 // ===============Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // ================Firebase Functions==============
 export const db = getDatabase(app);
@@ -66,73 +63,25 @@ onValue(getWatchedFilms, (films) => {
     const data = films.val();
     // console.log(data);
     for (const key in data) {
-        console.log(key); 
+        // console.log(key); 
     }   
 })
 } 
 
 
-// ==================Change Buttons Title========================
-
-
-export function getFilmFromFirebase(data) {
-    const addToWatchedButton = document.querySelector('#js-WatchedButton');
-    const addToQueueButton = document.getElementById('js-QueueButton');
-    let watchedKeys = [];
-    let queueKeys = [];    
-    const getWatchedFilms = ref(db, `users/watched`);
-        onValue(getWatchedFilms, (films) => {
-            watchedKeys = Object.keys(films.val());
-            if (watchedKeys.includes(String(data.id))) {
-                addToWatchedButton.classList.add('active');
-                addToWatchedButton.innerHTML = 'Remove from watched';
-                console.log("yes watched");
-            }
-        })
-        
-    const getQueueFilms = ref(db, '/users/queue');
-        onValue(getQueueFilms, (films) => {
-            queueKeys = Object.keys(films.val());
-            if (queueKeys.includes(String(data.id))) {
-                addToQueueButton.classList.add('active');
-                addToQueueButton.innerHTML = 'Remove from queue';
-                console.log("yes queue");
-            }
-        })
-} 
-
-// const auth = getAuth();
-
-// const myUserId = auth.users.queue.id;
-// console.log(myUserId);
-// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
-// console.log(topUserPostsRef);
 
 
 // const dbRef = ref(db);
-// function getFilmsForWatchedRender() {
-//   get(child(dbRef, `users/queue/`)).then((film) => {
-//   if (film.exists()) {
-//       console.log(film.val());
-//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
-//       console.log(topUserPostsRef);
+// function getFilmsForWatchedRender(userId) {
+//   get(child(dbRef, `users/queue/${userId}`)).then((snapshot) => {
+//   if (snapshot.exists()) {
+//     console.log(snapshot.val());
 //   } else {
 //     console.log("No data available");
 //   }
 // }).catch((error) => {
 //   console.error(error);
-// });
+// });  
 // }
 
-// getFilmsForWatchedRender();
-
-const dbRef = ref(db, 'user/watched/id');
-
-onValue(dbRef, (film) => {
-  film.forEach((filmId) => {
-    const childKey = filmId.key;
-      const childData = filmId.val();
-      console.log(childData);
-    
-  });
-});
+// getFilmsForWatchedRender(524434);

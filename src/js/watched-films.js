@@ -1,3 +1,5 @@
+import { lazyLoad } from './lazyLoad';
+
 import { ref, onValue } from "firebase/database";
 
 import { addNewFilmToWatched } from './firebase.functions';
@@ -5,17 +7,16 @@ import { addFilmToQueue } from './firebase.functions';
 import { deleteFilmFromWatched } from './firebase.functions';
 import { deleteFilmFromQueue } from './firebase.functions';
 import { db } from './firebase.functions';
-import { clearContainer } from './find-film';
 
 const watchBtn = document.querySelector('.library-btns--watch');
 const queueBtn = document.querySelector('.library-btns--queue');
 const filmsGallery = document.querySelector('#gallery');
 const paginationBtn = document.querySelector('#pagination');
 
-// ==================For Local Storage========================
+import { clearContainer } from './find-film';
 
-// let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
-// let queueFilmArray = JSON.parse(localStorage.getItem('queueFilmArray')) || [];
+let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
+let queueFilmArray = JSON.parse(localStorage.getItem('queueFilmArray')) || [];
 
 // =====================Buttons on Film Info Card================
 
@@ -26,31 +27,33 @@ export function initStorageBtns(data) {
     // ==============='Add to Watched' Button==========================
     
     addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
-    // for(const films of filmArray){
-    //     if(films === data.id){
-    //         addToWatchedButton.classList.add('active');
-    //         if(addToWatchedButton.classList.contains('active')) {
-    //             addToWatchedButton.innerHTML = 'Remove from watched';
-    //         }
+    for(const films of filmArray){
+        if(films === data.id){
+            addToWatchedButton.classList.add('active');
+            if(addToWatchedButton.classList.contains('active')) {
+                addToWatchedButton.innerHTML = 'Remove from watched';
+            }
 
-    //     }
-    // }
+        }
+    }
 
     function onAddToWatchedBtnClick(event) {
         event.preventDefault;
             
+        // addToWatchedButton.innerHTML = 'Added to watched';
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
-           addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-            deleteFilmFromQueue(data.id);
-        } else {
-            deleteFilmFromWatched(data.id);
-            // addToWatchedButton.innerHTML = 'Added to watched';
-        }
-            //   if (!filmArray.includes(data.id)) {
-            // filmArray.push(data.id);
+            addToWatchedButton.innerHTML = 'Remove from watched';
+        } else{
+        addToWatchedButton.innerHTML = 'Added to watched';}
+              if (!filmArray.includes(data.id)) {
+            filmArray.push(data.id);
         }
 
+        // ========FIREBASE============
+        addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
+        deleteFilmFromQueue(data.id);
+       
         // =======delete from queue Local Storage===============================
 
     //     const dataIndex = queueFilmArray.indexOf(data.id);
@@ -60,35 +63,38 @@ export function initStorageBtns(data) {
     //     }
 
     //     localStorage.setItem('filmArray', JSON.stringify(filmArray));
-        
+    }
+    
     // =================='Add to Queue' Button=========================
 
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
-    // for(const queuefilms of queueFilmArray){
-    //     if(queuefilms === data.id){
-    //         addToQueueButton.classList.add('active');
-    //         if(addToQueueButton.classList.contains('active')) {
-    //             addToQueueButton.innerHTML = 'Remove from queue';
-    //         }
+    for(const queuefilms of queueFilmArray){
+        if(queuefilms === data.id){
+            addToQueueButton.classList.add('active');
+            if(addToQueueButton.classList.contains('active')) {
+                addToQueueButton.innerHTML = 'Remove from queue';
+            }
 
-    //     }
-    // }
+        }
+    }
+
 
     function onAddToQueueBtnClick(event) {
         event.preveventDefault;
         // addToQueueButton.innerHTML = 'Added to queue';
         addToQueueButton.classList.toggle('active');
-        if (addToQueueButton.classList.contains('active')) {
-            addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-            deleteFilmFromWatched(data.id);
-            // addToQueueButton.innerHTML = 'Remove from queue';
-        } else {
-            deleteFilmFromQueue(data.id);
-            addToQueueButton.innerHTML = 'Added to queue';
+        if(addToQueueButton.classList.contains('active')){
+            addToQueueButton.innerHTML = 'Remove from queue';
+        }else{
+            addToQueueButton.innerHTML = 'Added to queue';}
+        if (!queueFilmArray.includes(data.id)) {
+            queueFilmArray.push(data.id);
         }
-        // if (!queueFilmArray.includes(data.id)) {
-        //     queueFilmArray.push(data.id);
-        // }
+
+         // ========FIREBASE============
+        
+        addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
+        deleteFilmFromWatched(data.id);
 
         // ========delete from watched Local Storage=========================
 
@@ -101,10 +107,17 @@ export function initStorageBtns(data) {
         
         // localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
     }
-    
+    // ========delete from watched========
+    // const queueIndex = filmArray.indexOf(data.id);
 
-    // localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
+    // if (queueIndex !== -1) {
+    //     console.log(filmArray);
+    //     localStorage.setItem('filmArray', JSON.stringify(filmArray.splice(queueIndex, 1)));
+    // }
+
+    localStorage.setItem('queueFilmArray', JSON.stringify(queueFilmArray));
 }
+
 
 // ===========Header Buttons==============
 
@@ -231,4 +244,5 @@ function watchedFilmsMarkup(film) {
 
   filmsGallery.insertAdjacentHTML('beforeend', createMarkup);
 }
+
 

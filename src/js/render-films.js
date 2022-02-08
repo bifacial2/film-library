@@ -77,7 +77,6 @@ export async function getFilms(page) {
     const { data } = await axios.get(
       `discover/movie?api_key=${KEY_API}&language=${locale.lang}&page=${page}`,
     );
-
     totalPages = data.total_pages;
 
     if (page === totalPages) {
@@ -103,6 +102,7 @@ export function createData(page, totalPages) {
     return getFilms(page, totalPages)
       .then(({ data }) => {
         createFilmoteka(data.results);
+        // console.log(data.results)
       })
       .then(withLoader.removeLoader())
       .then(paginationBtn.classList.remove('invisible'))

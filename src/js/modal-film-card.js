@@ -1,14 +1,9 @@
 import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-
-import {initStorageBtns} from './watched-films';
-import { fetchWatchedMovies } from './watched-films';
-import { getFilmFromFirebase } from './firebase.functions';
-
+import { initStorageBtns } from './watched-films';
 import './localization';
 import { locale } from './localization';
-
 
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
@@ -41,15 +36,13 @@ function openModal(e) {
     const modal = basicLightbox.create(markup);
 
     modal.show();
-    getFilmFromFirebase(data);
-    
-      
+    initStorageBtns(data);
+
+    modal.show();
     initStorageBtns(data);
 
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('keydown', closeModalHandler);
 
     function closeModalHandler(e) {
         if (e.code === 'Escape') {
