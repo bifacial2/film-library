@@ -152,7 +152,7 @@
   flex-direction: column;
   width: calc(100% - 6px);
 
-  background-color: black;
+  background-color: var(--color-hdr-main);
 
   border: 1px solid #c7ccd1;
   border-top: none;
@@ -188,6 +188,7 @@
   cursor: pointer;
 
   overflow: hidden;
+  color: var(--color-main);
 
   & + input + & {
     border-top: 0 solid #c7ccd160;
@@ -196,6 +197,6 @@
   &:hover {
     background-color: var(--color-accent) !important;
 
-    color: #ffffff;
+    color: var(--color-hdr-main);
   }
 }
