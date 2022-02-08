@@ -10,4 +10,26 @@
   --color-secondary-text: #545454;
   --color-hdr-warning: #ff001b;
   --color-back-pagination: #f7f7f7;
+
+  --modal-dark-theme: transparent;
+  --body-background: white;
+  --toggle-bg: url('/images/icon-moon-min.png');
+}
+
+:root[data-theme='dark'] {
+  --color-main: rgb(209, 209, 209);
+  --color-secondary: #8c8c8c;
+  --color-accent: #ff6b08;
+  --color-accent-link: rgba(255, 107, 8, 0.7);
+  --color-logoIcon: #818181;
+  --color-hdr-main: #111111;
+  --color-footer-backgrd: #222222;
+  --color-secondary-text: #bbbbbb;
+  --color-hdr-warning: #ff001b;
+  --color-back-pagination: #5e5e5e;
+  --text-color: rgb(209, 209, 209);
+  --modal-dark-theme: #e0e0e0;
+
+  --body-background: #272727;
+  --toggle-bg: url('/images/icon-sun-min.png');
 }
