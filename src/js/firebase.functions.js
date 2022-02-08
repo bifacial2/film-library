@@ -74,6 +74,38 @@ export function getFilmFromFirebase(data) {
       .querySelectorAll('[data-locale]')
       .forEach(translateElement);
 
+// const auth = getAuth();
+
+// const myUserId = auth.users.queue.id;
+// console.log(myUserId);
+// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
+// console.log(topUserPostsRef);
+
+
+
+
+// const dbRef = ref(db);
+// function getFilmsForWatchedRender() {
+//   get(child(dbRef, `users/queue/`)).then((film) => {
+//   if (film.exists()) {
+//       console.log(film.val());
+//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
+//       console.log(topUserPostsRef);
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
+// }
+
+// getFilmsForWatchedRender(524434);
+// ==================Change Buttons Title========================
+
+
+function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
     let watchedKeys = [];
     let queueKeys = [];    
     const getWatchedFilms = ref(db, `users/watched`);

@@ -21,8 +21,9 @@ const refs = {
     gallery: document.querySelector('#gallery'),
     // Buttons Watched and Queue to get the info about current page
     watchedBtn: document.querySelector('[data-locale="watch"]'),
-    queueBtn: document.querySelector('[data-locale="queue"]'), 
-}
+    queueBtn: document.querySelector('[data-locale="queue"]'),
+    myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
+};
 
 // To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
@@ -303,6 +304,13 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 // 5. Сделать для мобильной версии в столбик
 // 6. сделать возможность скрыть меню кнопкой фильтр
 
+
+refs.myLibraryBtn.addEventListener('click', e => {
+    console.log(refs.watchedBtn, refs.queueBtn);
+
+    let status = refs.watchedBtn.classList.contains('accent-btn');
+    console.log(status);
+})
 
 
 
