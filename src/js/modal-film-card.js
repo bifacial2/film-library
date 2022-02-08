@@ -1,14 +1,12 @@
 import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-
-import {initStorageBtns} from './watched-films';
-import { fetchWatchedMovies } from './watched-films';
+import { initStorageBtns } from './watched-films';
 import { getFilmFromFirebase } from './firebase.functions';
-
 import './localization';
 import { locale } from './localization';
-
+import { translateElement } from './localization';
+import { fetchWatchedMovies } from './watched-films';
 
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
@@ -42,17 +40,19 @@ function openModal(e) {
 
     modal.show();
     getFilmFromFirebase(data);
-    
-      
+
+
     initStorageBtns(data);
+    document
+      // Find all elements that have the key attribute
+      .querySelectorAll('[data-locale]')
+      .forEach(translateElement);
 
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('keydown', closeModalHandler);
-
+  window.addEventListener('keydown', closeModalHandler);
     function closeModalHandler(e) {
-        if (e.code === 'Escape') {
+      if (e.code === 'Escape') {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
         body.classList.remove('fixed');
@@ -64,7 +64,7 @@ function openModal(e) {
       window.removeEventListener('keydown', closeModalHandler);
       body.classList.remove('fixed');
     }
-    if(modal.close){
+    if (modal.close) {
       body.classList.remove('fixed');
     }
   });
