@@ -314,3 +314,11 @@ refs.myLibraryBtn.addEventListener('click', e => {
 
 
 
+const toggleBtn = document.querySelector('.toggle-theme');
+console.log(toggleBtn);
+
+toggleBtn.addEventListener('click', onClickToggleEvent);
+
+function onClickToggleEvent(event) {
+    console.log(event)
+}
