@@ -99,7 +99,12 @@ export function getFilmFromFirebase(data) {
             if (watchedKeys.includes(String(data.id))) {
                 addToWatchedButton.classList.add('active');
                 addToWatchedButton.innerHTML = 'Remove from watched';
-            }  
+                console.log('Yes, it includes!');
+                console.log(addToWatchedButton);
+                
+            } else {
+                addToWatchedButton.innerHTML = 'Add to watch';
+            }
             }
         })
         
@@ -110,7 +115,12 @@ export function getFilmFromFirebase(data) {
                 if (queueKeys.includes(String(data.id))) {
                     addToQueueButton.classList.add('active');
                     addToQueueButton.innerHTML = 'Remove from queue';
-                }  
+                    console.log(queueKeys);
+                console.log(String(data.id));
+                } else {
+                 addToQueueButton.innerHTML = 'Add to queue';   
+            }
+            
             }
             
         })

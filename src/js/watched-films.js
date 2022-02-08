@@ -40,7 +40,7 @@ export function initStorageBtns(data) {
             deleteFilmFromQueue(data.id);
         } else {
             deleteFilmFromWatched(data.id);
-            addToWatchedButton.innerHTML = 'Add to watched';
+            // addToWatchedButton.innerHTML = 'Add to watched';
         }
     }
         
@@ -54,10 +54,11 @@ export function initStorageBtns(data) {
         addToQueueButton.classList.toggle('active');
         if (addToQueueButton.classList.contains('active')) {
             addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-            deleteFilmFromWatched(data.id);
+          deleteFilmFromWatched(data.id);
+          // addToQueueButton.innerHTML = 'Add to queue';
         } else {
             deleteFilmFromQueue(data.id);
-            addToQueueButton.innerHTML = 'Add to queue';
+            // addToQueueButton.innerHTML = 'Add to queue';
         }
     }
     
