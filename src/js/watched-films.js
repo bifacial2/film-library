@@ -77,6 +77,8 @@ watchBtn.addEventListener('click', onWatchedBtnClick);
 // =================WATCH=====================
 function onWatchedBtnClick(event) {
   event.preventDefault;
+  queueBtn.setAttribute('data-status', '');
+  watchBtn.setAttribute('data-status', 'active');
 
   watchBtn.classList.add('accent-btn');
   queueBtn.classList.remove('accent-btn');
@@ -120,7 +122,8 @@ queueBtn.addEventListener('click', onQueueBtnClick);
 
 function onQueueBtnClick(event) {
   event.preventDefault;
-
+  watchBtn.setAttribute('data-status', '');
+  queueBtn.setAttribute('data-status', 'active');
   watchBtn.classList.remove('accent-btn');
   queueBtn.classList.add('accent-btn');
   watchBtn.disabled = false;
