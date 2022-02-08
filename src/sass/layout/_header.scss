@@ -207,7 +207,7 @@
 
   font-size: 30px;
   font-weight: 500;
-  color: var(--color-hdr-main);
+  color: #ffffff;
 
   &:hover {
     color: var(--color-accent);
@@ -1030,12 +1030,12 @@
 
   background: none;
   border-style: none;
-  border-bottom: 0.5px solid var(--color-hdr-main);
+  border-bottom: 0.5px solid #ffffff;
 
-  color: var(--color-hdr-main);
+  color: #ffffff;
 
   &::placeholder {
-    color: var(--color-hdr-main);
+    color: #ffffff;
   }
 }
 
