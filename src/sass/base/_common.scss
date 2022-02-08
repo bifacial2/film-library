@@ -54,6 +54,7 @@ body {
   transition: background-color 2000ms linear;
   height: 100%;
   overflow-x: hidden;
+  background-color: var(--body-background);
 }
 
 .body-wrapper {
