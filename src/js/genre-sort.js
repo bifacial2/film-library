@@ -33,6 +33,8 @@ let yearValue = parseInt(yearInput.getAttribute('data-value'));
 const ratingInput = document.querySelector('[data-sort="rating"]');
 let ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
+let activePage = '';
+
 // ========= Sort markup function of the drop down menu
 
 // Toggle menu
@@ -82,14 +84,22 @@ function onSelectEvent(event) {
 
         console.log(genreValue, yearValue, ratingValue);
         
-        startSort('watched');
+        getActivePage();
+
+        startSort(activePage);
 
     } 
 }
 
 function onResetEvent() {
    
-    const array = refs.formTitles;
+    getActivePage();
+    resetSortParam();
+    renderMoviesWithoutSort(activePage);
+}
+
+function resetSortParam() {
+     const array = refs.formTitles;
     // console.log(array);
     for (let i = 0; i < array.length; i += 1) {
         array[i].textContent = array[i].getAttribute('data-default');
@@ -98,9 +108,16 @@ function onResetEvent() {
     genreValue = genreInput.setAttribute('data-value','');
     yearValue = yearInput.setAttribute('data-value','');
     ratingValue = ratingInput.setAttribute('data-value','');
+}
 
-    renderMoviesWithoutSort('watched');
-
+function getActivePage() {
+     if (refs.watchedBtn.getAttribute('data-status') === 'active') {
+             activePage = refs.watchedBtn.getAttribute('data-folder');
+             console.log('watched is active, get the', activePage);
+         } else {
+             activePage = refs.queueBtn.getAttribute('data-folder');
+             console.log('queue is active, get the', activePage);
+        }
 }
 
 // ============== Render markup content for sort-menu =============
@@ -308,17 +325,8 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 refs.myLibraryBtn.addEventListener('click', e => {
     console.log(refs.watchedBtn, refs.queueBtn);
 
-    let status = refs.watchedBtn.classList.contains('accent-btn');
-    console.log(status);
+   
+
+    
+
 })
-
-
-
-const toggleBtn = document.querySelector('.toggle-theme');
-console.log(toggleBtn);
-
-toggleBtn.addEventListener('click', onClickToggleEvent);
-
-function onClickToggleEvent(event) {
-    console.log(event)
-}
