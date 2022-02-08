@@ -25,6 +25,7 @@ const refs = {
 
   body: document.body,
 };
+// console.log(refs.backdrop);
 
 const headerContent = refs.contentBox.childNodes;
 
