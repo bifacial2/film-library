@@ -28,25 +28,26 @@ function fetchOneMovieInfo(movie_id) {
 }
 function openModal(e) {
   e.preventDefault();
+  if (e.target.nodeName !== 'IMG') {
+      return;
+  }
   body.classList.add('fixed');
 
   fetchOneMovieInfo(e.target.id).then(data => {
-    if (e.target.nodeName !== 'IMG') return;
+    
+      
 
     const markup = modalFilmCard(data);
 
     const modal = basicLightbox.create(markup);
 
     modal.show();
+    
     getFilmFromFirebase(data);
 
 
     initStorageBtns(data);
-    document
-      // Find all elements that have the key attribute
-      .querySelectorAll('[data-locale]')
-      .forEach(translateElement);
-
+    
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
   window.addEventListener('keydown', closeModalHandler);

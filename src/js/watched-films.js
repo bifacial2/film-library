@@ -53,7 +53,7 @@ export function initStorageBtns(data) {
         
         addToQueueButton.classList.toggle('active');
         if (addToQueueButton.classList.contains('active')) {
-            addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
+          addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
           deleteFilmFromWatched(data.id);
           // addToQueueButton.innerHTML = 'Add to queue';
         } else {
