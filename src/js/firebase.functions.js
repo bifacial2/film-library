@@ -70,10 +70,10 @@ export function getFilmFromFirebase(data) {
     const addToWatchedButton = document.querySelector('#js-WatchedButton');
     const addToQueueButton = document.getElementById('js-QueueButton');
     document
-      // Find all elements that have the key attribute
-      .querySelectorAll('[data-locale]')
-      .forEach(translateElement);
-
+        // Find all elements that have the key attribute
+        .querySelectorAll('[data-locale]')
+        .forEach(translateElement);
+}
 // const auth = getAuth();
 
 // const myUserId = auth.users.queue.id;
@@ -138,7 +138,3 @@ function getFilmFromFirebase(data) {
             
         })
 } 
-
-
-
-
