@@ -38,8 +38,6 @@ function openModal(e) {
     modal.show();
     initStorageBtns(data);
 
-    modal.show();
-    initStorageBtns(data);
 
     document
       // Find all elements that have the key attribute

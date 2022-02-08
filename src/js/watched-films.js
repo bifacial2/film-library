@@ -7,6 +7,7 @@ import { addFilmToQueue } from './firebase.functions';
 import { deleteFilmFromWatched } from './firebase.functions';
 import { deleteFilmFromQueue } from './firebase.functions';
 import { db } from './firebase.functions';
+import { clearContainer } from './find-film';
 import './localization';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
