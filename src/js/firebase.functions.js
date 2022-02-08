@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, remove, set, onValue, child, get, query, orderByChild } from "firebase/database";
-import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -29,7 +28,6 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
         genres: genres,
         vote_average: vote_average,
     });
-    // console.log(db);
 }
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
@@ -86,7 +84,7 @@ export function getFilmFromFirebase(data) {
             if (watchedKeys.includes(String(data.id))) {
                 addToWatchedButton.classList.add('active');
                 addToWatchedButton.innerHTML = 'Remove from watched';
-                console.log("yes watched");
+                // console.log("yes watched");
             }
         })
         
@@ -96,43 +94,20 @@ export function getFilmFromFirebase(data) {
             if (queueKeys.includes(String(data.id))) {
                 addToQueueButton.classList.add('active');
                 addToQueueButton.innerHTML = 'Remove from queue';
-                console.log("yes queue");
+                // console.log("yes queue");
             }
         })
 } 
 
-// const auth = getAuth();
-
-// const myUserId = auth.users.queue.id;
-// console.log(myUserId);
-// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
-// console.log(topUserPostsRef);
 
 
-// const dbRef = ref(db);
-// function getFilmsForWatchedRender() {
-//   get(child(dbRef, `users/queue/`)).then((film) => {
-//   if (film.exists()) {
-//       console.log(film.val());
-//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
-//       console.log(topUserPostsRef);
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
-// }
+// const dbRef = ref(db, 'user/watched/id');
 
-// getFilmsForWatchedRender();
-
-const dbRef = ref(db, 'user/watched/id');
-
-onValue(dbRef, (film) => {
-  film.forEach((filmId) => {
-    const childKey = filmId.key;
-      const childData = filmId.val();
-      console.log(childData);
+// onValue(dbRef, (film) => {
+//   film.forEach((filmId) => {
+//     const childKey = filmId.key;
+//       const childData = filmId.val();
+//       console.log(childData);
     
-  });
-});
+//   });
+// });
