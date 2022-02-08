@@ -11,13 +11,13 @@
                 class="cardItem__vote_count"> / {{vote_count}}</span></span>
         </div>
         <div class="cadrItem">
-           <span class="cardItem_text">Popularity</span><span class="cardItem__details">{{popularity}}</span>
+           <span class="cardItem_text" data-locale="popularity">Popularity</span><span class="cardItem__details">{{popularity}}</span>
         </div>
         <div class="cadrItem">
-            <span class="cardItem_text">Original Title</span><span class="cardItem__details">{{original_title}}</span>
+            <span class="cardItem_text" data-locale="originalTitle">Original Title</span><span class="cardItem__details">{{original_title}}</span>
         </div>
                 <div class="cadrItem">
-                    <span class="cardItem_text">
+                    <span class="cardItem_text" data-locale="genre">
                         Genre
                     </span>
                     <span class="cardItem__details">{{#each genres}}
@@ -28,13 +28,13 @@
 
 
 
-                <p class="cardItem__about">About</p>
+                <p class="cardItem__about" data-locale="about">About</p>
                 <p class="cardItem__description">
                     {{overview}}
                 </p>
                 <div class="storage">
-               <button class="storage__btn" id="js-WatchedButton" >Add to watched</button>
-               <button class="storage__btn" id="js-QueueButton">Add to queue</button>
+               <button class="storage__btn" id="js-WatchedButton" data-locale="addToWatched">Add to watched</button>
+               <button class="storage__btn" id="js-QueueButton" data-locale="addToQueue">Add to queue</button>
                     </div>
           </div>
     <div class="modal-close-btn">

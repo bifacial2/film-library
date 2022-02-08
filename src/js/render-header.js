@@ -121,12 +121,12 @@ function onSignUpBtnClick(event) {
   document.addEventListener('keydown', onEscPress);
 }
 
-function onModalInCloseClick(event) {
+export function onModalInCloseClick(event) {
   // addClassList(refs.modalIn, 'is-hidden');
   modalClose();
 }
 
-function onModalRegCloseClick() {
+export function onModalRegCloseClick() {
   // addClassList(refs.modalReg, 'is-hidden');
   modalClose();
 }
