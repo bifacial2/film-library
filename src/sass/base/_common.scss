@@ -57,6 +57,10 @@ body {
   background-color: var(--body-background);
 }
 
+body::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 .body-wrapper {
   display: flex;
   flex-direction: column;

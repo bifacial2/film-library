@@ -2,9 +2,11 @@ import modalFilmCard from '../templates/modal-card.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import { initStorageBtns } from './watched-films';
+import { getFilmFromFirebase } from './firebase.functions';
 import './localization';
 import { locale } from './localization';
-
+import { translateElement } from './localization';
+import { fetchWatchedMovies } from './watched-films';
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
@@ -26,26 +28,31 @@ function fetchOneMovieInfo(movie_id) {
 }
 function openModal(e) {
   e.preventDefault();
+  if (e.target.nodeName !== 'IMG') {
+      return;
+  }
   body.classList.add('fixed');
 
   fetchOneMovieInfo(e.target.id).then(data => {
-    if (e.target.nodeName !== 'IMG') return;
+    
+      
 
     const markup = modalFilmCard(data);
 
     const modal = basicLightbox.create(markup);
 
     modal.show();
-    initStorageBtns(data);
+    
+    getFilmFromFirebase(data);
 
-    modal.show();
-    initStorageBtns(data);
 
+    initStorageBtns(data);
+    
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
-
+  window.addEventListener('keydown', closeModalHandler);
     function closeModalHandler(e) {
-        if (e.code === 'Escape') {
+      if (e.code === 'Escape') {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
         body.classList.remove('fixed');
@@ -57,7 +64,7 @@ function openModal(e) {
       window.removeEventListener('keydown', closeModalHandler);
       body.classList.remove('fixed');
     }
-    if(modal.close){
+    if (modal.close) {
       body.classList.remove('fixed');
     }
   });

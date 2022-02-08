@@ -1,19 +1,22 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue, child, get } from "firebase/database";
+import { getDatabase, ref, remove, set, onValue } from "firebase/database";
+import './localization';
+import { locale } from './localization';
+import text from '../partials/dictionary.json';
+import { translateElement } from './localization';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDgBm2k5y_4SyLWQOsTxh9eRMzn9ICjP-4",
-  authDomain: "filmoteka-522c4.firebaseapp.com",
-  databaseURL: "https://filmoteka-522c4-default-rtdb.firebaseio.com",
-  projectId: "filmoteka-522c4",
-  storageBucket: "filmoteka-522c4.appspot.com",
-  messagingSenderId: "252879014461",
-  appId: "1:252879014461:web:c1616f0e2250b40cdcb854"
-
-};
+export const firebaseConfig = {
+    apiKey: "AIzaSyBdEwkYD1_puUIBjlQvF88qB9Fc8QioMiw",
+    authDomain: "login-with-firebase-6434f.firebaseapp.com",
+    databaseURL: "https://login-with-firebase-6434f-default-rtdb.firebaseio.com",
+    projectId: "login-with-firebase-6434f",
+    storageBucket: "login-with-firebase-6434f.appspot.com",
+    messagingSenderId: "414426325677",
+    appId: "1:414426325677:web:e4a3a5184c8ec227ff1c24"
+  };
 
 // ===============Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // ================Firebase Functions==============
 export const db = getDatabase(app);
@@ -27,7 +30,6 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
         genres: genres,
         vote_average: vote_average,
     });
-    // console.log(db);
 }
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
@@ -56,33 +58,51 @@ export function deleteFilmFromQueue(id) {
 });  
 }
 
-// ============Get Films For Render=================
 
-function getFilmForWatchedRender() {
+// ==================Change Buttons Title========================
+
+
+export function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
+    document
+      // Find all elements that have the key attribute
+      .querySelectorAll('[data-locale]')
+      .forEach(translateElement);
+
+    let watchedKeys = [];
+    let queueKeys = [];    
     const getWatchedFilms = ref(db, `users/watched`);
-onValue(getWatchedFilms, (films) => {
-    const data = films.val();
-    // console.log(data);
-    for (const key in data) {
-        // console.log(key); 
-    }   
-})
+    onValue(getWatchedFilms, (films) => {
+        if (films.val()) {
+              watchedKeys = Object.keys(films.val());
+            if (watchedKeys.includes(String(data.id))) {
+                addToWatchedButton.classList.add('active');
+                addToWatchedButton.innerHTML = text[locale.lang].removeFromWatched;
+            } else {
+                addToWatchedButton.innerHTML = text[locale.lang].addToWatched;
+            }
+            }
+        })
+        
+    const getQueueFilms = ref(db, '/users/queue');
+    onValue(getQueueFilms, (films) => {
+        if (films.val()) {
+              queueKeys = Object.keys(films.val());
+                if (queueKeys.includes(String(data.id))) {
+                    addToQueueButton.classList.add('active');
+                    addToQueueButton.innerHTML = text[locale.lang].removeFromQueue;
+                    
+                } else {
+                    addToQueueButton.innerHTML = text[locale.lang].addToQueue;   
+                    
+            }
+            
+            }
+            
+        })
 } 
 
 
 
 
-// const dbRef = ref(db);
-// function getFilmsForWatchedRender(userId) {
-//   get(child(dbRef, `users/queue/${userId}`)).then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log(snapshot.val());
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });  
-// }
-
-// getFilmsForWatchedRender(524434);

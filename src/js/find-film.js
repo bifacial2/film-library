@@ -3,7 +3,9 @@ import { createData } from './render-films';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
 
-locale.lang = localStorage.getItem('LOCALE');
+if (localStorage.getItem('LOCALE') === undefined) {
+  locale.lang = 'en-EN';
+} else locale.lang = localStorage.getItem('LOCALE');
 
 const findFilmForm = document.querySelector('.search-form');
 const SearchFormSubmitBtn = document.querySelector('.search-form__submit');
@@ -57,8 +59,14 @@ function onSearch(event) {
   filmApiService.query = event.currentTarget.elements.searchQuery.value;
   // console.log(filmApiService.query.length);
 
-  if (filmApiService.query.length !== 0) {
-    filmApiService
+  if (filmApiService.query.length === 0) {
+    searchResultMessage.innerHTML = '';
+    clearContainer();
+    createData();
+    return;
+  } 
+
+  filmApiService
       .fetchFilm()
       .then(data => {
         if (data.results.length === 0) {
@@ -71,7 +79,7 @@ function onSearch(event) {
           createData();
           return;
         }
-
+        clearContainer();
         searchResultMessage.innerHTML = '';
         createFilmoteka(data.results);
         paginationBtn.classList.add('invisible');
@@ -81,10 +89,8 @@ function onSearch(event) {
         console.log(error);
         // createData();
       });
-  }
-  //  createData();
-
-  clearContainer();
+  
+  
 }
 
 export function clearContainer() {
