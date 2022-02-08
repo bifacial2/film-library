@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue, child, get } from "firebase/database";
+import { getDatabase, ref, remove, set, onValue, child, get, query, orderByChild } from "firebase/database";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBdEwkYD1_puUIBjlQvF88qB9Fc8QioMiw",
@@ -26,7 +26,6 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
         genres: genres,
         vote_average: vote_average,
     });
-    // console.log(db);
 }
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
@@ -85,3 +84,44 @@ onValue(getWatchedFilms, (films) => {
 // }
 
 // getFilmsForWatchedRender(524434);
+// ==================Change Buttons Title========================
+
+
+export function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
+    let watchedKeys = [];
+    let queueKeys = [];    
+    const getWatchedFilms = ref(db, `users/watched`);
+        onValue(getWatchedFilms, (films) => {
+            watchedKeys = Object.keys(films.val());
+            if (watchedKeys.includes(String(data.id))) {
+                addToWatchedButton.classList.add('active');
+                addToWatchedButton.innerHTML = 'Remove from watched';
+                // console.log("yes watched");
+            }
+        })
+        
+    const getQueueFilms = ref(db, '/users/queue');
+        onValue(getQueueFilms, (films) => {
+            queueKeys = Object.keys(films.val());
+            if (queueKeys.includes(String(data.id))) {
+                addToQueueButton.classList.add('active');
+                addToQueueButton.innerHTML = 'Remove from queue';
+                // console.log("yes queue");
+            }
+        })
+} 
+
+
+
+// const dbRef = ref(db, 'user/watched/id');
+
+// onValue(dbRef, (film) => {
+//   film.forEach((filmId) => {
+//     const childKey = filmId.key;
+//       const childData = filmId.val();
+//       console.log(childData);
+    
+//   });
+// });
