@@ -1,10 +1,6 @@
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
-if (localStorage.getItem('LOCALE') == undefined) {
-  locale.lang = 'en-EN';
-} else locale.lang = localStorage.getItem('LOCALE');
-
 export function makeGenres(numbers) {
   const genreName = genreId.filter(data => {
     for (let number of numbers) {

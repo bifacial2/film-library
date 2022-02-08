@@ -1,9 +1,15 @@
 import './render-films';
 import text from '../partials/dictionary.json';
+
+///////////////////////////////////////////////////////
+/////Пытаюсь задать по умолчанию язык
 export const locale = {
-  lang: 'en-EN',
+  lang: 'en-US',
 };
 
+locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+
+////////////////////////////////////////////////////////////////
 let currentLanguage;
 
 export const getcurrentLanguage = () => {
