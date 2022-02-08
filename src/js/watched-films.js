@@ -1,4 +1,4 @@
-import { lazyLoad } from './lazyLoad';
+// import { lazyLoad } from './lazyLoad';
 
 import { ref, onValue } from 'firebase/database';
 
