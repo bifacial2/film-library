@@ -1,17 +1,10 @@
-//https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-// 'ru-RU'  'uk-UA'
-
-import { createData } from './render-films';
 import './render-films';
-import { textContent } from './dictionary';
 import text from '../partials/dictionary.json';
 export const locale = {
   lang: 'en-EN',
 };
 
 let currentLanguage;
-let page = 1;
-let totalPages = 0;
 
 export const getcurrentLanguage = () => {
   return currentLanguage;
@@ -40,10 +33,10 @@ const chooseLocaleHandler = event => {
   } else if (event.target === refs.localeUa) {
     currentLanguage = 'uk-UA';
   } else return;
-  console.log(locale.lang);
+
   locale.lang = currentLanguage;
   //Записываю параметр локали в локальное хранилище для того, чтобы у пользователя не сбивались настройки языка
-  localStorage.setItem('LOCALE', currentLanguage);
+  localStorage.setItem('LOCALE', locale.lang);
   //createData({ page, totalPages });
   location.reload();
 };
@@ -59,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Replace the inner text of the given HTML element
 // with the translation in the active locale,
 // corresponding to the element's data-i18n-key
-function translateElement(element) {
+export function translateElement(element) {
   const key = element.getAttribute('data-locale');
   const translation = text[locale.lang][key];
   element.innerText = translation;

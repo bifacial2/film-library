@@ -10,7 +10,9 @@ import * as withLoader from './spinner';
 
 let page = 1;
 let totalPages = 0;
-locale.lang = localStorage.getItem('LOCALE');
+if (localStorage.getItem('LOCALE') === undefined) {
+  locale.lang = 'en-EN';
+} else locale.lang = localStorage.getItem('LOCALE');
 
 const container = document.getElementById('pagination');
 const films = document.querySelector(`#gallery`);
@@ -80,7 +82,7 @@ export async function getFilms(page) {
     totalPages = data.total_pages;
 
     if (page === totalPages) {
-      Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`, {
+      Notiflix.Notify.info(`${text[locale.lang].lastPageMessage}`, {
         timeout: 1000,
       });
     }

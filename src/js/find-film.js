@@ -3,7 +3,9 @@ import { createData } from './render-films';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
 
-locale.lang = localStorage.getItem('LOCALE');
+if (localStorage.getItem('LOCALE') === undefined) {
+  locale.lang = 'en-EN';
+} else locale.lang = localStorage.getItem('LOCALE');
 
 const findFilmForm = document.querySelector('.search-form');
 const SearchFormSubmitBtn = document.querySelector('.search-form__submit');

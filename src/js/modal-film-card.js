@@ -4,7 +4,7 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import { initStorageBtns } from './watched-films';
 import './localization';
 import { locale } from './localization';
-
+import { translateElement } from './localization';
 
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
@@ -41,11 +41,16 @@ function openModal(e) {
     modal.show();
     initStorageBtns(data);
 
+    document
+      // Find all elements that have the key attribute
+      .querySelectorAll('[data-locale]')
+      .forEach(translateElement);
+
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
 
     function closeModalHandler(e) {
-        if (e.code === 'Escape') {
+      if (e.code === 'Escape') {
         modal.close();
         window.removeEventListener('keydown', closeModalHandler);
         body.classList.remove('fixed');
@@ -57,7 +62,7 @@ function openModal(e) {
       window.removeEventListener('keydown', closeModalHandler);
       body.classList.remove('fixed');
     }
-    if(modal.close){
+    if (modal.close) {
       body.classList.remove('fixed');
     }
   });
