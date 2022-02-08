@@ -37,7 +37,8 @@ export function initStorageBtns(data) {
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
            addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-            deleteFilmFromQueue(data.id);
+          deleteFilmFromQueue(data.id);
+          addToQueueButton.classList.remove('active');
         } else {
             deleteFilmFromWatched(data.id);
             // addToWatchedButton.innerHTML = 'Add to watched';
@@ -55,6 +56,7 @@ export function initStorageBtns(data) {
         if (addToQueueButton.classList.contains('active')) {
           addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
           deleteFilmFromWatched(data.id);
+          addToWatchedButton.classList.remove('active');
           // addToQueueButton.innerHTML = 'Add to queue';
         } else {
             deleteFilmFromQueue(data.id);
