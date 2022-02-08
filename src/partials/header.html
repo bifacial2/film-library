@@ -22,14 +22,17 @@
             <button class="header-localization__button header-localization__ukrainian"></button>
         </li>
     </ul>
-
+    <button class="toggle-theme" type="button"></button>
+    
     <!-- AUTHORIZATION buttons -->
    <ul class="auth-btns__list" >
        <li class="auth-btns__item">
-           <button class="header__btn auth-btns__btn auth-btns__btn--signin" type="button" data-locale="signIn" data-name="signIn">Sign In</button>
+           <button class="header__btn auth-btns__btn auth-btns__btn--signin del-btn__signin" type="button" data-locale="signIn" data-name="signIn">Sign In</button>
+           <span class="current-user header__btn auth-btns__btn auth-btns__btn--signin"></span>
        </li>
        <li class="auth-btns__item">
-        <button class="header__btn auth-btns__btn" type="button" data-locale="signUp" data-name="signUp">Sign Up</button>
+            <button class="header__btn auth-btns__btn del-btn__signup" type="button" data-locale="signUp" data-name="signUp">Sign Up</button>
+            <button class="sign-out-btn header__btn auth-btns__btn" type="button">Sign Out</button>
        </li>
    </ul>
 
@@ -87,13 +90,13 @@
             </div>
     
             <label class="signin-form__label" for="signin-email">
-                <span class="is-hidden">Email</span>
+                <span class="is-hidden">Username</span>
             </label>
                 <div class="signin-input__wrapper">
                     <svg class="email-icon" width="12" height="12">
-                        <use href="./images/sprite.svg#icon-email"></use>
+                        <use href="./images/sprite.svg#icon-user"></use>
                     </svg>
-                    <input class="signin-input__email" id="signin-email" type="email" placeholder="Email">
+                    <input class="signin-input__email" id="signin-email" type="text" placeholder="Username">
                 </div>
             
     
@@ -113,7 +116,7 @@
                     Up</button> .</p>
             </div>
     
-            <button class="form-btn" type="submit" data-locale="logIn">Log In</button>
+            <button class="form-btn" type="submit" id="form-btn__log" data-locale="logIn">Log In</button>
             <button class="modal-close signin-form__close" type="button">
                 <svg class="close-icon" width="12" height="12">
                     <use href="./images/sprite.svg#icon-close"></use>
@@ -142,7 +145,7 @@
                     <svg class="email-icon" width="12" height="12">
                         <use href="./images/sprite.svg#icon-user"></use>
                     </svg>
-                    <input class="reg-input__email" id="reg-name" type="email" placeholder="Enter name">
+                    <input class="reg-input__email" id="reg-name" type="text" placeholder="Enter name">
                 </div>
             
     
@@ -165,6 +168,7 @@
                         <use href="./images/sprite.svg#icon-key"></use>
                     </svg>
                     <input class="reg-input__psw" id="reg-pwd" type="password" placeholder="Create password">
+                    <div id="block_check"></div>
                 </div>
             
     
@@ -184,7 +188,7 @@
             </div>
     
     
-            <button class="form-btn" type="submit" data-locale="register">Register</button>
+            <button class="form-btn" type="submit" id="form-btn__reg" data-locale="register">Register</button>
             <button class="modal-close reg-form__close" type="button" data-regFormClose>
                 <svg class="close-icon" width="12" height="12">
                     <use href="./images/sprite.svg#icon-close"></use>

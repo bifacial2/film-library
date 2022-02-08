@@ -12,7 +12,7 @@
   text-align: center;
   text-decoration: none;
   width: 280px;
-  background-color: white;
+  background-color: var(--body-background);
   border-radius: 10px;
 
   @media screen and (max-width: 420px) {
@@ -63,7 +63,8 @@
   width: 24px;
   height: 24px;
   border: none;
-  background: #fff;
+  border-radius: 50%;
+  background: var(--modal-dark-theme);
   cursor: pointer;
 }
 

@@ -51,9 +51,18 @@ body {
   font-style: normal;
   font-weight: 500;
   color: var(--text-color);
-  transition: background-color 2000ms linear;
+  transition: background-color 500ms linear;
   height: 100%;
   overflow-x: hidden;
+  background-color: var(--body-background);
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .body-wrapper {

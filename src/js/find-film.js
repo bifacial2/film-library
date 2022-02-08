@@ -59,8 +59,14 @@ function onSearch(event) {
   filmApiService.query = event.currentTarget.elements.searchQuery.value;
   // console.log(filmApiService.query.length);
 
-  if (filmApiService.query.length !== 0) {
-    filmApiService
+  if (filmApiService.query.length === 0) {
+    searchResultMessage.innerHTML = '';
+    clearContainer();
+    createData();
+    return;
+  } 
+
+  filmApiService
       .fetchFilm()
       .then(data => {
         if (data.results.length === 0) {
@@ -73,7 +79,7 @@ function onSearch(event) {
           createData();
           return;
         }
-
+        clearContainer();
         searchResultMessage.innerHTML = '';
         createFilmoteka(data.results);
         paginationBtn.classList.add('invisible');
@@ -83,10 +89,8 @@ function onSearch(event) {
         console.log(error);
         // createData();
       });
-  }
-  //  createData();
-
-  clearContainer();
+  
+  
 }
 
 export function clearContainer() {
