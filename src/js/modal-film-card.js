@@ -43,6 +43,11 @@ function openModal(e) {
     const modal = basicLightbox.create(markup);
 
     modal.show();
+
+    const hiddenCardBtns = document.querySelector('.storage');
+    if(localStorage.getItem('keepLogIn') === null) {
+      hiddenCardBtns.style.visibility = 'hidden';
+    }
     
     getFilmFromFirebase(data);
 
