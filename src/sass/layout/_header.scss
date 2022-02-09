@@ -1001,8 +1001,12 @@
 .search-form {
   position: relative;
 
-  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
   display: flex;
+  justify-content: center;
 
   &:hover {
     transform: scale(1.05);
@@ -1049,12 +1053,6 @@
 
   bottom: 5px;
   right: 0;
-}
-
-.search-form {
-  width: 336px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .search-result-message {

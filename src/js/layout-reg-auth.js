@@ -14,7 +14,7 @@ function isEmptyOrSpaces(str) {
 
 export function validation() {
   let nameregex = /^[a-zA-Z0-9]{5,}$/;
-  let emailregex = /^[a-zA-Z0-9.]+@(gmail|yahoo|outlook)\.com$/;
+  let emailregex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
   if (isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(pass.value)) {
     Notiflix.Notify.info(text[locale.lang].YouCanntLeftFieldsEmpty);
