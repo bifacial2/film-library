@@ -5,6 +5,7 @@
 
 .modal-card {
   width: 280px;
+  height: 978px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 48px;
@@ -37,14 +38,17 @@
 .genres {
   display: flex;
 }
-
+// .cardItem__image{
+//   border-radius: 5px;
+//   overflow: hidden;
+// }
 .image {
   display: block;
   margin-bottom: 30px;
   width: 240px;
   height: 356px;
   border-radius: 5px;
-  object-fit: cover;
+  // object-fit: cover;
   @media screen and (min-width: 767px) and (max-width: 1024px) {
     width: 264px;
     height: 374px;
@@ -172,7 +176,7 @@
   border: 1px solid var(--color-main);
   text-transform: uppercase;
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--modal-dark-theme);
   border-radius: 5px;
   &:hover {
     transform: scale(1.05);
@@ -212,8 +216,9 @@
   padding: 0;
   margin: 0;
   border: none;
+  border-radius: 50%;
 
-  background-color: transparent;
+  background-color: var(--modal-dark-theme);
   color: var(--color-hdr-main);
   cursor: pointer;
   outline: none;

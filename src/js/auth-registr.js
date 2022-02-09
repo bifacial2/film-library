@@ -25,51 +25,46 @@ export const logBtn = document.getElementById('form-btn__log');
 // -----------------REGISTER USER TO FIREBASE----------------
 
 function registerUser(e) {
-    e.preventDefault();
-    if(!validation()) {
-        return;
-    };
-    const dbRefReg = ref(db);
+  e.preventDefault();
+  if (!validation()) {
+    return;
+  }
+  const dbRefReg = ref(db);
 
-    get(child(dbRefReg, "UsersList/"+ name.value)).then((snapshot) => {
-        
-        if(snapshot.exists()) {
-            Notiflix.Notify.failure("account already exist!");
-        }
-
-        else {
-            set(ref(db, "UsersList/"+ name.value),
-            {
-                name: name.value,
-                email: email.value,
-                password: encPass(),
-            })
-            .then(() => {
-                Notiflix.Notify.success("user added successfully");
-                clearRegInput();
-                onModalRegCloseClick();
-            })
-            .catch((error) => {
-                Notiflix.Notify.failure("error" + error);
-            })
-        }
-    });
+  get(child(dbRefReg, 'UsersList/' + name.value)).then(snapshot => {
+    if (snapshot.exists()) {
+      Notiflix.Notify.failure(text[locale.lang].accountAlreadyExist);
+    } else {
+      set(ref(db, 'UsersList/' + name.value), {
+        name: name.value,
+        email: email.value,
+        password: encPass(),
+      })
+        .then(() => {
+          Notiflix.Notify.success(text[locale.lang].userAddedSuccesfully);
+          clearRegInput();
+          onModalRegCloseClick();
+        })
+        .catch(error => {
+          Notiflix.Notify.failure('error' + error);
+        });
+    }
+  });
 }
 
 // -----------------ENCRIPTION----------------
 
-function encPass(){
-    let pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
-    return pass12.toString();
+function encPass() {
+  let pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
+  return pass12.toString();
 }
 
 // -----------------ASSIGN THE EVENTS----------------
 
-registBtn.addEventListener('click', registerUser); 
+registBtn.addEventListener('click', registerUser);
 pass.addEventListener('input', passComplexityIndictor);
 
 // -----------------AUTHENTICATION PROCESS----------------
-
 
 function authenticateUsers(e) {
     e.preventDefault();
@@ -110,9 +105,9 @@ function authenticateUsers(e) {
 
 // -----------------DECRIPTION----------------
 
-function decPass(dbPass){
-    let pass13 = CryptoJS.AES.decrypt(dbPass, logPass.value);
-    return pass13.toString(CryptoJS.enc.Utf8);
+function decPass(dbPass) {
+  let pass13 = CryptoJS.AES.decrypt(dbPass, logPass.value);
+  return pass13.toString(CryptoJS.enc.Utf8);
 }
 
 // -----------------LOGIN EVENT----------------
