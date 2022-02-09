@@ -35,7 +35,7 @@
     "axios": "^0.25.0",
     "basiclightbox": "^5.0.4",
     "firebase": "^9.6.6",
-    "notiflix": "^3.2.2",
+    "notiflix": "^3.2.4",
     "tui-pagination": "^3.4.1"
   }
 }

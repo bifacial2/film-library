@@ -68,7 +68,14 @@
     "eduard":"Eduard",
     "bolma":"Bolma",
     "serhii" : "Serhii",
-    "khomaziuk":"Khomaziuk"
+    "khomaziuk":"Khomaziuk",
+    "accountAlreadyExist" : "account already exist!",
+    "userAddedSuccesfully" : "user added successfully",
+    "passwordOrEmailIsEmpty" : "password or email not entered",
+    "youAreLoggedIn" : "you are logged in",
+    "userDoesNotExist" : "user does not exist",
+    "emailOrPasswordIsInvalid" : "email or password is invalid",
+    "YouCanntLeftFieldsEmpty" : "you cannot left any field empty"
   },
   "ru-RU": {
     "home": "На главную",
@@ -140,7 +147,14 @@
     "eduard":"Эдуард",
     "bolma":"Болма",
     "serhii" : "Сергей",
-    "khomaziuk":"Хомазюк"
+    "khomaziuk":"Хомазюк",
+    "accountAlreadyExist" : "Такой аккаунт уже существует",
+    "userAddedSuccesfully" : "Пользователь успешно добавлен",
+    "passwordOrEmailIsEmpty" : "Пароль и email обязательны для заполения!",
+    "youAreLoggedIn" : "Вы успешно вошли в свой профиль",
+    "userDoesNotExist" : "Профиля с таким логином не существует",
+    "emailOrPasswordIsInvalid" : "Неверные email или пароль",
+    "YouCanntLeftFieldsEmpty" : "Заполните, пожалуйста, все поля"
   },
   "uk-UA": {
     "home": "На головну",
@@ -149,7 +163,7 @@
     "watch": "Дивились",
     "queue": "Черга",
     "signIn" :"Увійти",
-    "signUp":"Регістрація",
+    "signUp":"Реєстрація",
     "password" : "Пароль",
     "haveYouAccount":"Ще немає аккаунта?",
     "logIn" : "Авторизація",
@@ -212,6 +226,13 @@
     "eduard":"Едуард",
     "bolma":"Болма",
     "serhii" : "Сергій",
-    "khomaziuk":"Хомазюк"
+    "khomaziuk":"Хомазюк",
+    "accountAlreadyExist" : "Такий аккаунт вже існує",
+    "userAddedSuccesfully" : "Профіль успішно додано до бази",
+    "passwordOrEmailIsEmpty" : "Пароль та email треба ввести обов'язково!",
+    "youAreLoggedIn" : "Ви увійшли до свого профілю",
+    "userDoesNotExist" : "Профіля з таким логіном не існує",
+    "emailOrPasswordIsInvalid" : "Невірний email або пароль",
+    "YouCanntLeftFieldsEmpty" : "Заповніть, будь ласка, усі поля"
   }
 }

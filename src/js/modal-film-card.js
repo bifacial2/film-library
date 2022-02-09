@@ -8,6 +8,7 @@ import { locale } from './localization';
 import { translateElement } from './localization';
 import { fetchWatchedMovies } from './watched-films';
 
+
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
@@ -42,6 +43,14 @@ function openModal(e) {
     const modal = basicLightbox.create(markup);
 
     modal.show();
+
+    const hiddenCardBtns = document.querySelector('.storage');
+    if(localStorage.getItem('keepLogIn') === null) {
+      hiddenCardBtns.style.visibility = 'hidden';
+    }
+    if(sessionStorage.getItem('user') !== null) {
+      hiddenCardBtns.style.visibility = 'visible';
+    }
     
     getFilmFromFirebase(data);
 
