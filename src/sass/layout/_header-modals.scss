@@ -9,3 +9,79 @@
     margin-top: 5px;
     transition: 1s;
 }
+
+.signin-checkbox__wrapper {
+    width: 250px;
+    position: relative;
+    margin-top: 10px;
+}
+.checkbox-text {
+    padding-left: 50px;
+    color: var(--color-main);
+}
+
+.tgl {
+    display: none;
+}
+
+
+.tgl+.tgl-btn {
+    box-sizing: border-box;
+}
+
+.tgl+.tgl-btn {
+    outline: 0;
+    display: in;
+    width: 35px;
+    height: 18px;
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+}
+  
+.tgl+.tgl-btn:after,
+.tgl+.tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+
+.tgl+.tgl-btn:after {
+    left: 0;
+}
+  
+.tgl+.tgl-btn:before {
+    display: none;
+}
+  
+.tgl:checked+.tgl-btn:after {
+    left: 50%;
+}
+
+.tgl-flat+.tgl-btn {
+    padding: 2px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    background: #fff;
+    border: 2px solid var(--color-secondary);
+    border-radius: 2em;
+}
+  
+.tgl-flat+.tgl-btn:after {
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    background: var(--color-secondary);
+    content: "";
+    border-radius: 1em;
+}
+  
+.tgl-flat:checked+.tgl-btn {
+    border: 2px solid var(--color-accent);
+}
+  
+.tgl-flat:checked+.tgl-btn:after {
+    left: 50%;
+    background: var(--color-accent);
+}

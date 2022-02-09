@@ -111,9 +111,6 @@ export function passComplexityIndictor() {
 // -----------------HIDDEN BUTTONS----------------
 
 const homeLibraryBtn = document.getElementById('js-nav');
-// let cardFilmsBtn = document.getElementById('js-WatchedButton js-QueueButton');
-
-// cardFilmsBtn.disabled = true;
 homeLibraryBtn.style.visibility = 'hidden';
 
 let delSignInBtn = document.querySelector('.del-btn__signin');
@@ -134,14 +131,17 @@ export function changeBtnHeader(){
     
 }
 
-signOutBtn.addEventListener('click', removeChangeBtn);
+signOutBtn.addEventListener('click', signOut);
 
-function removeChangeBtn() {
+function signOut() {
     homeLibraryBtn.style.visibility = 'hidden';
     delSignInBtn.style.display = 'block';
     delSignUpBtn.style.display = 'block';
     currentUser.style.display = 'none';
     signOutBtn.style.display = 'none';
+    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
+    localStorage.removeItem('keepLogIn');
 
     Notiflix.Notify.info('you are logged out');
 }
