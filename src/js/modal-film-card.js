@@ -48,6 +48,9 @@ function openModal(e) {
     if(localStorage.getItem('keepLogIn') === null) {
       hiddenCardBtns.style.visibility = 'hidden';
     }
+    if(sessionStorage.getItem('user') !== null) {
+      hiddenCardBtns.style.visibility = 'visible';
+    }
     
     getFilmFromFirebase(data);
 
