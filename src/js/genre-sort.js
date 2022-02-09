@@ -5,7 +5,12 @@ import { db } from './firebase.functions';
 import { fetchWatchedMovies } from "./watched-films";
 import { clearContainer } from "./find-film";
 import { watchedFilmsMarkup } from "./watched-films";
-import { addNewFilmToSort } from "./firebase.functions";
+import { locale } from "./localization";
+
+// Localization
+locale.lang = localStorage.getItem('LOCALE');
+// =======
+
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -63,6 +68,10 @@ function onClickEvent(event) {
              event.target.parentNode.setAttribute('data-state', 'active');
         }
     }
+
+
+        // document.body.classList.add('no-scroll');
+
 }
 
 function onSelectEvent(event) {
@@ -98,7 +107,7 @@ function onResetEvent() {
     renderMoviesWithoutSort(activePage);
 }
 
-function resetSortParam() {
+export function resetSortParam() {
      const array = refs.formTitles;
     // console.log(array);
     for (let i = 0; i < array.length; i += 1) {
@@ -124,7 +133,7 @@ function getActivePage() {
 
 // Genre list 
 
-axios.get(`genre/movie/list?api_key=${KEY_API}&language=en-US`).then(r => {
+axios.get(`genre/movie/list?api_key=${KEY_API}&language=${locale.lang}`).then(r => {
 
     const array = r.data.genres;
     // console.dir(array);
