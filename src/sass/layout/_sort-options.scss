@@ -99,7 +99,7 @@
   height: 100%;
   padding: 8px 16px;
 
-  color: var(--color-hdr-main);
+  color: #ffffff;
 
   border-radius: 5px;
   border: solid 1px #c7ccd1;
@@ -120,7 +120,7 @@
 
     transition: all 0.3s ease-out;
 
-    background-color: var(--color-hdr-main);
+    background-color: #ffffff;
 
     transform: translate(-3px, -50%) rotate(45deg);
   }
@@ -160,7 +160,7 @@
   font-weight: 400;
 
   background-color: transparent;
-  color: var(--color-hdr-main);
+  color: #ffffff;
   border-color: var(--color-accent);
 
   &:hover {
