@@ -330,12 +330,3 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 // 5. Сделать для мобильной версии в столбик
 // 6. сделать возможность скрыть меню кнопкой фильтр
 
-
-refs.myLibraryBtn.addEventListener('click', e => {
-    console.log(refs.watchedBtn, refs.queueBtn);
-
-   
-
-    
-
-})
