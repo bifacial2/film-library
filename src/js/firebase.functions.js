@@ -15,6 +15,8 @@ export const firebaseConfig = {
     appId: "1:414426325677:web:e4a3a5184c8ec227ff1c24"
   };
 
+
+
 // ===============Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
@@ -31,6 +33,8 @@ export function addNewFilmToWatched(id, poster_path, title, release_date, genres
         vote_average: vote_average,
     });
 }
+
+
 
 export function addFilmToQueue(id, poster_path, title, release_date, genres, vote_average) {
     set(ref(db, 'users/queue/' + id), {
@@ -66,10 +70,42 @@ export function getFilmFromFirebase(data) {
     const addToWatchedButton = document.querySelector('#js-WatchedButton');
     const addToQueueButton = document.getElementById('js-QueueButton');
     document
-      // Find all elements that have the key attribute
-      .querySelectorAll('[data-locale]')
-      .forEach(translateElement);
+        // Find all elements that have the key attribute
+        .querySelectorAll('[data-locale]')
+        .forEach(translateElement);
+}
+// const auth = getAuth();
 
+// const myUserId = auth.users.queue.id;
+// console.log(myUserId);
+// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
+// console.log(topUserPostsRef);
+
+
+
+
+// const dbRef = ref(db);
+// function getFilmsForWatchedRender() {
+//   get(child(dbRef, `users/queue/`)).then((film) => {
+//   if (film.exists()) {
+//       console.log(film.val());
+//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
+//       console.log(topUserPostsRef);
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
+// }
+
+// getFilmsForWatchedRender(524434);
+// ==================Change Buttons Title========================
+
+
+function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
     let watchedKeys = [];
     let queueKeys = [];    
     const getWatchedFilms = ref(db, `users/watched`);
@@ -102,7 +138,3 @@ export function getFilmFromFirebase(data) {
             
         })
 } 
-
-
-
-

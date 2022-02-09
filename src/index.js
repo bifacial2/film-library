@@ -7,6 +7,7 @@ import './js/toggle-theme';
 import './js/find-film';
 import './js/watched-films';
 import './js/footer-modal';
+import './js/genre-sort';
 import './js/auth-registr';
 import './js/layout-reg-auth';
 

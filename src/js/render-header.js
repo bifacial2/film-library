@@ -22,6 +22,8 @@ const refs = {
   formWrapper: document.querySelector('.search-form__wrapper'),
   // Library buttons - Watched and Queue
   libraryButtons: document.querySelector('.js-library-btns'),
+  // Sort bar
+  sortBar: document.querySelector('.js-library-sort'),
 
   body: document.body,
 };
@@ -46,6 +48,8 @@ function onHomeButtonClick(event) {
 
   removeClassList(refs.header, 'header-library');
   addClassList(refs.header, 'header-home');
+
+  addClassList(refs.sortBar, 'is-hidden');
 }
 
 function onLibraryButtonClick(event) {
@@ -57,6 +61,10 @@ function onLibraryButtonClick(event) {
 
   removeClassList(refs.header, 'header-home');
   addClassList(refs.header, 'header-library');
+
+  removeClassList(refs.sortBar, 'is-hidden');
+
+
 }
 
 function removeClassListFromAll(array, className) {

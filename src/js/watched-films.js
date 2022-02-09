@@ -11,6 +11,7 @@ import { clearContainer } from './find-film';
 import './localization';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
+import { resetSortParam } from './genre-sort';
 
 if (localStorage.getItem('LOCALE') === undefined) {
   locale.lang = 'en-EN';
@@ -77,11 +78,15 @@ watchBtn.addEventListener('click', onWatchedBtnClick);
 // =================WATCH=====================
 function onWatchedBtnClick(event) {
   event.preventDefault;
+  queueBtn.setAttribute('data-status', '');
+  watchBtn.setAttribute('data-status', 'active');
 
   watchBtn.classList.add('accent-btn');
   queueBtn.classList.remove('accent-btn');
   watchBtn.disabled = true;
   queueBtn.disabled = false;
+// To clear filter params
+  resetSortParam();
 
   // ===========With Firebase Database====
 
@@ -120,11 +125,14 @@ queueBtn.addEventListener('click', onQueueBtnClick);
 
 function onQueueBtnClick(event) {
   event.preventDefault;
-
+  watchBtn.setAttribute('data-status', '');
+  queueBtn.setAttribute('data-status', 'active');
   watchBtn.classList.remove('accent-btn');
   queueBtn.classList.add('accent-btn');
   watchBtn.disabled = false;
   queueBtn.disabled = true;
+// To clear filter params
+   resetSortParam();
 
   // ============Firebase Database===========
   const getQueueFilms = ref(db, `users/queue`);
@@ -155,7 +163,7 @@ function ganresNames(ganres) {
   }
 }
 
-function watchedFilmsMarkup(film) {
+export function watchedFilmsMarkup(film) {
   const createMarkup = `<li id="galleryModal" class="hero__gallery_el list">
   <a href="#" class='card-links link'>
     <img class="hero__gallery_img" id="${film.id}" src="https://image.tmdb.org/t/p/w500${

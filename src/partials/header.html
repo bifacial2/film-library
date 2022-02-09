@@ -1,6 +1,22 @@
 <header class="header">
     <div class="header-container header-home">
 
+    <!-- Toggle switch of Theme -->
+
+        <label class="switch">
+        
+            <input type="checkbox">
+            <span class="slider round toggle-theme"></span>
+            <svg class="toggle-icon-hight" width="18" height="18">
+                <use href="./images/symbol-defs.svg#icon-moon1"></use>
+            </svg>
+            <svg class="toggle-icon-day" width="18" height="18">
+                <use href="./images/symbol-defs.svg#icon-sun"></use>
+            </svg>
+        
+        </label>
+   
+
 
     <!-- LOGO  -->
     <a href="./index.html" class="link header-logo">
@@ -22,7 +38,7 @@
             <button class="header-localization__button header-localization__ukrainian"></button>
         </li>
     </ul>
-    <button class="toggle-theme" type="button"></button>
+    <!-- <button class="toggle-theme" type="button"></button> -->
     
     <!-- AUTHORIZATION buttons -->
    <ul class="auth-btns__list" >
@@ -70,14 +86,45 @@
         </div>
     
         <!-- Libriry buttons -->
-        <ul class="library-btns__list is-hidden js-library-btns">
-            <li class="library-btns__item" >
-                <button  class="form-btn library-btns__btn library-btns--watch " data-locale="watch">Watch</button>
-            </li>
-            <li class="ibrary-btns__item" >
-                <button class="form-btn library-btns__btn library-btns--queue accent-btn" data-locale="queue">Queue</button>
-            </li>
-        </ul>
+    <ul class="library-btns__list is-hidden js-library-btns">
+        <li class="library-btns__item">
+            <button class="form-btn library-btns__btn library-btns--watch " data-locale="watch"
+                data-folder="watched">Watched</button>
+        </li>
+        <li class="ibrary-btns__item">
+            <button class="form-btn library-btns__btn library-btns--queue accent-btn" data-locale="queue"
+                data-folder="queue">Queue</button>
+        </li>
+    </ul>
+    
+    <!-- Sort by section -->
+    <section class="sort-options is-hidden js-library-sort">
+        <div class="sort-container">
+            <form class="sort-form">
+                <div class="sort-form__container--left">
+                    <div class="sort-form__select " data-state="">
+                        <div class="sort-form__select__title" data-default="Genres" data-value="" data-sort="genere">Genres
+                        </div>
+                            <div class="sort-form__select__content js-genre-list"></div>
+                    </div>
+                    
+                    <div class="sort-form__select" data-state="">
+                        <div class="sort-form__select__title" data-default="Year" data-value="" data-sort="year">Year</div>
+                        <div class="sort-form__select__content js-year-list"></div>
+                    </div>
+                    
+                    <div class="sort-form__select" data-state="">
+                        <div class="sort-form__select__title" data-default="Raiting" data-value="" data-sort="rating">Raiting
+                        </div>
+                        <div class="sort-form__select__content js-rating-list"> </div>
+                    </div>
+                </div>
+                <div class="sort-form__container--right">
+                    <button type="reset" class="sort-form__reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </section>
     
     </div>
     
