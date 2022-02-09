@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import './localization';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
@@ -42,22 +42,6 @@ export function addFilmToQueue(id, poster_path, title, release_date, genres, vot
     });
 }
 
-// ============Delete Film=================
-
-export function deleteFilmFromWatched(id) {
-    const getChosenFilm = ref(db, `users/watched/${id}`);
-    remove(getChosenFilm, (film) => {
-    const data = film.val();
-});
-}
-
-export function deleteFilmFromQueue(id) {
-  const getChosenFilm = ref(db, `users/queue/${id}`);
-    remove(getChosenFilm, (film) => {
-    const data = film.val();
-});  
-}
-
 
 // ==================Change Buttons Title========================
 
@@ -94,8 +78,7 @@ export function getFilmFromFirebase(data) {
                     addToQueueButton.innerHTML = text[locale.lang].removeFromQueue;
                     
                 } else {
-                    addToQueueButton.innerHTML = text[locale.lang].addToQueue;   
-                    
+                    addToQueueButton.innerHTML = text[locale.lang].addToQueue;      
             }
             
             }

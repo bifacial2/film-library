@@ -1,11 +1,9 @@
 // import { lazyLoad } from './lazyLoad';
 
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue, remove } from 'firebase/database';
 
 import { addNewFilmToWatched } from './firebase.functions';
 import { addFilmToQueue } from './firebase.functions';
-import { deleteFilmFromWatched } from './firebase.functions';
-import { deleteFilmFromQueue } from './firebase.functions';
 import { db } from './firebase.functions';
 import { clearContainer } from './find-film';
 import './localization';
@@ -36,11 +34,11 @@ export function initStorageBtns(data) {
             
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
-           addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          deleteFilmFromQueue(data.id);
+          addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
           addToQueueButton.classList.remove('active');
+          remove(ref(db, `users/queue/${data.id}`));
         } else {
-            deleteFilmFromWatched(data.id);
+            remove(ref(db, `users/watched/${data.id}`));
             // addToWatchedButton.innerHTML = 'Add to watched';
         }
     }
@@ -50,16 +48,15 @@ export function initStorageBtns(data) {
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
 
     function onAddToQueueBtnClick(event) {
-        event.preveventDefault;
-        
+        event.preventDefault;
         addToQueueButton.classList.toggle('active');
         if (addToQueueButton.classList.contains('active')) {
           addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          deleteFilmFromWatched(data.id);
+          remove(ref(db, `users/watched/${data.id}`));
           addToWatchedButton.classList.remove('active');
           // addToQueueButton.innerHTML = 'Add to queue';
         } else {
-            deleteFilmFromQueue(data.id);
+          remove(ref(db, `users/queue/${data.id}`));
             // addToQueueButton.innerHTML = 'Add to queue';
         }
     }
@@ -94,7 +91,7 @@ function onWatchedBtnClick(event) {
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-            filmsGallery.innerHTML = "You have not selected any movie";
+            filmsGallery.innerHTML = text[locale.lang].emptyFolderMessage;
         } else {
             const watchedFilmsArr = Object.keys(data);
             // console.log(watchedFilmsArr);
@@ -138,7 +135,7 @@ function onQueueBtnClick(event) {
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-            filmsGallery.innerHTML = "You have not selected any movie"      
+          filmsGallery.innerHTML = text[locale.lang].emptyFolderMessage;      
         } else {
             const queueKeysArr = Object.keys(data);
             queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
