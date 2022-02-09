@@ -64,7 +64,7 @@
   height: 24px;
   border: none;
   border-radius: 50%;
-  background: var(--modal-dark-theme);
+  background: transparent;
   cursor: pointer;
 }
 
@@ -76,6 +76,16 @@
   letter-spacing: normal;
   text-transform: none;
   display: inline-block;
+}
+
+.icon-close {
+  fill: var(--color-accent);
+
+  &:hover {
+    fill: var(--color-accent);
+    transform: scale(1.5);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 .our-team-list {
@@ -139,9 +149,4 @@
     transform: scale(1.5) rotate(360deg);
     transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-}
-
-.icon-close:hover {
-  fill: var(--color-accent);
-  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
