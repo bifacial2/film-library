@@ -1,5 +1,3 @@
-// import { lazyLoad } from './lazyLoad';
-
 import { ref, onValue, remove } from 'firebase/database';
 
 import { addNewFilmToWatched } from './firebase.functions';
@@ -11,6 +9,7 @@ import { locale } from './localization';
 import text from '../partials/dictionary.json';
 import { resetSortParam } from './genre-sort';
 
+
 if (localStorage.getItem('LOCALE') === undefined) {
   locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
@@ -19,6 +18,7 @@ const watchBtn = document.querySelector('.library-btns--watch');
 const queueBtn = document.querySelector('.library-btns--queue');
 const filmsGallery = document.querySelector('#gallery');
 const paginationBtn = document.querySelector('#pagination');
+
 
 // =====================Buttons on Film Info Card================
 
@@ -31,7 +31,7 @@ export function initStorageBtns(data) {
     addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
 
     function onAddToWatchedBtnClick(event) {
-        event.preventDefault;
+        event.preventDefault();
             
         addToWatchedButton.classList.toggle('active');
         if(addToWatchedButton.classList.contains('active')) {
@@ -40,8 +40,8 @@ export function initStorageBtns(data) {
           remove(ref(db, `users/queue/${data.id}`));
         } else {
             remove(ref(db, `users/watched/${data.id}`));
-            // addToWatchedButton.innerHTML = 'Add to watched';
-        }
+      }
+      
     }
         
     // =================='Add to Queue' Button=========================
@@ -49,7 +49,7 @@ export function initStorageBtns(data) {
     addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
 
     function onAddToQueueBtnClick(event) {
-        event.preventDefault;
+        event.preventDefault();
         addToQueueButton.classList.toggle('active');
         if (addToQueueButton.classList.contains('active')) {
           addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
@@ -67,14 +67,15 @@ export function initStorageBtns(data) {
 // ===========Header Buttons==============
 
 const myLibraryBtn = document.querySelector('[data-name="myLibrary"]');
-
+const emptyFolderMessageTemplate = `<p></p>
+          <p style="text-align: center;"> ${text[locale.lang].emptyFolderMessage} </p>`;
 myLibraryBtn.addEventListener('click', onWatchedBtnClick);
 
 watchBtn.addEventListener('click', onWatchedBtnClick);
 
 // =================WATCHED=====================
 function onWatchedBtnClick(event) {
-  event.preventDefault;
+  event.preventDefault();
   queueBtn.setAttribute('data-status', '');
   watchBtn.setAttribute('data-status', 'active');
 
@@ -90,12 +91,11 @@ function onWatchedBtnClick(event) {
     const getWatchedFilms = ref(db, `users/watched`);
     onValue(getWatchedFilms, (films) => {
         const data = films.val();
-        
+      // console.log(data);
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-          filmsGallery.innerHTML = `<p></p>
-          <p style="text-align: center;"> ${text[locale.lang].emptyFolderMessage} </p>`;
+          filmsGallery.innerHTML = emptyFolderMessageTemplate;
             
         } else {
             const watchedFilmsArr = Object.keys(data);
@@ -103,7 +103,7 @@ function onWatchedBtnClick(event) {
             watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm))
         }
     })
-    
+  
     paginationBtn.classList.add('invisible');
 }
 
@@ -123,7 +123,7 @@ export function fetchWatchedMovies(filmId) {
 queueBtn.addEventListener('click', onQueueBtnClick);
 
 function onQueueBtnClick(event) {
-  event.preventDefault;
+  event.preventDefault();
   watchBtn.setAttribute('data-status', '');
   queueBtn.setAttribute('data-status', 'active');
   watchBtn.classList.remove('accent-btn');
@@ -141,10 +141,9 @@ function onQueueBtnClick(event) {
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-          filmsGallery.innerHTML = `<p></p>
-          <p style="text-align: center;"> ${text[locale.lang].emptyFolderMessage} </p>`;      
+          filmsGallery.innerHTML = emptyFolderMessageTemplate;      
         } else {
-            const queueKeysArr = Object.keys(data);
+          const queueKeysArr = Object.keys(data);
             queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
         }
     })
@@ -154,6 +153,7 @@ function onQueueBtnClick(event) {
 
 function ganresNames(ganres) {
   const ganreQuantity = ganres.map(ganre => ganre.name);
+  // console.log(ganreQuantity);
   if (ganreQuantity.length >= 3) {
     const prune = ganreQuantity.slice(0, 2);
     const newGenres = [...prune, `${text[locale.lang].genreToMany}`];
