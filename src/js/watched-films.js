@@ -11,7 +11,7 @@ import { resetSortParam } from './genre-sort';
 
 
 if (localStorage.getItem('LOCALE') === undefined) {
-  locale.lang = 'en-EN';
+  locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
 
 const watchBtn = document.querySelector('.library-btns--watch');
@@ -61,7 +61,8 @@ export function initStorageBtns(data) {
             // addToQueueButton.innerHTML = 'Add to queue';
         }
     }
-}
+  }
+
 
 // ===========Header Buttons==============
 
@@ -82,9 +83,7 @@ function onWatchedBtnClick(event) {
   queueBtn.classList.remove('accent-btn');
   watchBtn.disabled = true;
   queueBtn.disabled = false;
-
-  localStorage.setItem('Folder', `Watched`);
-// To clear filter params
+  // To clear filter params
   resetSortParam();
 
   // ===========With Firebase Database====
@@ -131,9 +130,8 @@ function onQueueBtnClick(event) {
   queueBtn.classList.add('accent-btn');
   watchBtn.disabled = false;
   queueBtn.disabled = true;
-  localStorage.setItem('Folder', `Queue`);
-// To clear filter params
-   resetSortParam();
+  // To clear filter params
+  resetSortParam();
 
   // ============Firebase Database===========
   const getQueueFilms = ref(db, `users/queue`);

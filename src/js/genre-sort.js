@@ -1,16 +1,15 @@
-
-import axios from "axios";
-import { ref, onValue } from "firebase/database";
+import axios from 'axios';
+import { ref, onValue } from 'firebase/database';
 import { db } from './firebase.functions';
-import { fetchWatchedMovies } from "./watched-films";
-import { clearContainer } from "./find-film";
-import { watchedFilmsMarkup } from "./watched-films";
-import { locale } from "./localization";
+import { fetchWatchedMovies } from './watched-films';
+import { clearContainer } from './find-film';
+import { watchedFilmsMarkup } from './watched-films';
+import { locale } from './localization';
+import text from '../partials/dictionary.json';
 
 // Localization
 locale.lang = localStorage.getItem('LOCALE');
 // =======
-
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
@@ -18,7 +17,9 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const refs = {
     form: document.querySelector('.sort-form'),
     formTitles: document.querySelectorAll('.sort-form__select__title'),
-    selectField: document.querySelector('.sort-form__select'),
+    selectFields: document.querySelectorAll('.sort-form__select'),
+    selectLabels: document.querySelectorAll('.sort-form__select__label'),
+    selectContent: document.querySelector('.sort-form__select__content'),
     resetBtn: document.querySelector('.sort-form__reset'),
     genreList: document.querySelector('.js-genre-list'),
     yearList: document.querySelector('.js-year-list'),
@@ -29,6 +30,8 @@ const refs = {
     queueBtn: document.querySelector('[data-locale="queue"]'),
     myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
 };
+
+
 
 // To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
@@ -53,50 +56,57 @@ refs.form.addEventListener('click', onSelectEvent);
 
 refs.resetBtn.addEventListener('click', onResetEvent);
 
-
 function onClickEvent(event) {
-    // console.dir(event.target);
     
+    const dropList = event.target.nextElementSibling;
+    // console.dir(dropList);
+
     if (event.target.classList.contains('sort-form__select__title')) {
         // console.dir(event.target.parentNode)
         
         if ('active' === event.target.parentNode.getAttribute('data-state')) {
             // console.log('atribute remove');
-             event.target.parentNode.setAttribute('data-state', '');
+            event.target.parentNode.setAttribute('data-state', '');
         } else {
-                // console.log('atribute add');
-             event.target.parentNode.setAttribute('data-state', 'active');
+            // console.log('atribute add');
+            event.target.parentNode.setAttribute('data-state', 'active');
         }
     }
+  
+    // document.body.classList.add('no-scroll');
+    document.addEventListener('click', closeSortListByOutClick);
 
+    if (dropList) {
+        // console.log('run the script')
+        dropList.addEventListener('mouseleave', closeSortList, { once: true });
 
-        // document.body.classList.add('no-scroll');
-
+    } else {
+        // console.log('dont run the script')
+    }
 }
 
+
 function onSelectEvent(event) {
-    // console.log(event.target);
+  // console.log(event.target);
 
-    if (event.target.classList.contains('sort-form__select__label')) {
-        // console.dir(event.target);
-        event.target.parentNode.previousElementSibling.textContent = event.target.textContent;
-        
-        const dataValue = event.target.getAttribute('data-value');
-        // console.log(dataValue);
+  if (event.target.classList.contains('sort-form__select__label')) {
+    // console.dir(event.target);
+    event.target.parentNode.previousElementSibling.textContent = event.target.textContent;
+    const dataValue = event.target.getAttribute('data-value');
+    // console.log(dataValue);
 
-        event.target.parentNode.previousElementSibling.setAttribute('data-value', dataValue );
-        event.target.parentNode.offsetParent.setAttribute('data-state', '');
+    event.target.parentNode.previousElementSibling.setAttribute('data-value', dataValue);
+    event.target.parentNode.offsetParent.setAttribute('data-state', '');
 
-        genreValue = parseInt(genreInput.getAttribute('data-value'));
-        yearValue = parseInt(yearInput.getAttribute('data-value'));
-        ratingValue = parseInt(ratingInput.getAttribute('data-value'));
+    genreValue = parseInt(genreInput.getAttribute('data-value'));
+    yearValue = parseInt(yearInput.getAttribute('data-value'));
+    ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
-        console.log(genreValue, yearValue, ratingValue);
+        // console.log(genreValue, yearValue, ratingValue);
         
         getActivePage();
 
         startSort(activePage);
-
     } 
 }
 
@@ -105,24 +115,29 @@ function onResetEvent() {
     getActivePage();
     resetSortParam();
     renderMoviesWithoutSort(activePage);
+
+    closeSortList();
 }
 
 export function resetSortParam() {
-     const array = refs.formTitles;
-    // console.log(array);
-    for (let i = 0; i < array.length; i += 1) {
-        array[i].textContent = array[i].getAttribute('data-default');
-    }
+  refs.formTitles[0].setAttribute('data-default', text[locale.lang].genres);
+  refs.formTitles[1].setAttribute('data-default', text[locale.lang].year);
+  refs.formTitles[2].setAttribute('data-default', text[locale.lang].rating);
+  const array = refs.formTitles;
+  //console.log(array[0]);
+  for (let i = 0; i < array.length; i += 1) {
+    array[i].textContent = array[i].getAttribute('data-default');
+  }
 
-    genreValue = genreInput.setAttribute('data-value','');
-    yearValue = yearInput.setAttribute('data-value','');
-    ratingValue = ratingInput.setAttribute('data-value','');
+  genreValue = genreInput.setAttribute('data-value', '');
+  yearValue = yearInput.setAttribute('data-value', '');
+  ratingValue = ratingInput.setAttribute('data-value', '');
 }
 
 function getActivePage() {
      if (refs.watchedBtn.getAttribute('data-status') === 'active') {
              activePage = refs.watchedBtn.getAttribute('data-folder');
-             console.log('watched is active, get the', activePage);
+            //  console.log('watched is active, get the', activePage);
          } else {
              activePage = refs.queueBtn.getAttribute('data-folder');
              console.log('queue is active, get the', activePage);
@@ -131,92 +146,88 @@ function getActivePage() {
 
 // ============== Render markup content for sort-menu =============
 
-// Genre list 
+// Genre list
 
 axios.get(`genre/movie/list?api_key=${KEY_API}&language=${locale.lang}`).then(r => {
+  const array = r.data.genres;
+  // console.dir(array);
 
-    const array = r.data.genres;
-    // console.dir(array);
+  for (let i = 0; i < array.length; i += 1) {
+    // console.log(array[i]);
 
-    for (let i = 0; i < array.length; i += 1) {
-        // console.log(array[i]);
+    const genreId = array[i].id;
+    const genreName = array[i].name;
 
-        const genreId = array[i].id;
-        const genreName = array[i].name;
-
-        renderGenres(genreId, genreName);
-    }
-})
+    renderGenres(genreId, genreName);
+  }
+});
 
 function renderGenres(id, name) {
+  refs.genreList.insertAdjacentHTML(
+    'beforeend',
 
-refs.genreList.insertAdjacentHTML("beforeend", 
-
-`<input id="${name}" class="sort-form__select__input" type="radio" name="genre${name}" />
-<label for="${name}" class="sort-form__select__label" data-value="${id}">${name}</label>`
-
-)}
+    `<input id="${name}" class="sort-form__select__input" type="radio" name="genre${name}" />
+<label for="${name}" class="sort-form__select__label" data-value="${id}">${name}</label>`,
+  );
+}
 
 // Year list
 renderYear();
 
 function renderYear() {
-    const date = new Date();
-    const currentYear = date.getFullYear();
-    const startYear = 2000;
-    const yearNumber = currentYear - startYear;
-    // console.log(yearNumber)
+  const date = new Date();
+  const currentYear = date.getFullYear();
+  const startYear = 2000;
+  const yearNumber = currentYear - startYear;
+  // console.log(yearNumber)
 
-    for (let i = 1; i <= yearNumber; i += 1) {
+  for (let i = 1; i <= yearNumber; i += 1) {
+    const year = startYear + i;
 
-        const year = startYear + i;
-        
-        refs.yearList.insertAdjacentHTML("afterbegin", 
-        `<input id="year${year}" class="sort-form__select__input" type="radio" name="year${year}"  />
-        <label for="year${year}" class="sort-form__select__label"data-value="${year}" >${year}</label>`
-
-        )}
+    refs.yearList.insertAdjacentHTML(
+      'afterbegin',
+      `<input id="year${year}" class="sort-form__select__input" type="radio" name="year${year}"  />
+        <label for="year${year}" class="sort-form__select__label"data-value="${year}" >${year}</label>`,
+    );
+  }
 }
 
 // Raitng
 renderRaiting();
 
 function renderRaiting() {
+  for (let i = 0; i < 9; i += 1) {
+    let rating = 1;
+    rating = rating + i;
 
-    for (let i = 0; i < 9; i += 1) {
+    refs.ratingList.insertAdjacentHTML(
+      'beforeend',
 
-        let rating = 1;
-        rating = rating + i;
-    
-        refs.ratingList.insertAdjacentHTML('beforeend', 
-    
-        ` <input id="rating${rating}" class="sort-form__select__input" type="radio" name="rating${rating}"  />
-    <label for="rating${rating}" class="sort-form__select__label" data-value="${rating}" >${rating}.0 and up</label>`
-
-        )}
+      ` <input id="rating${rating}" class="sort-form__select__input" type="radio" name="rating${rating}"  />
+    <label for="rating${rating}" class="sort-form__select__label" data-value="${rating}" >${rating}.0 ${
+        text[locale.lang].andUp
+      }</label>`,
+    );
+  }
 }
 
 // =============== Get the movie list ==================
 
-
 function startSort(dataBaseFolder) {
-    // Fetch the movie from database 
-    const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
-    onValue(getWatchedFilms, (films) => {
-        const data = films.val();
-    
-        // Create array with film ID
-        const filmIdArray = Object.keys(data);
-    
-        // Sort movie by all the filters
-        sortMovie(filmIdArray);
+  // Fetch the movie from database
+  const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
+  onValue(getWatchedFilms, films => {
+    const data = films.val();
 
-    });
-      
-};
+    // Create array with film ID
+    const filmIdArray = Object.keys(data);
+
+    // Sort movie by all the filters
+    sortMovie(filmIdArray);
+  });
+}
 
 // ============ Sort Movies ============
-
 
 function sortMovie(array) {
     // Clear the content
@@ -226,7 +237,7 @@ function sortMovie(array) {
        
         const filmId = array[i];
 
-        axios.get(`movie/${filmId}?api_key=${KEY_API}`)
+        axios.get(`movie/${filmId}?api_key=${KEY_API}&language=${locale.lang}`)
             .then(r => { return sortMovieByGenre(r) })
             .then(r => { return sortMovieByYear(r) })
             .then(r => { return sortMovieByRating(r) })
@@ -235,72 +246,101 @@ function sortMovie(array) {
     } 
 };
 
-function sortMovieByGenre(result) { 
-    
-     //  ========= Genre sort ============
-            let genreIdArray = [];
-            // create array with genre id of the fetched movie
-            for (let genre of Object.values(result.data.genres)) {
-                genreIdArray.push(genre.id);
-            }
+function sortMovieByGenre(result) {
+  //  ========= Genre sort ============
+  let genreIdArray = [];
+  // create array with genre id of the fetched movie
+  for (let genre of Object.values(result.data.genres)) {
+    genreIdArray.push(genre.id);
+  }
 
-            //  Check if there is value of genre, if no selected genre render all the films
-            if (!Number.isInteger(genreValue)) {
-                // console.log('sort in. Genre is undefined')
-                return result;
-            }
+  //  Check if there is value of genre, if no selected genre render all the films
+  if (!Number.isInteger(genreValue)) {
+    // console.log('sort in. Genre is undefined')
+    return result;
+  }
 
-            //  If genre has selected value, either render film if contain the genre or
-            //  return if no matching
-            if (genreIdArray.includes(genreValue)) {
-                // console.log('OK - genre is matched - sort in')
-                return result;
-
-            } else {
-                //  console.log('genre not matched - sort out');
-            }
-};
+  //  If genre has selected value, either render film if contain the genre or
+  //  return if no matching
+  if (genreIdArray.includes(genreValue)) {
+    // console.log('OK - genre is matched - sort in')
+    return result;
+  } else {
+    //  console.log('genre not matched - sort out');
+  }
+}
 
 function sortMovieByYear(r) {
-    const yearRelease = parseInt(r.data.release_date.split('-')[0]);
-    // console.log(yearRelease);
-             
-    //  ========= Year sort ============
+  const yearRelease = parseInt(r.data.release_date.split('-')[0]);
+  // console.log(yearRelease);
 
-    //  Check if there is value of genre, if no selected genre render all the films
-    if (!Number.isInteger(yearValue)) { return r; };
+  //  ========= Year sort ============
 
-    // Check if the year of release the same
-    if (yearRelease === yearValue) { return r; }
+  //  Check if there is value of genre, if no selected genre render all the films
+  if (!Number.isInteger(yearValue)) {
+    return r;
+  }
 
-    // console.log('год не соотвествует');
-       
-};
+  // Check if the year of release the same
+  if (yearRelease === yearValue) {
+    return r;
+  }
+
+  // console.log('год не соотвествует');
+}
 
 function sortMovieByRating(r) {
-    const filmRating = r.data.vote_average
-             
-    //  ========= Rating sort ============
+  const filmRating = r.data.vote_average;
 
-    //  Check if there is value of genre, if no selected genre render all the films
-    if (!Number.isInteger(ratingValue)) { return r };
+  //  ========= Rating sort ============
 
-    // Check if rating of the film is higher than requested
-    if (filmRating >= ratingValue) { return r };
-    
+  //  Check if there is value of genre, if no selected genre render all the films
+  if (!Number.isInteger(ratingValue)) {
+    return r;
+  }
+
+  // Check if rating of the film is higher than requested
+  if (filmRating >= ratingValue) {
+    return r;
+  }
 }
 
 function renderMoviesWithoutSort(dataBaseFolder) {
-      const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
-    onValue(getWatchedFilms, (films) => {
+  const getWatchedFilms = ref(db, `users/${dataBaseFolder}`);
+  onValue(getWatchedFilms, films => {
     const data = films.val();
     // console.log(data);
     for (const key in data) {
-        // console.log(key); 
-        fetchWatchedMovies(key);
+      // console.log(key);
+      fetchWatchedMovies(key);
     }
-    })
+  });
 }
+
+function closeSortListByOutClick(e) {
+    // check if click get into form-sort zone
+        if (e.path.includes(document.querySelector('.sort-form__container--left'))) {
+            // if yes - do nothing  
+        } else {
+            // in no - check if it's lables zone of drop down
+            if (!e.path.includes(document.querySelector('.sort-form__select'))) {
+                // if no - close the list and remove event listener
+                document.removeEventListener('click', closeSortListByOutClick);
+                closeSortList();
+            };
+    };
+
+};
+
+function closeSortList() {
+
+    const elements = refs.selectFields;
+
+    for (const el of elements) {
+        el.setAttribute('data-state', '');
+    };
+};
+
 
 
 
@@ -315,11 +355,11 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 // При нажатии на кнопку сортировки:
 // - идет запрос на получения всего списка из промотренных или очереди(в зависимости
 // какая кнопка активная)
-//     - прогоняется через 3 фильтра фильтр 
+//     - прогоняется через 3 фильтра фильтр
 //     - рендериться что осталось
 
 //     Если нажать еще раз на кнопку сортировки по любой
-//     - фетч 
+//     - фетч
 //     - сортировка по всем типам
 
 // Что нужно сделать:
@@ -329,4 +369,3 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 // 4. Сделать ограничение по списку в 10 строк и добавить скролл
 // 5. Сделать для мобильной версии в столбик
 // 6. сделать возможность скрыть меню кнопкой фильтр
-
