@@ -150,4 +150,4 @@ module.exports="/final-project-js/sprite.19dc3864.svg";
 },{"notiflix":"W3Ap","firebase/database":"Uuoh","./firebase.functions":"j0xo","./render-header":"ZCrl","./layout-reg-auth":"vPgs","../partials/dictionary.json":"HPG2","./localization":"kQRN"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/render-films"),require("./js/modal-film-card"),require("./js/render-header"),require("./js/localization"),require("./js/toggle-theme"),require("./js/find-film"),require("./js/watched-films"),require("./js/footer-modal"),require("./js/genre-sort"),require("./js/auth-registr"),require("./js/layout-reg-auth");
 },{"./sass/main.scss":"clu1","./js/render-films":"mj1t","./js/modal-film-card":"MzUv","./js/render-header":"ZCrl","./js/localization":"kQRN","./js/toggle-theme":"mKm0","./js/find-film":"hX5Z","./js/watched-films":"MK05","./js/footer-modal":"zUU9","./js/genre-sort":"npLc","./js/auth-registr":"z1Pd","./js/layout-reg-auth":"vPgs"}]},{},["Focm"], null)
-//# sourceMappingURL=/final-project-js/src.23481945.js.map
+//# sourceMappingURL=/final-project-js/src.31b004d4.js.map
