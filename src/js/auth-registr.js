@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import { ref, set, child, get } from 'firebase/database';
 import { db } from './firebase.functions';
-import { onModalInCloseClick, onModalRegCloseClick } from './render-header';
+import { onModalInCloseClick, onModalRegCloseClick, refs, addClassList, removeClassList, closeModalByClickOut, onEscPress } from './render-header';
 import {
   validation,
   currentUser,
@@ -56,12 +56,23 @@ function registerUser(e) {
           Notiflix.Notify.success(text[locale.lang].userAddedSuccesfully);
           clearRegInput();
           onModalRegCloseClick();
+          openLogInModal();
         })
         .catch(error => {
           Notiflix.Notify.failure('error' + error);
         });
     }
   });
+}
+
+function openLogInModal() {
+  refs.body.classList.add('no-scroll');
+
+  addClassList(refs.modalReg, 'is-hidden');
+  removeClassList(refs.modalIn, 'is-hidden');
+
+  closeModalByClickOut(refs.modalIn);
+  document.addEventListener('keydown', onEscPress);
 }
 
 // -----------------ENCRIPTION----------------

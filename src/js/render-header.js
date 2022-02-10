@@ -1,4 +1,4 @@
-const refs = {
+export const refs = {
   header: document.querySelector('.header-container'),
   modal: document.querySelectorAll('.js-modal'),
   // Autorithazation
@@ -96,11 +96,11 @@ function addEventListenerForArray(array, event, func) {
   }
 }
 
-function removeClassList(element, classList) {
+export function removeClassList(element, classList) {
   element.classList.remove(classList);
 }
 
-function addClassList(element, classList) {
+export function addClassList(element, classList) {
   element.classList.add(classList);
 }
 
@@ -139,7 +139,7 @@ export function onModalRegCloseClick() {
   modalClose();
 }
 
-function closeModalByClickOut(elementName) {
+export function closeModalByClickOut(elementName) {
   const element = elementName;
 
   elementName.addEventListener('click', onClickEvent);
@@ -154,7 +154,7 @@ function closeModalByClickOut(elementName) {
   }
 }
 
-function onEscPress(e) {
+export function onEscPress(e) {
   console.log('key press');
 
   if (e.code === 'Escape') {
