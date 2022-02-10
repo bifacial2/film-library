@@ -62,7 +62,7 @@ export function initStorageBtns(data) {
         }
     }
   }
-}
+
 
 // ===========Header Buttons==============
 
