@@ -59,8 +59,10 @@ refs.resetBtn.addEventListener('click', onResetEvent);
 
 
 function onClickEvent(event) {
-    // console.dir(event.target);
     
+    const dropList = event.target.nextElementSibling;
+    // console.dir(dropList);
+
     if (event.target.classList.contains('sort-form__select__title')) {
         // console.dir(event.target.parentNode)
         
@@ -74,6 +76,15 @@ function onClickEvent(event) {
     }
 
     document.addEventListener('click', closeSortListByOutClick);
+
+    if (dropList) {
+        // console.log('run the script')
+        dropList.addEventListener('mouseleave', closeSortList, {once: true});
+
+    } else {
+        // console.log('dont run the script')
+    }
+    
 }
 
 function onSelectEvent(event) {
@@ -98,7 +109,6 @@ function onSelectEvent(event) {
         getActivePage();
 
         startSort(activePage);
-
     } 
 }
 
@@ -328,8 +338,8 @@ function closeSortList() {
     for (const el of elements) {
         el.setAttribute('data-state', '');
     };
-
 };
+
 
 
 
