@@ -15,19 +15,23 @@ const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 const refs = {
-  form: document.querySelector('.sort-form'),
-  formTitles: document.querySelectorAll('.sort-form__select__title'),
-  selectField: document.querySelector('.sort-form__select'),
-  resetBtn: document.querySelector('.sort-form__reset'),
-  genreList: document.querySelector('.js-genre-list'),
-  yearList: document.querySelector('.js-year-list'),
-  ratingList: document.querySelector('.js-rating-list'),
-  gallery: document.querySelector('#gallery'),
-  // Buttons Watched and Queue to get the info about current page
-  watchedBtn: document.querySelector('[data-locale="watch"]'),
-  queueBtn: document.querySelector('[data-locale="queue"]'),
-  myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
+    form: document.querySelector('.sort-form'),
+    formTitles: document.querySelectorAll('.sort-form__select__title'),
+    selectFields: document.querySelectorAll('.sort-form__select'),
+    selectLabels: document.querySelectorAll('.sort-form__select__label'),
+    selectContent: document.querySelector('.sort-form__select__content'),
+    resetBtn: document.querySelector('.sort-form__reset'),
+    genreList: document.querySelector('.js-genre-list'),
+    yearList: document.querySelector('.js-year-list'),
+    ratingList: document.querySelector('.js-rating-list'),
+    gallery: document.querySelector('#gallery'),
+    // Buttons Watched and Queue to get the info about current page
+    watchedBtn: document.querySelector('[data-locale="watch"]'),
+    queueBtn: document.querySelector('[data-locale="queue"]'),
+    myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
 };
+
+
 
 // To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
@@ -68,6 +72,7 @@ function onClickEvent(event) {
   }
 
   // document.body.classList.add('no-scroll');
+    document.addEventListener('click', closeSortListByOutClick);
 }
 
 function onSelectEvent(event) {
@@ -86,7 +91,9 @@ function onSelectEvent(event) {
     yearValue = parseInt(yearInput.getAttribute('data-value'));
     ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
-    console.log(genreValue, yearValue, ratingValue);
+        // console.log(genreValue, yearValue, ratingValue);
+        
+        getActivePage();
 
     getActivePage();
 
@@ -95,9 +102,12 @@ function onSelectEvent(event) {
 }
 
 function onResetEvent() {
-  getActivePage();
-  resetSortParam();
-  renderMoviesWithoutSort(activePage);
+   
+    getActivePage();
+    resetSortParam();
+    renderMoviesWithoutSort(activePage);
+
+    closeSortList();
 }
 
 export function resetSortParam() {
@@ -116,13 +126,13 @@ export function resetSortParam() {
 }
 
 function getActivePage() {
-  if (refs.watchedBtn.getAttribute('data-status') === 'active') {
-    activePage = refs.watchedBtn.getAttribute('data-folder');
-    console.log('watched is active, get the', activePage);
-  } else {
-    activePage = refs.queueBtn.getAttribute('data-folder');
-    console.log('queue is active, get the', activePage);
-  }
+     if (refs.watchedBtn.getAttribute('data-status') === 'active') {
+             activePage = refs.watchedBtn.getAttribute('data-folder');
+            //  console.log('watched is active, get the', activePage);
+         } else {
+             activePage = refs.queueBtn.getAttribute('data-folder');
+             console.log('queue is active, get the', activePage);
+        }
 }
 
 // ============== Render markup content for sort-menu =============
@@ -297,6 +307,33 @@ function renderMoviesWithoutSort(dataBaseFolder) {
     }
   });
 }
+
+function closeSortListByOutClick(e) {
+    // check if click get into form-sort zone
+        if (e.path.includes(document.querySelector('.sort-form__container--left'))) {
+            // if yes - do nothing  
+        } else {
+            // in no - check if it's lables zone of drop down
+            if (!e.path.includes(document.querySelector('.sort-form__select'))) {
+                // if no - close the list and remove event listener
+                document.removeEventListener('click', closeSortListByOutClick);
+                closeSortList();
+            };
+    };
+
+};
+
+function closeSortList() {
+
+    const elements = refs.selectFields;
+
+    for (const el of elements) {
+        el.setAttribute('data-state', '');
+    };
+
+};
+
+
 
 // Логика:
 // При нажатии на reset проверка на current page (home, library (watched, quee))
