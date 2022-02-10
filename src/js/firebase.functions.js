@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import './localization';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
@@ -46,27 +46,48 @@ export function addFilmToQueue(id, poster_path, title, release_date, genres, vot
     });
 }
 
-// ============Delete Film=================
-
-export function deleteFilmFromWatched(id) {
-    const getChosenFilm = ref(db, `users/watched/${id}`);
-    remove(getChosenFilm, (film) => {
-    const data = film.val();
-});
-}
-
-export function deleteFilmFromQueue(id) {
-  const getChosenFilm = ref(db, `users/queue/${id}`);
-    remove(getChosenFilm, (film) => {
-    const data = film.val();
-});  
-}
-
 
 // ==================Change Buttons Title========================
 
 
 export function getFilmFromFirebase(data) {
+    const addToWatchedButton = document.querySelector('#js-WatchedButton');
+    const addToQueueButton = document.getElementById('js-QueueButton');
+    document
+        // Find all elements that have the key attribute
+        .querySelectorAll('[data-locale]')
+        .forEach(translateElement);
+}
+// const auth = getAuth();
+
+// const myUserId = auth.users.queue.id;
+// console.log(myUserId);
+// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
+// console.log(topUserPostsRef);
+
+
+
+
+// const dbRef = ref(db);
+// function getFilmsForWatchedRender() {
+//   get(child(dbRef, `users/queue/`)).then((film) => {
+//   if (film.exists()) {
+//       console.log(film.val());
+//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
+//       console.log(topUserPostsRef);
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
+// }
+
+// getFilmsForWatchedRender(524434);
+// ==================Change Buttons Title========================
+
+
+function getFilmFromFirebase(data) {
     const addToWatchedButton = document.querySelector('#js-WatchedButton');
     const addToQueueButton = document.getElementById('js-QueueButton');
     document
@@ -130,8 +151,7 @@ function getFilmFromFirebase(data) {
                     addToQueueButton.innerHTML = text[locale.lang].removeFromQueue;
                     
                 } else {
-                    addToQueueButton.innerHTML = text[locale.lang].addToQueue;   
-                    
+                    addToQueueButton.innerHTML = text[locale.lang].addToQueue;      
             }
             
             }
