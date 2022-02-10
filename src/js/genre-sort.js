@@ -18,7 +18,9 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 const refs = {
     form: document.querySelector('.sort-form'),
     formTitles: document.querySelectorAll('.sort-form__select__title'),
-    selectField: document.querySelector('.sort-form__select'),
+    selectFields: document.querySelectorAll('.sort-form__select'),
+    selectLabels: document.querySelectorAll('.sort-form__select__label'),
+    selectContent: document.querySelector('.sort-form__select__content'),
     resetBtn: document.querySelector('.sort-form__reset'),
     genreList: document.querySelector('.js-genre-list'),
     yearList: document.querySelector('.js-year-list'),
@@ -29,6 +31,8 @@ const refs = {
     queueBtn: document.querySelector('[data-locale="queue"]'),
     myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
 };
+
+
 
 // To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
@@ -69,9 +73,7 @@ function onClickEvent(event) {
         }
     }
 
-
-        // document.body.classList.add('no-scroll');
-
+    document.addEventListener('click', closeSortListByOutClick);
 }
 
 function onSelectEvent(event) {
@@ -91,7 +93,7 @@ function onSelectEvent(event) {
         yearValue = parseInt(yearInput.getAttribute('data-value'));
         ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
-        console.log(genreValue, yearValue, ratingValue);
+        // console.log(genreValue, yearValue, ratingValue);
         
         getActivePage();
 
@@ -105,6 +107,8 @@ function onResetEvent() {
     getActivePage();
     resetSortParam();
     renderMoviesWithoutSort(activePage);
+
+    closeSortList();
 }
 
 export function resetSortParam() {
@@ -122,7 +126,7 @@ export function resetSortParam() {
 function getActivePage() {
      if (refs.watchedBtn.getAttribute('data-status') === 'active') {
              activePage = refs.watchedBtn.getAttribute('data-folder');
-             console.log('watched is active, get the', activePage);
+            //  console.log('watched is active, get the', activePage);
          } else {
              activePage = refs.queueBtn.getAttribute('data-folder');
              console.log('queue is active, get the', activePage);
@@ -301,6 +305,48 @@ function renderMoviesWithoutSort(dataBaseFolder) {
     }
     })
 }
+
+function closeSortListByOutClick(e) {
+    console.dir(e.path);
+    
+    console.log(document.querySelector('.sort-form__select'));
+    
+    const titlesList = refs.formTitles;
+    const lableList = refs.selectLabels;
+    // console.log(lableList);
+
+    for (const title of titlesList) {
+        // console.log(title);
+        if (e.target === title) {
+            console.log('its title, dont do nothing')
+            break;
+            
+        } else {
+            console.log('its not title, lets check if its label')
+
+            if (e.path.includes(document.querySelector('.sort-form__select'))) {
+                console.log('its label, dont close');
+            } else {
+                console.log('CLOSE IT');
+                document.removeEventListener('click', closeSortListByOutClick);
+                // closeSortList();
+            }
+            
+        };
+    };
+
+};
+
+function closeSortList() {
+
+    const elements = refs.selectFields;
+    // console.log(elements);
+
+    for (const el of elements) {
+        el.setAttribute('data-state', '');
+    };
+
+};
 
 
 
