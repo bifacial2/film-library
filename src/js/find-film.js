@@ -45,7 +45,7 @@ SearchFormSubmitBtn.disabled = true;
 findFilmForm.addEventListener('input', onFindFormInput);
 
 function onFindFormInput(event) {
-  event.preventDefault;
+  event.preventDefault();
   // console.log(event.currentTarget.searchQuery.value.length);
   if (event.currentTarget.searchQuery.value.length === 0) {
     SearchFormSubmitBtn.disabled = true;
