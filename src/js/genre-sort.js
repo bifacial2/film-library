@@ -226,7 +226,7 @@ function sortMovie(array) {
        
         const filmId = array[i];
 
-        axios.get(`movie/${filmId}?api_key=${KEY_API}`)
+        axios.get(`movie/${filmId}?api_key=${KEY_API}&language=${locale.lang}`)
             .then(r => { return sortMovieByGenre(r) })
             .then(r => { return sortMovieByYear(r) })
             .then(r => { return sortMovieByRating(r) })
