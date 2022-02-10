@@ -87,9 +87,9 @@ function authenticateUsers(e) {
     return Notiflix.Notify.info(text[locale.lang].passwordOrEmailIsEmpty);
   }
 
-  if(!regexName.test(logUser.value)) {
-    return Notiflix.Notify.info("-username name can only be alphanumeric\n-username must be aleast must be 5 charaters\n-username cannot contain spaces");
-}
+  if (!regexName.test(logUser.value)) {
+    return Notiflix.Notify.info(text[locale.lang].badName);
+  }
 
   get(child(dbRefLog, 'UsersList/' + logUser.value)).then(snapshot => {
     if (snapshot.exists()) {
@@ -103,14 +103,10 @@ function authenticateUsers(e) {
         changeBtnHeader();
         currentUser.textContent = `${dbUser}`;
         logInUser(snapshot.val());
-      } 
-      
-      else {
+      } else {
         Notiflix.Notify.failure(text[locale.lang].userDoesNotExist);
       }
-    } 
-    
-    else {
+    } else {
       Notiflix.Notify.failure(text[locale.lang].emailOrPasswordIsInvalid);
     }
   });
@@ -130,13 +126,11 @@ logBtn.addEventListener('click', authenticateUsers);
 function logInUser(user) {
   let keepLogIn = document.getElementById('checkbox').checked;
 
-  if(!keepLogIn) {
-      sessionStorage.setItem('user', JSON.stringify(user));
-  }
-
-  else {
-      localStorage.setItem('keepLogIn', 'yes');
-      localStorage.setItem('user', JSON.stringify(user));
+  if (!keepLogIn) {
+    sessionStorage.setItem('user', JSON.stringify(user));
+  } else {
+    localStorage.setItem('keepLogIn', 'yes');
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }
 
@@ -144,26 +138,23 @@ function getUsername() {
   let onlineUser = null;
   let getItemLogIn = localStorage.getItem('keepLogIn');
 
-  if(getItemLogIn === 'yes') {
-      onlineUser = JSON.parse(localStorage.getItem('user'));
-      currentUser.textContent =`${onlineUser.name}`;
-      changeBtnHeader();
-  }
-
-  else {
-      onlineUser = JSON.parse(sessionStorage.getItem('user'));
+  if (getItemLogIn === 'yes') {
+    onlineUser = JSON.parse(localStorage.getItem('user'));
+    currentUser.textContent = `${onlineUser.name}`;
+    changeBtnHeader();
+  } else {
+    onlineUser = JSON.parse(sessionStorage.getItem('user'));
   }
 }
 
 export function verifyLocalStorage() {
-  if(localStorage.getItem('keepLogIn') === null) {
-      return hiddenCardBtns.style.visibility = 'hidden';
-    }
+  if (localStorage.getItem('keepLogIn') === null) {
+    return (hiddenCardBtns.style.visibility = 'hidden');
+  }
 }
 
 // -----------------SIGN OUT EVENT----------------
 
-
-window.onload = function() {
+window.onload = function () {
   getUsername();
-}
+};

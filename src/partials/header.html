@@ -48,7 +48,7 @@
        </li>
        <li class="auth-btns__item">
             <button class="header__btn auth-btns__btn del-btn__signup" type="button" data-locale="signUp" data-name="signUp">Sign Up</button>
-            <button class="sign-out-btn header__btn auth-btns__btn" type="button">Sign Out</button>
+            <button class="sign-out-btn header__btn auth-btns__btn" type="button" data-locale="signOut">Sign Out</button>
        </li>
    </ul>
 
@@ -103,13 +103,13 @@
             <form class="sort-form">
                 <div class="sort-form__container--left">
                     <div class="sort-form__select " data-state="">
-                        <div class="sort-form__select__title" data-default="Genres" data-value="" data-sort="genere">Genres
+                        <div class="sort-form__select__title" data-default="Genres" data-value="" data-sort="genere" >Genres
                         </div>
                             <div class="sort-form__select__content js-genre-list"></div>
                     </div>
                     
                     <div class="sort-form__select" data-state="">
-                        <div class="sort-form__select__title" data-default="Year" data-value="" data-sort="year">Year</div>
+                        <div class="sort-form__select__title" data-default="Year" data-value="" data-sort="year" >Year</div>
                         <div class="sort-form__select__content js-year-list"></div>
                     </div>
                     
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="sort-form__container--right">
-                    <button type="reset" class="sort-form__reset">Reset</button>
+                    <button type="reset" class="sort-form__reset" data-locale="resetButton">Reset</button>
                 </div>
             </form>
         </div>
@@ -159,7 +159,7 @@
                 <div class="signin-checkbox__wrapper">
                     <input class="tgl tgl-flat" id="checkbox" type="checkbox" />
                     <label class="tgl-btn" for="checkbox"></label>
-                    <p class="checkbox-text">Save session?</p>
+                    <p class="checkbox-text"  data-locale="saveSession">Save session?</p>
                 </div>
             
     

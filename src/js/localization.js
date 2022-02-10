@@ -2,7 +2,7 @@ import './render-films';
 import text from '../partials/dictionary.json';
 
 ///////////////////////////////////////////////////////
-/////Пытаюсь задать по умолчанию язык
+/////Задаю по умолчанию язык
 export const locale = {
   lang: 'en-US',
 };
@@ -22,12 +22,14 @@ const refs = {
   localeEn: document.querySelector('.header-localization__english'),
   localeRu: document.querySelector('.header-localization__russian'),
   localeUa: document.querySelector('.header-localization__ukrainian'),
+  //Placeholder  нашего сайта
   placeholderLabel: document.querySelector('.search-form__input'),
   placeholderSignInPassword: document.querySelector('.signin-input__psw'),
   placeholderRegistrationName: document.querySelector('.reg-input__email'),
   placeholderRegistrationEmail: document.querySelectorAll('.reg-input__email')[1],
   placeholderRegistrationCreatePassord: document.querySelector('.reg-input__psw'),
   placeholderRegistrationRepeatPassord: document.querySelectorAll('.reg-input__psw')[1],
+  xxx: document.querySelector('.sort-form__select__title'),
 };
 
 const chooseLocaleHandler = event => {
@@ -43,9 +45,9 @@ const chooseLocaleHandler = event => {
   locale.lang = currentLanguage;
   //Записываю параметр локали в локальное хранилище для того, чтобы у пользователя не сбивались настройки языка
   localStorage.setItem('LOCALE', locale.lang);
-  //createData({ page, totalPages });
   location.reload();
 };
+
 refs.localizationForm.addEventListener('click', chooseLocaleHandler);
 
 //Локализация из словаря
@@ -55,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .querySelectorAll('[data-locale]')
     .forEach(translateElement);
 });
+
 // Replace the inner text of the given HTML element
 // with the translation in the active locale,
 // corresponding to the element's data-i18n-key
