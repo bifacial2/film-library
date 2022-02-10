@@ -307,32 +307,16 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 }
 
 function closeSortListByOutClick(e) {
-    console.dir(e.path);
-    
-    console.log(document.querySelector('.sort-form__select'));
-    
-    const titlesList = refs.formTitles;
-    const lableList = refs.selectLabels;
-    // console.log(lableList);
-
-    for (const title of titlesList) {
-        // console.log(title);
-        if (e.target === title) {
-            console.log('its title, dont do nothing')
-            break;
-            
+    // check if click get into form-sort zone
+        if (e.path.includes(document.querySelector('.sort-form__container--left'))) {
+            // if yes - do nothing  
         } else {
-            console.log('its not title, lets check if its label')
-
-            if (e.path.includes(document.querySelector('.sort-form__select'))) {
-                console.log('its label, dont close');
-            } else {
-                console.log('CLOSE IT');
+            // in no - check if it's lables zone of drop down
+            if (!e.path.includes(document.querySelector('.sort-form__select'))) {
+                // if no - close the list and remove event listener
                 document.removeEventListener('click', closeSortListByOutClick);
-                // closeSortList();
-            }
-            
-        };
+                closeSortList();
+            };
     };
 
 };
@@ -340,7 +324,6 @@ function closeSortListByOutClick(e) {
 function closeSortList() {
 
     const elements = refs.selectFields;
-    // console.log(elements);
 
     for (const el of elements) {
         el.setAttribute('data-state', '');
