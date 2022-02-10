@@ -44,60 +44,17 @@ export function addFilmToQueue(id, poster_path, title, release_date, genres, vot
 
 // ==================Change Buttons Title========================
 
-
 export function getFilmFromFirebase(data) {
-    const addToWatchedButton = document.querySelector('#js-WatchedButton');
-    const addToQueueButton = document.getElementById('js-QueueButton');
-    let watchedKeys = [];
-    let queueKeys = [];    
-    const getWatchedFilms = ref(db, `users/watched`);
-    document
-        // Find all elements that have the key attribute
-        .querySelectorAll('[data-locale]')
-        .forEach(translateElement);
-}
-// const auth = getAuth();
-
-
-function getFilmFromFirebase(data) {
-    const addToWatchedButton = document.querySelector('#js-WatchedButton');
-    const addToQueueButton = document.getElementById('js-QueueButton');
-    document
-        // Find all elements that have the key attribute
-        .querySelectorAll('[data-locale]')
-        .forEach(translateElement);
-}
-// const auth = getAuth();
-
-// const myUserId = auth.users.queue.id;
-// console.log(myUserId);
-// const topUserPostsRef = query(ref(db, 'users/watched'), orderByChild('vote_average'));
-// console.log(topUserPostsRef);
-
-// const dbRef = ref(db);
-// function getFilmsForWatchedRender() {
-//   get(child(dbRef, `users/queue/`)).then((film) => {
-//   if (film.exists()) {
-//       console.log(film.val());
-//       const topUserPostsRef = query(ref(db, 'users/queue'), orderByChild('vote_average'));
-//       console.log(topUserPostsRef);
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
-// }
-
-// getFilmsForWatchedRender(524434);
-// ==================Change Buttons Title========================
-
-function getFilmFromFirebase(data) {
   const addToWatchedButton = document.querySelector('#js-WatchedButton');
   const addToQueueButton = document.getElementById('js-QueueButton');
   let watchedKeys = [];
   let queueKeys = [];
-  const getWatchedFilms = ref(db, `users/watched`);
+    const getWatchedFilms = ref(db, `users/watched`);
+    document
+    // Find all elements that have the key attribute
+    .querySelectorAll('[data-locale]')
+    .forEach(translateElement);
+
   onValue(getWatchedFilms, films => {
     if (films.val()) {
       watchedKeys = Object.keys(films.val());
@@ -123,8 +80,5 @@ function getFilmFromFirebase(data) {
     }
   });
 
-  document
-    // Find all elements that have the key attribute
-    .querySelectorAll('[data-locale]')
-    .forEach(translateElement);
+  
 }
