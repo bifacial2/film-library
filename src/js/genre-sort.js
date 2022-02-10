@@ -211,31 +211,21 @@ function startSort(dataBaseFolder) {
 // ============ Sort Movies ============
 
 function sortMovie(array) {
-  // Clear the content
-  clearContainer();
+    // Clear the content
+    clearContainer();
 
-  for (let i = 0; i < array.length; i += 1) {
-    const filmId = array[i];
+    for (let i = 0; i < array.length; i += 1) {
+       
+        const filmId = array[i];
 
-    axios
-      .get(`movie/${filmId}?api_key=${KEY_API}`)
-      .then(r => {
-        return sortMovieByGenre(r);
-      })
-      .then(r => {
-        return sortMovieByYear(r);
-      })
-      .then(r => {
-        return sortMovieByRating(r);
-      })
-      .then(r => {
-        watchedFilmsMarkup(r.data);
-      })
-      .catch(error => {
-        console.log('фильм не соответсвует параметрам');
-      });
-  }
-}
+        axios.get(`movie/${filmId}?api_key=${KEY_API}&language=${locale.lang}`)
+            .then(r => { return sortMovieByGenre(r) })
+            .then(r => { return sortMovieByYear(r) })
+            .then(r => { return sortMovieByRating(r) })
+            .then(r => { watchedFilmsMarkup(r.data) })
+            .catch(error => { console.log('фильм не соответсвует параметрам') });
+    } 
+};
 
 function sortMovieByGenre(result) {
   //  ========= Genre sort ============
