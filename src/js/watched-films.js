@@ -14,7 +14,7 @@ import text from '../partials/dictionary.json';
 import { resetSortParam } from './genre-sort';
 
 if (localStorage.getItem('LOCALE') === undefined) {
-  locale.lang = 'en-EN';
+  locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
 
 const watchBtn = document.querySelector('.library-btns--watch');
@@ -25,46 +25,59 @@ const paginationBtn = document.querySelector('#pagination');
 // =====================Buttons on Film Info Card================
 
 export function initStorageBtns(data) {
-    const addToWatchedButton = document.getElementById('js-WatchedButton');
-    const addToQueueButton = document.getElementById('js-QueueButton');
+  const addToWatchedButton = document.getElementById('js-WatchedButton');
+  const addToQueueButton = document.getElementById('js-QueueButton');
 
-    // ==============='Add to Watched' Button==========================
-    
-    addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
+  // ==============='Add to Watched' Button==========================
 
-    function onAddToWatchedBtnClick(event) {
-        event.preventDefault;
-            
-        addToWatchedButton.classList.toggle('active');
-        if(addToWatchedButton.classList.contains('active')) {
-           addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          deleteFilmFromQueue(data.id);
-          addToQueueButton.classList.remove('active');
-        } else {
-            deleteFilmFromWatched(data.id);
-            // addToWatchedButton.innerHTML = 'Add to watched';
-        }
+  addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick);
+
+  function onAddToWatchedBtnClick(event) {
+    event.preventDefault;
+
+    addToWatchedButton.classList.toggle('active');
+    if (addToWatchedButton.classList.contains('active')) {
+      addNewFilmToWatched(
+        data.id,
+        data.poster_path,
+        data.title,
+        data.release_date,
+        data.genres,
+        data.vote_average,
+      );
+      deleteFilmFromQueue(data.id);
+      addToQueueButton.classList.remove('active');
+    } else {
+      deleteFilmFromWatched(data.id);
+      // addToWatchedButton.innerHTML = 'Add to watched';
     }
-        
-    // =================='Add to Queue' Button=========================
+  }
 
-    addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
+  // =================='Add to Queue' Button=========================
 
-    function onAddToQueueBtnClick(event) {
-        event.preveventDefault;
-        
-        addToQueueButton.classList.toggle('active');
-        if (addToQueueButton.classList.contains('active')) {
-          addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          deleteFilmFromWatched(data.id);
-          addToWatchedButton.classList.remove('active');
-          // addToQueueButton.innerHTML = 'Add to queue';
-        } else {
-            deleteFilmFromQueue(data.id);
-            // addToQueueButton.innerHTML = 'Add to queue';
-        }
+  addToQueueButton.addEventListener('click', onAddToQueueBtnClick);
+
+  function onAddToQueueBtnClick(event) {
+    event.preveventDefault;
+
+    addToQueueButton.classList.toggle('active');
+    if (addToQueueButton.classList.contains('active')) {
+      addFilmToQueue(
+        data.id,
+        data.poster_path,
+        data.title,
+        data.release_date,
+        data.genres,
+        data.vote_average,
+      );
+      deleteFilmFromWatched(data.id);
+      addToWatchedButton.classList.remove('active');
+      // addToQueueButton.innerHTML = 'Add to queue';
+    } else {
+      deleteFilmFromQueue(data.id);
+      // addToQueueButton.innerHTML = 'Add to queue';
     }
-    
+  }
 }
 
 // ===========Header Buttons==============
@@ -85,27 +98,27 @@ function onWatchedBtnClick(event) {
   queueBtn.classList.remove('accent-btn');
   watchBtn.disabled = true;
   queueBtn.disabled = false;
-// To clear filter params
+  // To clear filter params
   resetSortParam();
 
   // ===========With Firebase Database====
 
-    const getWatchedFilms = ref(db, `users/watched`);
-    onValue(getWatchedFilms, (films) => {
-        const data = films.val();
-        
-        if (!data) {
-            // console.log('Sorry!');
-            clearContainer();
-            filmsGallery.innerHTML = "You have not selected any movie";
-        } else {
-            const watchedFilmsArr = Object.keys(data);
-            // console.log(watchedFilmsArr);
-            watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm))
-        }
-    })
-    
-    paginationBtn.classList.add('invisible');
+  const getWatchedFilms = ref(db, `users/watched`);
+  onValue(getWatchedFilms, films => {
+    const data = films.val();
+
+    if (!data) {
+      // console.log('Sorry!');
+      clearContainer();
+      filmsGallery.innerHTML = `${text[locale.lang].noMoviesSelected}`;
+    } else {
+      const watchedFilmsArr = Object.keys(data);
+      // console.log(watchedFilmsArr);
+      watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm));
+    }
+  });
+
+  paginationBtn.classList.add('invisible');
 }
 
 export function fetchWatchedMovies(filmId) {
@@ -131,23 +144,23 @@ function onQueueBtnClick(event) {
   queueBtn.classList.add('accent-btn');
   watchBtn.disabled = false;
   queueBtn.disabled = true;
-// To clear filter params
-   resetSortParam();
+  // To clear filter params
+  resetSortParam();
 
   // ============Firebase Database===========
   const getQueueFilms = ref(db, `users/queue`);
   onValue(getQueueFilms, films => {
     const data = films.val();
     // console.log(data);
-        if (!data) {
-            // console.log('Sorry!');
-            clearContainer();
-            filmsGallery.innerHTML = "You have not selected any movie"      
-        } else {
-            const queueKeysArr = Object.keys(data);
-            queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
-        }
-    })
+    if (!data) {
+      // console.log('Sorry!');
+      clearContainer();
+      filmsGallery.innerHTML = `${text[locale.lang].noMoviesSelected}`;
+    } else {
+      const queueKeysArr = Object.keys(data);
+      queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm));
+    }
+  });
 }
 
 //================== Markup function for saved movies ====================

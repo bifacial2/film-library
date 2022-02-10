@@ -22,19 +22,17 @@ export function validation() {
   }
 
   if (!nameregex.test(name.value)) {
-    Notiflix.Notify.info(
-      '-username name can only be alphanumeric\n-username must be aleast must be 5 charaters\n-username cannot contain spaces',
-    );
+    Notiflix.Notify.info(text[locale.lang].badName);
     return false;
   }
 
   if (!emailregex.test(email.value)) {
-    Notiflix.Notify.info('enter a valid email!');
+    Notiflix.Notify.info(text[locale.lang].enterValidEmail);
     return false;
   }
 
   if (passRep.value !== pass.value) {
-    Notiflix.Notify.info('passwords are different!');
+    Notiflix.Notify.info(text[locale.lang].passwordsAreDifferent);
     return false;
   }
   return true;
@@ -135,7 +133,7 @@ function signOut() {
   localStorage.removeItem('user');
   localStorage.removeItem('keepLogIn');
 
-Notiflix.Notify.info('you are logged out');
+  Notiflix.Notify.info(text[locale.lang].logOutSuccesfully);
 }
 
 // -----------------CLEAR LOG/REG INPUT----------------
