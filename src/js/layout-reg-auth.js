@@ -3,6 +3,7 @@ import { pass, logUser, logPass, passRep, name, email } from './auth-registr';
 
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
+import { onHomeButtonClick } from './render-header';
 
 locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
 
@@ -132,6 +133,7 @@ function signOut() {
   sessionStorage.removeItem('user');
   localStorage.removeItem('user');
   localStorage.removeItem('keepLogIn');
+  onHomeButtonClick();
 
   Notiflix.Notify.info(text[locale.lang].logOutSuccesfully);
 }

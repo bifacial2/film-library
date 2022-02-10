@@ -39,7 +39,7 @@ refs.modalRegClose.addEventListener('click', onModalRegCloseClick);
 refs.homeButton.addEventListener('click', onHomeButtonClick);
 refs.libraryButton.addEventListener('click', onLibraryButtonClick);
 
-function onHomeButtonClick(event) {
+export function onHomeButtonClick(event) {
   removeClassListFromAll(refs.navButtons, 'current-page');
   addClassList(refs.homeButton, 'current-page');
 
