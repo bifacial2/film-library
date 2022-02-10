@@ -72,7 +72,7 @@ myLibraryBtn.addEventListener('click', onWatchedBtnClick);
 
 watchBtn.addEventListener('click', onWatchedBtnClick);
 
-// =================WATCH=====================
+// =================WATCHED=====================
 function onWatchedBtnClick(event) {
   event.preventDefault;
   queueBtn.setAttribute('data-status', '');
@@ -94,7 +94,9 @@ function onWatchedBtnClick(event) {
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-            filmsGallery.innerHTML = text[locale.lang].emptyFolderMessage;
+          filmsGallery.innerHTML = `<p></p>
+          <p style="text-align: center;"> ${text[locale.lang].emptyFolderMessage} </p>`;
+            
         } else {
             const watchedFilmsArr = Object.keys(data);
             // console.log(watchedFilmsArr);
@@ -139,7 +141,8 @@ function onQueueBtnClick(event) {
         if (!data) {
             // console.log('Sorry!');
             clearContainer();
-          filmsGallery.innerHTML = text[locale.lang].emptyFolderMessage;      
+          filmsGallery.innerHTML = `<p></p>
+          <p style="text-align: center;"> ${text[locale.lang].emptyFolderMessage} </p>`;      
         } else {
             const queueKeysArr = Object.keys(data);
             queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
