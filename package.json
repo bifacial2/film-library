@@ -3,10 +3,10 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://bifacial2.github.io/final-project-js",
+  "homepage": "https://bifacial2.github.io/film-library",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /final-project-js/"
+    "build": "parcel build src/*.html --public-url /film-library/"
   },
   "repository": {
     "type": "git",
