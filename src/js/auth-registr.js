@@ -1,7 +1,15 @@
 import Notiflix from 'notiflix';
 import { ref, set, child, get } from 'firebase/database';
 import { db } from './firebase.functions';
-import { onModalInCloseClick, onModalRegCloseClick, refs, addClassList, removeClassList, closeModalByClickOut, onEscPress } from './render-header';
+import {
+  onModalInCloseClick,
+  onModalRegCloseClick,
+  refs,
+  addClassList,
+  removeClassList,
+  closeModalByClickOut,
+  onEscPress,
+} from './render-header';
 import {
   validation,
   currentUser,
@@ -14,7 +22,7 @@ import {
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
-locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+// locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
 
 Notiflix.Notify.init({
   width: '280px',

@@ -2,10 +2,11 @@ import Notiflix from 'notiflix';
 import { pass, logUser, logPass, passRep, name, email } from './auth-registr';
 
 import text from '../partials/dictionary.json';
-import { locale } from './localization';
-import { onHomeButtonClick } from './render-header';
 
-locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+import { onHomeButtonClick } from './render-header';
+import { locale } from './localization';
+
+// locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
 
 // -----------------VALIDATION----------------
 

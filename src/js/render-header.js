@@ -63,8 +63,6 @@ function onLibraryButtonClick(event) {
   addClassList(refs.header, 'header-library');
 
   removeClassList(refs.sortBar, 'is-hidden');
-
-
 }
 
 function removeClassListFromAll(array, className) {

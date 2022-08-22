@@ -3,8 +3,8 @@ import { createData } from './render-films';
 import { locale } from './localization';
 import text from '../partials/dictionary.json';
 
-if (localStorage.getItem('LOCALE') === undefined) {
-  locale.lang = 'en-EN';
+if (localStorage.getItem('LOCALE') === null) {
+  locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
 
 const findFilmForm = document.querySelector('.search-form');
@@ -64,33 +64,31 @@ function onSearch(event) {
     clearContainer();
     createData();
     return;
-  } 
+  }
 
   filmApiService
-      .fetchFilm()
-      .then(data => {
-        if (data.results.length === 0) {
-          findFilmForm.reset();
-          searchResultMessage.innerHTML = text[locale.lang].searchResultMessage;
-          /* searchResultMessage.innerHTML =
+    .fetchFilm()
+    .then(data => {
+      if (data.results.length === 0) {
+        findFilmForm.reset();
+        searchResultMessage.innerHTML = text[locale.lang].searchResultMessage;
+        /* searchResultMessage.innerHTML =
               'Search result not successful. Enter the correct movie name.'; */
-          /* Вместо жёстко заданного сообщения система выдаст текст из нашего словарика 
+        /* Вместо жёстко заданного сообщения система выдаст текст из нашего словарика 
         в зависимости от выбранного языка */
-          createData();
-          return;
-        }
-        clearContainer();
-        searchResultMessage.innerHTML = '';
-        createFilmoteka(data.results);
-        paginationBtn.classList.add('invisible');
-        // console.log(data.results);
-      })
-      .catch(error => {
-        console.log(error);
-        // createData();
-      });
-  
-  
+        createData();
+        return;
+      }
+      clearContainer();
+      searchResultMessage.innerHTML = '';
+      createFilmoteka(data.results);
+      paginationBtn.classList.add('invisible');
+      // console.log(data.results);
+    })
+    .catch(error => {
+      console.log(error);
+      // createData();
+    });
 }
 
 export function clearContainer() {

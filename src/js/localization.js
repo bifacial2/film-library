@@ -7,7 +7,8 @@ export const locale = {
   lang: 'en-US',
 };
 
-locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+// locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+console.log(localStorage.getItem('LOCALE'));
 
 ////////////////////////////////////////////////////////////////
 let currentLanguage;
@@ -63,7 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // corresponding to the element's data-i18n-key
 export function translateElement(element) {
   const key = element.getAttribute('data-locale');
+  console.log(text[locale.lang][key]);
   const translation = text[locale.lang][key];
+
   element.innerText = translation;
   refs.placeholderLabel.setAttribute('placeholder', text[locale.lang].searchingPlaceHolder);
   refs.placeholderSignInPassword.setAttribute('placeholder', text[locale.lang].password);

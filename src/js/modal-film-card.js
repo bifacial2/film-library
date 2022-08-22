@@ -8,14 +8,13 @@ import { locale } from './localization';
 import { translateElement } from './localization';
 import { fetchWatchedMovies } from './watched-films';
 
-
 let filmArray = JSON.parse(localStorage.getItem('filmArray')) || [];
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 const card = document.querySelector('#gallery');
 const body = document.querySelector('body');
 card.addEventListener('click', openModal);
 
-locale.lang = localStorage.getItem('LOCALE');
+// locale.lang = localStorage.getItem('LOCALE');
 
 function fetchOneMovieInfo(movie_id) {
   return fetch(
@@ -30,14 +29,11 @@ function fetchOneMovieInfo(movie_id) {
 function openModal(e) {
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
-      return;
+    return;
   }
   body.classList.add('fixed');
 
   fetchOneMovieInfo(e.target.id).then(data => {
-    
-      
-
     const markup = modalFilmCard(data);
 
     const modal = basicLightbox.create(markup);
@@ -45,21 +41,20 @@ function openModal(e) {
     modal.show();
 
     const hiddenCardBtns = document.querySelector('.storage');
-    if(localStorage.getItem('keepLogIn') === null) {
+    if (localStorage.getItem('keepLogIn') === null) {
       hiddenCardBtns.style.visibility = 'hidden';
     }
-    if(sessionStorage.getItem('user') !== null) {
+    if (sessionStorage.getItem('user') !== null) {
       hiddenCardBtns.style.visibility = 'visible';
     }
-    
+
     getFilmFromFirebase(data);
 
-
     initStorageBtns(data);
-    
+
     const closeBtn = document.querySelector('.modal-close-btn');
     closeBtn.addEventListener('click', closeModal);
-  window.addEventListener('keydown', closeModalHandler);
+    window.addEventListener('keydown', closeModalHandler);
     function closeModalHandler(e) {
       if (e.code === 'Escape') {
         modal.close();

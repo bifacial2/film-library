@@ -10,8 +10,8 @@ import * as withLoader from './spinner';
 
 let page = 1;
 let totalPages = 0;
-if (localStorage.getItem('LOCALE') === undefined) {
-  locale.lang = 'en-EN';
+if (localStorage.getItem('LOCALE') === null) {
+  locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
 
 const container = document.getElementById('pagination');

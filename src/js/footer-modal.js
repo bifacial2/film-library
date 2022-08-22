@@ -13,7 +13,7 @@ import closeUrl from '../images/sprite.svg';
 import text from '../partials/dictionary.json';
 import { locale } from './localization';
 
-locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
+// locale.lang = localStorage.getItem('LOCALE') ? localStorage.getItem('LOCALE') : 'en-US';
 
 const team = [
   {

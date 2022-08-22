@@ -8,30 +8,28 @@ import { locale } from './localization';
 import text from '../partials/dictionary.json';
 
 // Localization
-locale.lang = localStorage.getItem('LOCALE');
+// locale.lang = localStorage.getItem('LOCALE');
 // =======
 
 const KEY_API = '2fb1d0d80e47a8e85cd92412e3bfc617';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 const refs = {
-    form: document.querySelector('.sort-form'),
-    formTitles: document.querySelectorAll('.sort-form__select__title'),
-    selectFields: document.querySelectorAll('.sort-form__select'),
-    selectLabels: document.querySelectorAll('.sort-form__select__label'),
-    selectContent: document.querySelector('.sort-form__select__content'),
-    resetBtn: document.querySelector('.sort-form__reset'),
-    genreList: document.querySelector('.js-genre-list'),
-    yearList: document.querySelector('.js-year-list'),
-    ratingList: document.querySelector('.js-rating-list'),
-    gallery: document.querySelector('#gallery'),
-    // Buttons Watched and Queue to get the info about current page
-    watchedBtn: document.querySelector('[data-locale="watch"]'),
-    queueBtn: document.querySelector('[data-locale="queue"]'),
-    myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
+  form: document.querySelector('.sort-form'),
+  formTitles: document.querySelectorAll('.sort-form__select__title'),
+  selectFields: document.querySelectorAll('.sort-form__select'),
+  selectLabels: document.querySelectorAll('.sort-form__select__label'),
+  selectContent: document.querySelector('.sort-form__select__content'),
+  resetBtn: document.querySelector('.sort-form__reset'),
+  genreList: document.querySelector('.js-genre-list'),
+  yearList: document.querySelector('.js-year-list'),
+  ratingList: document.querySelector('.js-rating-list'),
+  gallery: document.querySelector('#gallery'),
+  // Buttons Watched and Queue to get the info about current page
+  watchedBtn: document.querySelector('[data-locale="watch"]'),
+  queueBtn: document.querySelector('[data-locale="queue"]'),
+  myLibraryBtn: document.querySelector('[data-name="myLibrary"]'),
 };
-
-
 
 // To get value of the selected option to sort
 const genreInput = document.querySelector('[data-sort="genere"]');
@@ -57,34 +55,31 @@ refs.form.addEventListener('click', onSelectEvent);
 refs.resetBtn.addEventListener('click', onResetEvent);
 
 function onClickEvent(event) {
-    
-    const dropList = event.target.nextElementSibling;
-    // console.dir(dropList);
+  const dropList = event.target.nextElementSibling;
+  // console.dir(dropList);
 
-    if (event.target.classList.contains('sort-form__select__title')) {
-        // console.dir(event.target.parentNode)
-        
-        if ('active' === event.target.parentNode.getAttribute('data-state')) {
-            // console.log('atribute remove');
-            event.target.parentNode.setAttribute('data-state', '');
-        } else {
-            // console.log('atribute add');
-            event.target.parentNode.setAttribute('data-state', 'active');
-        }
-    }
-  
-    // document.body.classList.add('no-scroll');
-    document.addEventListener('click', closeSortListByOutClick);
+  if (event.target.classList.contains('sort-form__select__title')) {
+    // console.dir(event.target.parentNode)
 
-    if (dropList) {
-        // console.log('run the script')
-        dropList.addEventListener('mouseleave', closeSortList, { once: true });
-
+    if ('active' === event.target.parentNode.getAttribute('data-state')) {
+      // console.log('atribute remove');
+      event.target.parentNode.setAttribute('data-state', '');
     } else {
-        // console.log('dont run the script')
+      // console.log('atribute add');
+      event.target.parentNode.setAttribute('data-state', 'active');
     }
-}
+  }
 
+  // document.body.classList.add('no-scroll');
+  document.addEventListener('click', closeSortListByOutClick);
+
+  if (dropList) {
+    // console.log('run the script')
+    dropList.addEventListener('mouseleave', closeSortList, { once: true });
+  } else {
+    // console.log('dont run the script')
+  }
+}
 
 function onSelectEvent(event) {
   // console.log(event.target);
@@ -102,21 +97,20 @@ function onSelectEvent(event) {
     yearValue = parseInt(yearInput.getAttribute('data-value'));
     ratingValue = parseInt(ratingInput.getAttribute('data-value'));
 
-        // console.log(genreValue, yearValue, ratingValue);
-        
-        getActivePage();
+    // console.log(genreValue, yearValue, ratingValue);
 
-        startSort(activePage);
-    } 
+    getActivePage();
+
+    startSort(activePage);
+  }
 }
 
 function onResetEvent() {
-   
-    getActivePage();
-    resetSortParam();
-    renderMoviesWithoutSort(activePage);
+  getActivePage();
+  resetSortParam();
+  renderMoviesWithoutSort(activePage);
 
-    closeSortList();
+  closeSortList();
 }
 
 export function resetSortParam() {
@@ -135,13 +129,13 @@ export function resetSortParam() {
 }
 
 function getActivePage() {
-     if (refs.watchedBtn.getAttribute('data-status') === 'active') {
-             activePage = refs.watchedBtn.getAttribute('data-folder');
-            //  console.log('watched is active, get the', activePage);
-         } else {
-             activePage = refs.queueBtn.getAttribute('data-folder');
-             console.log('queue is active, get the', activePage);
-        }
+  if (refs.watchedBtn.getAttribute('data-status') === 'active') {
+    activePage = refs.watchedBtn.getAttribute('data-folder');
+    //  console.log('watched is active, get the', activePage);
+  } else {
+    activePage = refs.queueBtn.getAttribute('data-folder');
+    console.log('queue is active, get the', activePage);
+  }
 }
 
 // ============== Render markup content for sort-menu =============
@@ -230,21 +224,31 @@ function startSort(dataBaseFolder) {
 // ============ Sort Movies ============
 
 function sortMovie(array) {
-    // Clear the content
-    clearContainer();
+  // Clear the content
+  clearContainer();
 
-    for (let i = 0; i < array.length; i += 1) {
-       
-        const filmId = array[i];
+  for (let i = 0; i < array.length; i += 1) {
+    const filmId = array[i];
 
-        axios.get(`movie/${filmId}?api_key=${KEY_API}&language=${locale.lang}`)
-            .then(r => { return sortMovieByGenre(r) })
-            .then(r => { return sortMovieByYear(r) })
-            .then(r => { return sortMovieByRating(r) })
-            .then(r => { watchedFilmsMarkup(r.data) })
-            .catch(error => { console.log('фильм не соответсвует параметрам') });
-    } 
-};
+    axios
+      .get(`movie/${filmId}?api_key=${KEY_API}&language=${locale.lang}`)
+      .then(r => {
+        return sortMovieByGenre(r);
+      })
+      .then(r => {
+        return sortMovieByYear(r);
+      })
+      .then(r => {
+        return sortMovieByRating(r);
+      })
+      .then(r => {
+        watchedFilmsMarkup(r.data);
+      })
+      .catch(error => {
+        console.log('фильм не соответсвует параметрам');
+      });
+  }
+}
 
 function sortMovieByGenre(result) {
   //  ========= Genre sort ============
@@ -318,31 +322,26 @@ function renderMoviesWithoutSort(dataBaseFolder) {
 }
 
 function closeSortListByOutClick(e) {
-    // check if click get into form-sort zone
-        if (e.path.includes(document.querySelector('.sort-form__container--left'))) {
-            // if yes - do nothing  
-        } else {
-            // in no - check if it's lables zone of drop down
-            if (!e.path.includes(document.querySelector('.sort-form__select'))) {
-                // if no - close the list and remove event listener
-                document.removeEventListener('click', closeSortListByOutClick);
-                closeSortList();
-            };
-    };
-
-};
+  // check if click get into form-sort zone
+  if (e.path.includes(document.querySelector('.sort-form__container--left'))) {
+    // if yes - do nothing
+  } else {
+    // in no - check if it's lables zone of drop down
+    if (!e.path.includes(document.querySelector('.sort-form__select'))) {
+      // if no - close the list and remove event listener
+      document.removeEventListener('click', closeSortListByOutClick);
+      closeSortList();
+    }
+  }
+}
 
 function closeSortList() {
+  const elements = refs.selectFields;
 
-    const elements = refs.selectFields;
-
-    for (const el of elements) {
-        el.setAttribute('data-state', '');
-    };
-};
-
-
-
+  for (const el of elements) {
+    el.setAttribute('data-state', '');
+  }
+}
 
 // Логика:
 // При нажатии на reset проверка на current page (home, library (watched, quee))

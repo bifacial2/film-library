@@ -9,8 +9,7 @@ import { locale } from './localization';
 import text from '../partials/dictionary.json';
 import { resetSortParam } from './genre-sort';
 
-
-if (localStorage.getItem('LOCALE') === undefined) {
+if (localStorage.getItem('LOCALE') === null) {
   locale.lang = 'en-US';
 } else locale.lang = localStorage.getItem('LOCALE');
 
@@ -19,50 +18,61 @@ const queueBtn = document.querySelector('.library-btns--queue');
 const filmsGallery = document.querySelector('#gallery');
 const paginationBtn = document.querySelector('#pagination');
 
-
 // =====================Buttons on Film Info Card================
 
 export function initStorageBtns(data) {
-    const addToWatchedButton = document.getElementById('js-WatchedButton');
-    const addToQueueButton = document.getElementById('js-QueueButton');
+  const addToWatchedButton = document.getElementById('js-WatchedButton');
+  const addToQueueButton = document.getElementById('js-QueueButton');
 
-    // ==============='Add to Watched' Button==========================
-    
-    addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick)
+  // ==============='Add to Watched' Button==========================
 
-    function onAddToWatchedBtnClick(event) {
-        event.preventDefault();
-            
-        addToWatchedButton.classList.toggle('active');
-        if(addToWatchedButton.classList.contains('active')) {
-          addNewFilmToWatched(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          addToQueueButton.classList.remove('active');
-          remove(ref(db, `users/queue/${data.id}`));
-        } else {
-            remove(ref(db, `users/watched/${data.id}`));
-      }
-      
-    }
-        
-    // =================='Add to Queue' Button=========================
+  addToWatchedButton.addEventListener('click', onAddToWatchedBtnClick);
 
-    addToQueueButton.addEventListener('click', onAddToQueueBtnClick)
+  function onAddToWatchedBtnClick(event) {
+    event.preventDefault();
 
-    function onAddToQueueBtnClick(event) {
-        event.preventDefault();
-        addToQueueButton.classList.toggle('active');
-        if (addToQueueButton.classList.contains('active')) {
-          addFilmToQueue(data.id, data.poster_path, data.title, data.release_date, data.genres, data.vote_average);
-          remove(ref(db, `users/watched/${data.id}`));
-          addToWatchedButton.classList.remove('active');
-          // addToQueueButton.innerHTML = 'Add to queue';
-        } else {
-          remove(ref(db, `users/queue/${data.id}`));
-            // addToQueueButton.innerHTML = 'Add to queue';
-        }
+    addToWatchedButton.classList.toggle('active');
+    if (addToWatchedButton.classList.contains('active')) {
+      addNewFilmToWatched(
+        data.id,
+        data.poster_path,
+        data.title,
+        data.release_date,
+        data.genres,
+        data.vote_average,
+      );
+      addToQueueButton.classList.remove('active');
+      remove(ref(db, `users/queue/${data.id}`));
+    } else {
+      remove(ref(db, `users/watched/${data.id}`));
     }
   }
 
+  // =================='Add to Queue' Button=========================
+
+  addToQueueButton.addEventListener('click', onAddToQueueBtnClick);
+
+  function onAddToQueueBtnClick(event) {
+    event.preventDefault();
+    addToQueueButton.classList.toggle('active');
+    if (addToQueueButton.classList.contains('active')) {
+      addFilmToQueue(
+        data.id,
+        data.poster_path,
+        data.title,
+        data.release_date,
+        data.genres,
+        data.vote_average,
+      );
+      remove(ref(db, `users/watched/${data.id}`));
+      addToWatchedButton.classList.remove('active');
+      // addToQueueButton.innerHTML = 'Add to queue';
+    } else {
+      remove(ref(db, `users/queue/${data.id}`));
+      // addToQueueButton.innerHTML = 'Add to queue';
+    }
+  }
+}
 
 // ===========Header Buttons==============
 
@@ -88,23 +98,22 @@ function onWatchedBtnClick(event) {
 
   // ===========With Firebase Database====
 
-    const getWatchedFilms = ref(db, `users/watched`);
-    onValue(getWatchedFilms, (films) => {
-        const data = films.val();
-      // console.log(data);
-        if (!data) {
-            // console.log('Sorry!');
-            clearContainer();
-          filmsGallery.innerHTML = emptyFolderMessageTemplate;
-            
-        } else {
-            const watchedFilmsArr = Object.keys(data);
-            // console.log(watchedFilmsArr);
-            watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm))
-        }
-    })
-  
-    paginationBtn.classList.add('invisible');
+  const getWatchedFilms = ref(db, `users/watched`);
+  onValue(getWatchedFilms, films => {
+    const data = films.val();
+    // console.log(data);
+    if (!data) {
+      // console.log('Sorry!');
+      clearContainer();
+      filmsGallery.innerHTML = emptyFolderMessageTemplate;
+    } else {
+      const watchedFilmsArr = Object.keys(data);
+      // console.log(watchedFilmsArr);
+      watchedFilmsArr.map(oneFilm => fetchWatchedMovies(oneFilm));
+    }
+  });
+
+  paginationBtn.classList.add('invisible');
 }
 
 export function fetchWatchedMovies(filmId) {
@@ -138,15 +147,15 @@ function onQueueBtnClick(event) {
   onValue(getQueueFilms, films => {
     const data = films.val();
     // console.log(data);
-        if (!data) {
-            // console.log('Sorry!');
-            clearContainer();
-          filmsGallery.innerHTML = emptyFolderMessageTemplate;      
-        } else {
-          const queueKeysArr = Object.keys(data);
-            queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm))
-        }
-    })
+    if (!data) {
+      // console.log('Sorry!');
+      clearContainer();
+      filmsGallery.innerHTML = emptyFolderMessageTemplate;
+    } else {
+      const queueKeysArr = Object.keys(data);
+      queueKeysArr.map(oneFilm => fetchWatchedMovies(oneFilm));
+    }
+  });
 }
 
 //================== Markup function for saved movies ====================
